@@ -10,6 +10,7 @@ var husk = require('../')
   ]);
 
 husk()
+  //.stdin()
   .lines()
   .split()
   .object({schema: {user: 0, line: 1, when: -2}})

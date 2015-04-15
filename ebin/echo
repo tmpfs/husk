@@ -1,8 +1,7 @@
 #!/usr/bin/env node
 
-var husk = require('../')
+var husk = require('../').defaults()
   .plugin([
-    require('husk-exec'),
     require('husk-echo')
   ]);
 

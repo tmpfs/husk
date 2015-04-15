@@ -1,10 +1,6 @@
 #!/usr/bin/env node
 
-var husk = require('../')
-  .plugin([
-    require('husk-exec')
-  ]);
-
+var husk = require('../').defaults();
 husk()
   .exec('ls')
   // pipe `ls` stdout to `cat` stdin
