@@ -30,7 +30,7 @@ Requires [node](http://nodejs.org) and [npm](http://www.npmjs.org).
 ## Install
 
 ```
-npm i husk
+npm i husk --save
 ```
 
 ## Example

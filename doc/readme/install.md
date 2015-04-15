@@ -1,5 +1,5 @@
 ## Install
 
 ```
-npm i husk
+npm i husk --save
 ```
