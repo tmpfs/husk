@@ -12,6 +12,7 @@ async.mapSeries(files, function(item, cb) {
   var cmd = commands[item].cmd;
 
   console.log('### %s\n', item);
+  console.log('%s\n', commands[item].description);
   console.log('```\n%s\n```\n', cmd);
 
   console.log('#### Source\n');

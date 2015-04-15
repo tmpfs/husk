@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-// Execute a command
-
 var husk = require('../')
   .plugin([
     require('husk-exec')

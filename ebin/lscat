@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-// Pipe stdout of a command to the stdin of the next command
-
 var husk = require('../')
   .plugin([
     require('husk-exec')

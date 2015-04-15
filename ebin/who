@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-// Pipe stdin to various plugins to produce json
-
 var husk = require('../')
   .plugin([
     require('husk-lines'),

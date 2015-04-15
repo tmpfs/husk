@@ -37,6 +37,8 @@ npm i husk
 
 ### lscat
 
+Pipe stdout of a command to the stdin of the next command.
+
 ```
 ebin/lscat
 ```
@@ -45,8 +47,6 @@ ebin/lscat
 
 ```javascript
 #!/usr/bin/env node
-
-// Pipe stdout of a command to the stdin of the next command
 
 var husk = require('../')
   .plugin([
@@ -76,6 +76,8 @@ test
 
 ### pwd
 
+Execute a command.
+
 ```
 ebin/pwd
 ```
@@ -84,8 +86,6 @@ ebin/pwd
 
 ```javascript
 #!/usr/bin/env node
-
-// Execute a command
 
 var husk = require('../')
   .plugin([
@@ -109,6 +109,8 @@ husk()
 
 ### who
 
+Pipe stdin to various plugins to produce json.
+
 ```
 who | ebin/who
 ```
@@ -117,8 +119,6 @@ who | ebin/who
 
 ```javascript
 #!/usr/bin/env node
-
-// Pipe stdin to various plugins to produce json
 
 var husk = require('../')
   .plugin([
