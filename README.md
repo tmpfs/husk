@@ -122,6 +122,7 @@ who | ebin/who
 
 var husk = require('../')
   .plugin([
+    require('husk-stdin'),
     require('husk-lines'),
     require('husk-split'),
     require('husk-object'),
