@@ -53,7 +53,6 @@ ebin/lscat
 
 var husk = require('../')
   .plugin([
-    require('husk-stdin'),
     require('husk-exec')
   ]);
 
