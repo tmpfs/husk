@@ -6,7 +6,7 @@ var husk = require('../')
   ]);
 
 husk()
-  .exec('pwd'/* , function(){console.log(arguments)}*/)
+  .exec('pwd', console.log.bind(null, 'code: %s, signal: %s'))
   //.on('error', function(err) {
     //console.error(err);
     //process.exit(1);

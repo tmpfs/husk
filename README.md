@@ -55,7 +55,7 @@ var husk = require('../')
 
 husk()
   .exec('ls')
-  .exec('cat')
+  .exec('cat', console.log.bind(null, '[code: %s, signal: %s]'))
   .pipe(process.stdout)
 ```
 
@@ -72,6 +72,7 @@ node_modules
 package.json
 sbin
 test
+[code: 0, signal: null]
 ```
 
 ### pwd
@@ -93,7 +94,7 @@ var husk = require('../')
   ]);
 
 husk()
-  .exec('pwd'/* , function(){console.log(arguments)}*/)
+  .exec('pwd', console.log.bind(null, 'code: %s, signal: %s'))
   //.on('error', function(err) {
     //console.error(err);
     //process.exit(1);
@@ -105,6 +106,7 @@ husk()
 
 ```
 /Users/cyberfunk/git/husk
+code: 0, signal: null
 ```
 
 ### who
