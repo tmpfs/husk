@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+
+var husk = require('../')
+  .plugin([
+    require('husk-exec'),
+    require('husk-echo'),
+    require('husk-sleep')
+  ]);
+
+husk()
+  .echo(1)
+  .sleep(1)
+  .echo(2)
+  .sleep(1)
+  .echo(3)
+  .pipe(process.stdout);

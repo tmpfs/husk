@@ -1,0 +1,16 @@
+{
+  "name": "husk-echo",
+  "description": "Execute echo command.",
+  "version": "1.0.0",
+  "author": "muji <noop@xpm.io>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/freeformsystems/husk.git"
+  },
+  "keywords": [
+    "stream",
+    "transform",
+    "sleep",
+    "shell"
+  ]
+}

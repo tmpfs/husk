@@ -2,10 +2,12 @@
 
 var husk = require('../')
   .plugin([
+    require('husk-stdin'),
     require('husk-exec')
   ]);
 
 husk()
   .exec('ls')
-  .exec('cat', console.log.bind(null, '[code: %s, signal: %s]'))
+  .exec(1, 'cat', console.log.bind(null, '[code: %s, signal: %s]'))
+  //.pipe();
   .pipe(process.stdout)

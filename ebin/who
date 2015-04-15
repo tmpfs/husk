@@ -7,7 +7,7 @@ var husk = require('../')
     require('husk-split'),
     require('husk-object'),
     require('husk-stringify')
-]);
+  ]);
 
 husk()
   .stdin()
