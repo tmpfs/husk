@@ -1,7 +1,7 @@
 module.exports = {
   echo: {
     cmd: 'ebin/echo',
-    description: 'Echo command'
+    description: 'Execute commands in series'
   },
   lscat: {
     cmd: 'ebin/lscat',
@@ -9,7 +9,7 @@ module.exports = {
   },
   pwd: {
     cmd: 'ebin/pwd',
-    description: 'Execute a command'
+    description: 'Execute a single command'
   },
   who: {
     cmd: 'who | ebin/who',

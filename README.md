@@ -40,7 +40,7 @@ npm i husk --save
 
 ### echo
 
-Echo command.
+Execute commands in series.
 
 ```
 ebin/echo
@@ -109,7 +109,7 @@ test
 
 ### pwd
 
-Execute a command.
+Execute a single command.
 
 ```
 ebin/pwd
