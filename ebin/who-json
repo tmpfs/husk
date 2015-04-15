@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+// Pipe stdin to various plugins to produce json
+
 var husk = require('../');
 
 husk.plugin([
@@ -9,10 +11,8 @@ husk.plugin([
   require('husk-stringify'),
 ]);
 
-//console.dir('who : ' + husk.plugin);
-
-var h = husk();
-var n = h.stdin()
+husk()
+  .stdin()
   .lines()
   .split()
   .object({schema: {user: 0, line: 1, when: -2}})

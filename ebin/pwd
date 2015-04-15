@@ -1,11 +1,17 @@
 #!/usr/bin/env node
 
+// Execute a command
+
 var husk = require('../');
 
 husk.plugin([
   require('husk-exec')
 ]);
 
-var h = husk();
-h.exec('pwd'/* , function(){console.log(arguments)}*/)
-  .pipe(process.stdout);
+husk()
+  .exec('pwd'/* , function(){console.log(arguments)}*/)
+  //.on('error', function(err) {
+    //console.error(err);
+    //process.exit(1);
+  //})
+  .pipe(process.stdout)
