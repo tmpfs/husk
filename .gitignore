@@ -1,0 +1,8 @@
+.DS_Store
+/build
+/target
+/node_modules
+/coverage
+*.log
+*.bak
+*.pid

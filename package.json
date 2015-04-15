@@ -1,0 +1,65 @@
+{
+  "name": "husk",
+  "description": "Streaming, chainable command execution.",
+  "version": "0.1.0",
+  "author": "muji <noop@xpm.io>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/freeformsystems/husk.git"
+  },
+  "main": "lib/index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "~2.2.0",
+    "istanbul": "~0.3.13",
+    "mocha": "~2.2.4",
+    "stream-lines": "~1.0.3"
+  },
+  "engine": [
+    "node >= 0.10.11"
+  ],
+  "keywords": [
+    "stream",
+    "lines",
+    "parse",
+    "read",
+    "shell",
+    "exec",
+    "json"
+  ],
+  "scripts": {
+    "docs": "npm run readme",
+    "readme": "mdp --force -v",
+    "test": "NODE_ENV=test mocha test/spec",
+    "cover": "NODE_ENV=test istanbul cover --root ./lib _mocha -- test/spec"
+  },
+  "mdp": {
+    "title": "Husk",
+    "pedantic": true,
+    "include": "doc/readme",
+    "require": "lib",
+    "links": "links.md",
+    "toc": "Table of Contents",
+    "base": "https://github.com/freeformsystems/husk",
+    "partial": [
+      {
+        "inc": [
+          "introduction.md",
+          "install.md"
+        ]
+      },
+      {
+        "title": "Usage",
+        "inc": "../../ebin/jsonify.js",
+        "type": "code",
+        "language": "javascript"
+      },
+      {
+        "inc": [
+          "developer.md",
+          "license.md"
+        ]
+      }
+    ]
+  }
+}

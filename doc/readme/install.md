@@ -1,0 +1,5 @@
+## Install
+
+```
+npm i husk
+```
