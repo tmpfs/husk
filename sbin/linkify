@@ -1,8 +1,19 @@
 #!/usr/bin/env bash
 
+# link what we need, reverse link
 for f in lib/plugin/* lib/stream/*
   do
     if [ -d "$f" ]; then
+      echo "."
       npm link "$f" || exit 1;
+    fi
+done
+
+# remove plugin node_modules, all resolved at top-level
+# this is important so instanceof tests work as expected
+for f in lib/plugin/* lib/stream/*
+  do
+    if [ -d "$f/node_modules" ];then
+      rm -rf "$f/node_modules" || exit 1
     fi
 done
