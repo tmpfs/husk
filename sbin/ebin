@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+ebin/pwd
+who | ebin/who-json

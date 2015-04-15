@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var husk = require('../');
 
 husk.plugin([
@@ -6,6 +8,8 @@ husk.plugin([
   require('husk-object'),
   require('husk-stringify'),
 ]);
+
+//console.dir('who : ' + husk.plugin);
 
 var h = husk();
 var n = h.stdin()

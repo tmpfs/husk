@@ -1,0 +1,11 @@
+#!/usr/bin/env node
+
+var husk = require('../');
+
+husk.plugin([
+  require('husk-exec')
+]);
+
+var h = husk();
+h.exec('pwd'/* , function(){console.log(arguments)}*/)
+  .pipe(process.stdout);
