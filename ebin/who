@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var husk = require('..').defaults()
+var husk = require('..').core()
   .plugin([
     require('husk-lines'),
     require('husk-split'),
