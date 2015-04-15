@@ -4,6 +4,7 @@
 /build
 /doc/readme
 /lib/plugin
+/lib/stream
 /ebin
 /sbin
 /test
