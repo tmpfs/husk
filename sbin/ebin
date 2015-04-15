@@ -1,4 +1,22 @@
-#!/usr/bin/env bash
+#!/usr/bin/env node
 
-ebin/pwd
-who | ebin/who-json
+var commands = require('./commands')
+  , async = require('async')
+  , exec = require('child_process').exec;
+
+var list = Object.keys(commands);
+
+async.mapSeries(list, function(item, cb) {
+  var cmd = commands[item];
+  exec(cmd, function(err, stdout, stderr) {
+    if(stdout) {
+      process.stdout.write(stdout);
+    }
+    cb(err, cmd);
+  })
+}, function(err, results) {
+  if(err) {
+    console.error(err);
+    process.exit(1);
+  }
+})

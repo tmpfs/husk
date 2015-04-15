@@ -1,0 +1,32 @@
+#!/usr/bin/env node
+
+var commands = require('./commands')
+  , fs = require('fs')
+  , util = require('util')
+  , async = require('async')
+  , exec = require('child_process').exec;
+
+var files = fs.readdirSync('ebin');
+
+async.mapSeries(files, function(item, cb) {
+  var cmd = commands[item];
+
+  console.log('### %s\n', item);
+  console.log('```\n%s\n```\n', cmd);
+
+  console.log('#### Source\n');
+  console.log('```javascript\n%s```\n', fs.readFileSync('ebin/' + item));
+
+  exec(cmd, function(err, stdout, stderr) {
+    if(stdout) {
+      console.log('#### Result\n');
+      console.log('```\n%s```\n', stdout);
+    }
+    cb(err, cmd);
+  })
+}, function(err, results) {
+  if(err) {
+    console.error(err);
+    process.exit(1);
+  }
+})

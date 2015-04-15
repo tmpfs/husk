@@ -3,7 +3,13 @@ Table of Contents
 
 * [Husk](#husk)
   * [Install](#install)
-  * [Usage](#usage)
+  * [Example](#example)
+    * [pwd](#pwd)
+      * [Source](#source)
+      * [Result](#result)
+    * [who](#who)
+      * [Source](#source-1)
+      * [Result](#result-1)
   * [Developer](#developer)
     * [Test](#test)
     * [Cover](#cover)
@@ -24,7 +30,48 @@ Requires [node](http://nodejs.org) and [npm](http://www.npmjs.org).
 npm i husk
 ```
 
-## Usage
+## Example
+
+### pwd
+
+```
+ebin/pwd
+```
+
+#### Source
+
+```javascript
+#!/usr/bin/env node
+
+// Execute a command
+
+var husk = require('../')
+  .plugin([
+    require('husk-exec')
+  ]);
+
+husk()
+  .exec('pwd'/* , function(){console.log(arguments)}*/)
+  //.on('error', function(err) {
+    //console.error(err);
+    //process.exit(1);
+  //})
+  .pipe(process.stdout)
+```
+
+#### Result
+
+```
+/Users/cyberfunk/git/husk
+```
+
+### who
+
+```
+who | ebin/who
+```
+
+#### Source
 
 ```javascript
 #!/usr/bin/env node
@@ -46,6 +93,23 @@ husk()
   .object({schema: {user: 0, line: 1, when: -2}})
   .stringify({indent: 2})
   .pipe(process.stdout);
+```
+
+#### Result
+
+```
+[
+  {
+    "user": "cyberfunk",
+    "line": "console",
+    "when": "Mar 17 15:40 "
+  },
+  {
+    "user": "cyberfunk",
+    "line": "ttys000",
+    "when": "Apr 11 15:31 "
+  }
+]
 ```
 
 ## Developer
