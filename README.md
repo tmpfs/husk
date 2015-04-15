@@ -6,6 +6,7 @@ Table of Contents
   * [Usage](#usage)
   * [Developer](#developer)
     * [Test](#test)
+    * [Cover](#cover)
     * [Documentation](#documentation)
     * [Readme](#readme)
   * [License](#license)
@@ -49,6 +50,14 @@ Tests are not included in the package, clone the repository:
 
 ```
 npm test
+```
+
+### Cover
+
+To generate code coverage run:
+
+```
+npm run cover
 ```
 
 ### Documentation

@@ -8,6 +8,14 @@ Tests are not included in the package, clone the repository:
 npm test
 ```
 
+### Cover
+
+To generate code coverage run:
+
+```
+npm run cover
+```
+
 ### Documentation
 
 To generate all documentation:
