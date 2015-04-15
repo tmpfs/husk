@@ -5,6 +5,7 @@
 /doc/readme
 /lib/plugin
 /ebin
+/sbin
 /test
 *.log
 *.pid
