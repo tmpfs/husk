@@ -10,10 +10,10 @@ Table of Contents
     * [lscat](#lscat)
       * [Source](#source-1)
       * [Result](#result-1)
-    * [pwd](#pwd)
+    * [who](#who)
       * [Source](#source-2)
       * [Result](#result-2)
-    * [who](#who)
+    * [whoami](#whoami)
       * [Source](#source-3)
       * [Result](#result-3)
   * [Developer](#developer)
@@ -107,34 +107,6 @@ test
 [code: 0, signal: null]
 ```
 
-### pwd
-
-Execute a single command.
-
-```
-ebin/pwd
-```
-
-#### Source
-
-```javascript
-#!/usr/bin/env node
-
-var husk = require('..').core().exec();
-
-husk()
-  .pwd(console.log.bind(null, '[code: %s, signal: %s]'))
-  .print()
-  .run();
-```
-
-#### Result
-
-```
-/Users/cyberfunk/git/husk
-[code: 0, signal: null]
-```
-
 ### who
 
 Pipe stdin to various plugins to produce json.
@@ -181,6 +153,34 @@ husk()
     "when": "Apr 11 15:31 "
   }
 ]
+```
+
+### whoami
+
+Execute an external command with callback.
+
+```
+ebin/whoami
+```
+
+#### Source
+
+```javascript
+#!/usr/bin/env node
+
+var husk = require('..').core().exec();
+
+husk()
+  .whoami(console.log.bind(null, '[code: %s, signal: %s]'))
+  .print()
+  .run();
+```
+
+#### Result
+
+```
+cyberfunk
+[code: 0, signal: null]
 ```
 
 ## Developer

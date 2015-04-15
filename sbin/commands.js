@@ -7,9 +7,9 @@ module.exports = {
     cmd: 'ebin/lscat',
     description: 'Pipe stdout of a command to the stdin of the next command'
   },
-  pwd: {
-    cmd: 'ebin/pwd',
-    description: 'Execute a single command'
+  whoami: {
+    cmd: 'ebin/whoami',
+    description: 'Execute an external command with callback'
   },
   who: {
     cmd: 'who | ebin/who',

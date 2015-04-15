@@ -3,6 +3,6 @@
 var husk = require('..').core().exec();
 
 husk()
-  .pwd(console.log.bind(null, '[code: %s, signal: %s]'))
+  .whoami(console.log.bind(null, '[code: %s, signal: %s]'))
   .print()
   .run();
