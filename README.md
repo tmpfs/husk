@@ -154,7 +154,7 @@ var husk = require('..').defaults()
     require('husk-stringify')
   ]);
 
-var h = husk()
+husk()
   .stdin()
   .lines()
   .split()
