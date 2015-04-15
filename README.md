@@ -31,13 +31,12 @@ npm i husk
 
 // Pipe stdin to various plugins to produce json
 
-var husk = require('../');
-
-husk.plugin([
-  require('husk-lines'),
-  require('husk-split'),
-  require('husk-object'),
-  require('husk-stringify'),
+var husk = require('../')
+  .plugin([
+    require('husk-lines'),
+    require('husk-split'),
+    require('husk-object'),
+    require('husk-stringify')
 ]);
 
 husk()

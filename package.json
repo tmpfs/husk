@@ -9,7 +9,7 @@
   },
   "main": "lib/index.js",
   "dependencies": {
-    "zephyr": "~1.2.4"
+    "zephyr": "~1.2.5"
   },
   "devDependencies": {
     "chai": "~2.2.0",
