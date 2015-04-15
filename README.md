@@ -27,19 +27,26 @@ npm i husk
 ## Usage
 
 ```javascript
-var husk = require('../')
-  , lines = require('husk-lines')
-  , split = require('husk-split')
-  , obj = require('husk-object')
-  , stringify = require('husk-stringify');
+#!/usr/bin/env node
 
-var h = husk();
-h.stdin()
-  .pipe(lines())
-  .pipe(split())
-  .pipe(obj({schema: {user: 0, line: 1, when: -2}}))
-  .pipe(stringify({indent: 2}))
-  .pipe(process.stderr);
+// Pipe stdin to various plugins to produce json
+
+var husk = require('../');
+
+husk.plugin([
+  require('husk-lines'),
+  require('husk-split'),
+  require('husk-object'),
+  require('husk-stringify'),
+]);
+
+husk()
+  .stdin()
+  .lines()
+  .split()
+  .object({schema: {user: 0, line: 1, when: -2}})
+  .stringify({indent: 2})
+  .pipe(process.stdout);
 ```
 
 ## Developer

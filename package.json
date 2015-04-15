@@ -54,7 +54,7 @@
       },
       {
         "title": "Usage",
-        "inc": "../../ebin/jsonify.js",
+        "inc": "../../ebin/who-json",
         "type": "code",
         "language": "javascript"
       },
