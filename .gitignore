@@ -1,7 +1,7 @@
 .DS_Store
 /build
 /target
-/node_modules
+node_modules
 /coverage
 *.log
 *.bak

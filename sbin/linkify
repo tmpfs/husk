@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+for f in lib/plugin/* lib/stream/*
+  do
+    if [ -d "$f" ]; then
+      #echo "$f";
+      npm link "$f"
+    fi
+done
