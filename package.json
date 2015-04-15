@@ -9,6 +9,7 @@
   },
   "main": "lib/index.js",
   "dependencies": {
+    "process-flow": "~0.1.0",
     "zephyr": "~1.2.5"
   },
   "devDependencies": {
