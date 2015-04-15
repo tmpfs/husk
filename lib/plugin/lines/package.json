@@ -10,10 +10,6 @@
   "dependencies": {
     "stream-lines": "~1.0.3"
   },
-  "devDependencies": {},
-  "engine": [
-    "node >= 0.10.11"
-  ],
   "keywords": [
     "stream",
     "transform",

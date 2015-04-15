@@ -8,12 +8,8 @@
     "url": "git://github.com/freeformsystems/husk.git"
   },
   "dependencies": {
-    "process-flow": "~0.1.0"
+    "process-flow": "~1.0.0"
   },
-  "devDependencies": {},
-  "engine": [
-    "node >= 0.10.11"
-  ],
   "keywords": [
     "stream",
     "transform",

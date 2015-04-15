@@ -7,11 +7,6 @@
     "type": "git",
     "url": "git://github.com/freeformsystems/husk.git"
   },
-  "dependencies": {},
-  "devDependencies": {},
-  "engine": [
-    "node >= 0.10.11"
-  ],
   "keywords": [
     "stream",
     "transform",
