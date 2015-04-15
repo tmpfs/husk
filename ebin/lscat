@@ -1,0 +1,13 @@
+#!/usr/bin/env node
+
+// Execute a command
+
+var husk = require('../')
+  .plugin([
+    require('husk-exec')
+  ]);
+
+husk()
+  .exec('ls')
+  .exec('cat')
+  .pipe(process.stdout)
