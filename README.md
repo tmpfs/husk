@@ -10,9 +10,12 @@ Table of Contents
     * [pwd](#pwd)
       * [Source](#source-1)
       * [Result](#result-1)
-    * [who](#who)
+    * [sleep](#sleep)
       * [Source](#source-2)
       * [Result](#result-2)
+    * [who](#who)
+      * [Source](#source-3)
+      * [Result](#result-3)
   * [Developer](#developer)
     * [Test](#test)
     * [Cover](#cover)
@@ -50,12 +53,14 @@ ebin/lscat
 
 var husk = require('../')
   .plugin([
+    require('husk-stdin'),
     require('husk-exec')
   ]);
 
 husk()
   .exec('ls')
-  .exec('cat', console.log.bind(null, '[code: %s, signal: %s]'))
+  .exec(1, 'cat', console.log.bind(null, '[code: %s, signal: %s]'))
+  //.pipe();
   .pipe(process.stdout)
 ```
 
@@ -94,7 +99,7 @@ var husk = require('../')
   ]);
 
 husk()
-  .exec('pwd', console.log.bind(null, 'code: %s, signal: %s'))
+  .exec('pwd', console.log.bind(null, '[code: %s, signal: %s]'))
   //.on('error', function(err) {
     //console.error(err);
     //process.exit(1);
@@ -106,7 +111,44 @@ husk()
 
 ```
 /Users/cyberfunk/git/husk
-code: 0, signal: null
+[code: 0, signal: null]
+```
+
+### sleep
+
+Sleep for a bit.
+
+```
+ebin/sleep
+```
+
+#### Source
+
+```javascript
+#!/usr/bin/env node
+
+var husk = require('../')
+  .plugin([
+    require('husk-exec'),
+    require('husk-echo'),
+    require('husk-sleep')
+  ]);
+
+husk()
+  .echo(1)
+  .sleep(1)
+  .echo(2)
+  .sleep(1)
+  .echo(3)
+  .pipe(process.stdout);
+```
+
+#### Result
+
+```
+1
+2
+3
 ```
 
 ### who
@@ -129,7 +171,7 @@ var husk = require('../')
     require('husk-split'),
     require('husk-object'),
     require('husk-stringify')
-]);
+  ]);
 
 husk()
   .stdin()
