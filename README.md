@@ -86,7 +86,7 @@ var husk = require('../').defaults();
 husk()
   .exec('ls')
   // pipe `ls` stdout to `cat` stdin
-  .fd(1)
+  .pipe(1)
   .exec('cat', console.log.bind(null, '[code: %s, signal: %s]'))
   .print()
   .run(true);
