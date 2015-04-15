@@ -1,5 +1,11 @@
 module.exports = {
-  pwd: 'ebin/pwd',
-  who: 'who | ebin/who',
-  lscat: 'ebin/lscat'
+  pwd: {
+    cmd: 'ebin/pwd'
+  },
+  who: {
+    cmd: 'who | ebin/who'
+  },
+  lscat: {
+    cmd: 'ebin/lscat'
+  },
 }

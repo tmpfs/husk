@@ -11,7 +11,7 @@ var list = Object.keys(commands)
     + '----------------------------------------';
 
 async.mapSeries(list, function(item, cb) {
-  var cmd = commands[item];
+  var cmd = commands[item].cmd;
   console.log(delimiter);
   console.log(item + ': %s', cmd);
   console.log(delimiter);
