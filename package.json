@@ -1,6 +1,6 @@
 {
   "name": "husk",
-  "description": "Streaming, chainable command execution.",
+  "description": "Command execution as transform streams.",
   "version": "0.1.0",
   "author": "muji <noop@xpm.io>",
   "repository": {
@@ -20,6 +20,7 @@
   ],
   "keywords": [
     "stream",
+    "transform",
     "lines",
     "parse",
     "read",
