@@ -4,12 +4,15 @@ Table of Contents
 * [Husk](#husk)
   * [Install](#install)
   * [Example](#example)
-    * [pwd](#pwd)
+    * [lscat](#lscat)
       * [Source](#source)
       * [Result](#result)
-    * [who](#who)
+    * [pwd](#pwd)
       * [Source](#source-1)
       * [Result](#result-1)
+    * [who](#who)
+      * [Source](#source-2)
+      * [Result](#result-2)
   * [Developer](#developer)
     * [Test](#test)
     * [Cover](#cover)
@@ -31,6 +34,45 @@ npm i husk
 ```
 
 ## Example
+
+### lscat
+
+```
+ebin/lscat
+```
+
+#### Source
+
+```javascript
+#!/usr/bin/env node
+
+// Pipe stdout of a command to the stdin of the next command
+
+var husk = require('../')
+  .plugin([
+    require('husk-exec')
+  ]);
+
+husk()
+  .exec('ls')
+  .exec('cat')
+  .pipe(process.stdout)
+```
+
+#### Result
+
+```
+README.md
+coverage
+doc
+ebin
+index.js
+lib
+node_modules
+package.json
+sbin
+test
+```
 
 ### pwd
 
