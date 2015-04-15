@@ -81,6 +81,7 @@ ebin/lscat
 #!/usr/bin/env node
 
 var husk = require('..').defaults();
+
 husk()
   .ls()
   // pipe `ls` stdout to `cat` stdin
@@ -120,6 +121,7 @@ ebin/pwd
 #!/usr/bin/env node
 
 var husk = require('..').defaults();
+
 husk()
   .pwd(console.log.bind(null, '[code: %s, signal: %s]'))
   .print()

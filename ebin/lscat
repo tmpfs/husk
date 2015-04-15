@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 var husk = require('..').defaults();
+
 husk()
   .ls()
   // pipe `ls` stdout to `cat` stdin
