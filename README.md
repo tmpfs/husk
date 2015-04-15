@@ -51,13 +51,11 @@ ebin/echo
 ```javascript
 #!/usr/bin/env node
 
-var husk = require('../').defaults()
-  .plugin([
-    require('husk-echo')
-  ]);
+var husk = require('..').defaults();
 
 husk()
   .echo(1, 2, 3)
+  .sleep(1)
   .echo('foo', 'bar')
   .print().run();
 ```
@@ -82,7 +80,7 @@ ebin/lscat
 ```javascript
 #!/usr/bin/env node
 
-var husk = require('../').defaults();
+var husk = require('..').defaults();
 husk()
   .exec('ls')
   // pipe `ls` stdout to `cat` stdin
@@ -121,7 +119,7 @@ ebin/pwd
 ```javascript
 #!/usr/bin/env node
 
-var husk = require('../').defaults();
+var husk = require('..').defaults();
 husk()
   .exec('pwd', console.log.bind(null, '[code: %s, signal: %s]'))
   .print()
@@ -148,7 +146,7 @@ who | ebin/who
 ```javascript
 #!/usr/bin/env node
 
-var husk = require('../').defaults()
+var husk = require('..').defaults()
   .plugin([
     require('husk-lines'),
     require('husk-split'),

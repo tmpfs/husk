@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var husk = require('../').defaults();
+var husk = require('..').defaults();
 husk()
   .exec('pwd', console.log.bind(null, '[code: %s, signal: %s]'))
   .print()

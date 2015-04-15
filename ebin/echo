@@ -1,11 +1,9 @@
 #!/usr/bin/env node
 
-var husk = require('../').defaults()
-  .plugin([
-    require('husk-echo')
-  ]);
+var husk = require('..').defaults();
 
 husk()
   .echo(1, 2, 3)
+  .sleep(1)
   .echo('foo', 'bar')
   .print().run();
