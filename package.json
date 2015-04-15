@@ -8,7 +8,9 @@
     "url": "git://github.com/freeformsystems/husk.git"
   },
   "main": "lib/index.js",
-  "dependencies": {},
+  "dependencies": {
+    "zephyr": "~1.2.4"
+  },
   "devDependencies": {
     "chai": "~2.2.0",
     "istanbul": "~0.3.13",

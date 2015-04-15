@@ -1,0 +1,24 @@
+{
+  "name": "process-flow",
+  "description": "Child process as a transform stream.",
+  "version": "0.1.0",
+  "author": "muji <noop@xpm.io>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/freeformsystems/husk.git"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "engine": [
+    "node >= 0.10.11"
+  ],
+  "keywords": [
+    "stream",
+    "transform",
+    "command",
+    "shell",
+    "cli",
+    "run",
+    "exec"
+  ]
+}

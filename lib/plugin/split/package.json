@@ -1,0 +1,21 @@
+{
+  "name": "husk-split",
+  "description": "Split string entries in an array.",
+  "version": "1.0.0",
+  "author": "muji <noop@xpm.io>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/freeformsystems/husk.git"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "engine": [
+    "node >= 0.10.11"
+  ],
+  "keywords": [
+    "stream",
+    "transform",
+    "split",
+    "array"
+  ]
+}

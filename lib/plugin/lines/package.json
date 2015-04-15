@@ -1,0 +1,24 @@
+{
+  "name": "husk-lines",
+  "description": "Transform buffers to arrays of strings.",
+  "version": "1.0.0",
+  "author": "muji <noop@xpm.io>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/freeformsystems/husk.git"
+  },
+  "dependencies": {
+    "stream-lines": "~1.0.3"
+  },
+  "devDependencies": {},
+  "engine": [
+    "node >= 0.10.11"
+  ],
+  "keywords": [
+    "stream",
+    "transform",
+    "buffer",
+    "line",
+    "array"
+  ]
+}

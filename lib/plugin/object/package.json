@@ -1,0 +1,22 @@
+{
+  "name": "husk-object",
+  "description": "Map array indices to object fields.",
+  "version": "1.0.0",
+  "author": "muji <noop@xpm.io>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/freeformsystems/husk.git"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "engine": [
+    "node >= 0.10.11"
+  ],
+  "keywords": [
+    "stream",
+    "transform",
+    "map",
+    "array",
+    "object"
+  ]
+}
