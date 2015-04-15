@@ -82,10 +82,10 @@ ebin/lscat
 
 var husk = require('..').defaults();
 husk()
-  .exec('ls')
+  .ls()
   // pipe `ls` stdout to `cat` stdin
   .pipe(1)
-  .exec('cat', console.log.bind(null, '[code: %s, signal: %s]'))
+  .cat(console.log.bind(null, '[code: %s, signal: %s]'))
   .print()
   .run(true);
 ```
@@ -121,7 +121,7 @@ ebin/pwd
 
 var husk = require('..').defaults();
 husk()
-  .exec('pwd', console.log.bind(null, '[code: %s, signal: %s]'))
+  .pwd(console.log.bind(null, '[code: %s, signal: %s]'))
   .print()
   .run();
 ```

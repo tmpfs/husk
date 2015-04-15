@@ -2,6 +2,6 @@
 
 var husk = require('..').defaults();
 husk()
-  .exec('pwd', console.log.bind(null, '[code: %s, signal: %s]'))
+  .pwd(console.log.bind(null, '[code: %s, signal: %s]'))
   .print()
   .run();
