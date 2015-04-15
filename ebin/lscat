@@ -10,4 +10,5 @@ husk()
   // pipe `ls` stdout to `cat` stdin
   .fd(1)
   .exec('cat', console.log.bind(null, '[code: %s, signal: %s]'))
-  .pipe(process.stdout)
+  .print()
+  .run(true);

@@ -4,13 +4,13 @@ Table of Contents
 * [Husk](#husk)
   * [Install](#install)
   * [Example](#example)
-    * [lscat](#lscat)
+    * [echo](#echo)
       * [Source](#source)
       * [Result](#result)
-    * [pwd](#pwd)
+    * [lscat](#lscat)
       * [Source](#source-1)
       * [Result](#result-1)
-    * [sleep](#sleep)
+    * [pwd](#pwd)
       * [Source](#source-2)
       * [Result](#result-2)
     * [who](#who)
@@ -38,6 +38,38 @@ npm i husk --save
 
 ## Example
 
+### echo
+
+Echo command.
+
+```
+ebin/echo
+```
+
+#### Source
+
+```javascript
+#!/usr/bin/env node
+
+var husk = require('../')
+  .plugin([
+    require('husk-exec'),
+    require('husk-echo')
+  ]);
+
+husk()
+  .echo(1, 2, 3)
+  .echo('foo', 'bar')
+  .print().run();
+```
+
+#### Result
+
+```
+1 2 3
+foo bar
+```
+
 ### lscat
 
 Pipe stdout of a command to the stdin of the next command.
@@ -61,7 +93,8 @@ husk()
   // pipe `ls` stdout to `cat` stdin
   .fd(1)
   .exec('cat', console.log.bind(null, '[code: %s, signal: %s]'))
-  .pipe(process.stdout)
+  .print()
+  .run(true);
 ```
 
 #### Result
@@ -100,11 +133,8 @@ var husk = require('../')
 
 husk()
   .exec('pwd', console.log.bind(null, '[code: %s, signal: %s]'))
-  //.on('error', function(err) {
-    //console.error(err);
-    //process.exit(1);
-  //})
-  .pipe(process.stdout)
+  .print()
+  .run();
 ```
 
 #### Result
@@ -112,43 +142,6 @@ husk()
 ```
 /Users/cyberfunk/git/husk
 [code: 0, signal: null]
-```
-
-### sleep
-
-Sleep for a bit.
-
-```
-ebin/sleep
-```
-
-#### Source
-
-```javascript
-#!/usr/bin/env node
-
-var husk = require('../')
-  .plugin([
-    require('husk-exec'),
-    require('husk-echo'),
-    require('husk-sleep')
-  ]);
-
-husk()
-  .echo(1)
-  .sleep(1)
-  .echo(2)
-  .sleep(1)
-  .echo(3)
-  .pipe(process.stdout);
-```
-
-#### Result
-
-```
-1
-2
-3
 ```
 
 ### who
@@ -174,12 +167,12 @@ var husk = require('../')
   ]);
 
 husk()
-  .stdin()
   .lines()
   .split()
   .object({schema: {user: 0, line: 1, when: -2}})
   .stringify({indent: 2})
-  .pipe(process.stdout);
+  .print()
+  .run();
 ```
 
 #### Result

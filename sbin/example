@@ -9,6 +9,9 @@ var commands = require('./commands')
 var files = fs.readdirSync('ebin');
 
 async.mapSeries(files, function(item, cb) {
+  if(!commands[item]) {
+    return cb();
+  }
   var cmd = commands[item].cmd;
 
   console.log('### %s\n', item);

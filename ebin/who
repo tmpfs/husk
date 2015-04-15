@@ -10,9 +10,9 @@ var husk = require('../')
   ]);
 
 husk()
-  .stdin()
   .lines()
   .split()
   .object({schema: {user: 0, line: 1, when: -2}})
   .stringify({indent: 2})
-  .pipe(process.stdout);
+  .print()
+  .run();
