@@ -2,12 +2,19 @@
 
 var commands = require('./commands')
   , async = require('async')
-  , exec = require('child_process').exec;
+  , exec = require('child_process').exec
+  , revert = require('ttycolor').defaults();
 
-var list = Object.keys(commands);
+var list = Object.keys(commands)
+  , delimiter
+    = '----------------------------------------'
+    + '----------------------------------------';
 
 async.mapSeries(list, function(item, cb) {
   var cmd = commands[item];
+  console.log(delimiter);
+  console.log(item + ': %s', cmd);
+  console.log(delimiter);
   exec(cmd, function(err, stdout, stderr) {
     if(stdout) {
       process.stdout.write(stdout);
