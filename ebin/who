@@ -1,16 +1,15 @@
 #!/usr/bin/env node
 
-var husk = require('../')
+var husk = require('../').defaults()
   .plugin([
-    require('husk-stdin'),
     require('husk-lines'),
     require('husk-split'),
     require('husk-object'),
     require('husk-stringify')
   ]);
 
-husk()
-  //.stdin()
+var h = husk()
+  .stdin()
   .lines()
   .split()
   .object({schema: {user: 0, line: 1, when: -2}})

@@ -1,20 +1,16 @@
 {
-  "name": "husk-stdin",
-  "description": "Read from process stdin stream.",
+  "name": "husk-core",
+  "description": "Core stream plugin.",
   "version": "1.0.0",
   "author": "muji <noop@xpm.io>",
   "repository": {
     "type": "git",
     "url": "git://github.com/freeformsystems/husk.git"
   },
-  "dependencies": {},
-  "devDependencies": {},
-  "engine": [
-    "node >= 0.10.11"
-  ],
   "keywords": [
     "stream",
     "transform",
-    "stdin"
+    "buffer",
+    "shell"
   ]
 }
