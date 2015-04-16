@@ -14,5 +14,4 @@ husk()
   .split()
   .object({schema: {user: 0, line: 1, when: -2}})
   .stringify({indent: 2})
-  .print()
-  .run();
+  .print().run();

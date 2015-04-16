@@ -87,8 +87,7 @@ husk()
   // pipe `ls` stdout to `cat` stdin
   .pipe(1)
   .cat(console.log.bind(null, '[code: %s, signal: %s]'))
-  .print()
-  .run();
+  .print().run();
 ```
 
 #### Result
@@ -134,8 +133,7 @@ husk()
   .split()
   .object({schema: {user: 0, line: 1, when: -2}})
   .stringify({indent: 2})
-  .print()
-  .run();
+  .print().run();
 ```
 
 #### Result
@@ -172,8 +170,7 @@ var husk = require('..').core().exec();
 
 husk()
   .whoami(console.log.bind(null, '[code: %s, signal: %s]'))
-  .print()
-  .run();
+  .print().run();
 ```
 
 #### Result

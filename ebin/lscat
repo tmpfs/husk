@@ -7,5 +7,4 @@ husk()
   // pipe `ls` stdout to `cat` stdin
   .pipe(1)
   .cat(console.log.bind(null, '[code: %s, signal: %s]'))
-  .print()
-  .run();
+  .print().run();

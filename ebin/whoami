@@ -4,5 +4,4 @@ var husk = require('..').core().exec();
 
 husk()
   .whoami(console.log.bind(null, '[code: %s, signal: %s]'))
-  .print()
-  .run();
+  .print().run();
