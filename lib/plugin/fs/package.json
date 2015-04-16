@@ -1,0 +1,19 @@
+{
+  "name": "husk-fs",
+  "description": "Pipes filesystem read and write streams.",
+  "version": "1.0.0",
+  "author": "muji <noop@xpm.io>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/freeformsystems/husk.git"
+  },
+  "keywords": [
+    "husk",
+    "plugin",
+    "stream",
+    "file",
+    "buffer",
+    "read",
+    "write"
+  ]
+}
