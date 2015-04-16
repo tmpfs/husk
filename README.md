@@ -87,6 +87,7 @@ ebin/filter
 var husk = require('..').core().exec()
   .plugin([
     require('husk-lines'),
+    require('husk-buffer'),
     require('husk-filter'),
     require('husk-split'),
     require('husk-object'),
@@ -96,6 +97,7 @@ var husk = require('..').core().exec()
 husk()
   .ps('ax')
   .lines()
+  //.buffer()
   .filter(function(){return this.trim().indexOf(process.pid) === 0})
   .split()
   .object({schema: {pid: 0, tt: 1, stat: 2, time: 3, cmd: -4}})
@@ -107,11 +109,11 @@ husk()
 
 ```
 {
-  "pid": "",
-  "tt": "5933",
-  "stat": "s026",
-  "time": "R+",
-  "cmd": "0:00.11 node ebin/filter"
+  "pid": "32206",
+  "tt": "s026",
+  "stat": "R+",
+  "time": "0:00.12",
+  "cmd": "node ebin/filter"
 }
 ```
 
