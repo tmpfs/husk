@@ -88,7 +88,7 @@ husk()
   .pipe(1)
   .cat(console.log.bind(null, '[code: %s, signal: %s]'))
   .print()
-  .run(true);
+  .run();
 ```
 
 #### Result
