@@ -8,6 +8,8 @@
     "url": "git://github.com/freeformsystems/husk.git"
   },
   "keywords": [
+    "husk",
+    "plugin",
     "stream",
     "transform",
     "split",

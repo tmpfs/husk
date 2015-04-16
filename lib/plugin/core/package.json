@@ -11,6 +11,8 @@
     "process-flow": "~1.0.0"
   },
   "keywords": [
+    "husk",
+    "plugin",
     "stream",
     "transform",
     "buffer",
