@@ -16,6 +16,9 @@ husk()
   .buffer()
   .lines()
   .filter(function(){return /\.md$/.test(this)})
+
+  //.transform(function(){console.error(this)})
+
   .transform(function(){return [this]})
   .concat()
   .stringify({indent: 2})
