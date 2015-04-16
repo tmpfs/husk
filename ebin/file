@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+
+var husk = require('..').core()
+  .plugin([
+    require('husk-fs')
+  ]);
+
+husk()
+  .read('package.json')
+  .print().run();

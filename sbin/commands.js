@@ -3,6 +3,10 @@ module.exports = {
     cmd: 'ebin/echo',
     description: 'Execute commands in series'
   },
+  file: {
+    cmd: 'ebin/file',
+    description: 'Read and write to filesystem'
+  },
   lscat: {
     cmd: 'ebin/lscat',
     description: 'Pipe stdout of a command to the stdin of the next command'
