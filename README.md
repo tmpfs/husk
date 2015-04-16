@@ -4,16 +4,16 @@ Table of Contents
 * [Husk](#husk)
   * [Install](#install)
   * [Example](#example)
-    * [echo](#echo)
+    * [exec](#exec)
       * [Source](#source)
       * [Result](#result)
-    * [lscat](#lscat)
+    * [pluck](#pluck)
       * [Source](#source-1)
       * [Result](#result-1)
-    * [who](#who)
+    * [series](#series)
       * [Source](#source-2)
       * [Result](#result-2)
-    * [whoami](#whoami)
+    * [stdin](#stdin)
       * [Source](#source-3)
       * [Result](#result-3)
   * [Developer](#developer)
@@ -38,12 +38,82 @@ npm i husk --save
 
 ## Example
 
-### echo
+### exec
+
+Execute an external command with callback.
+
+```
+ebin/exec
+```
+
+#### Source
+
+```javascript
+#!/usr/bin/env node
+
+var husk = require('..').core().exec();
+
+husk()
+  .whoami(console.log.bind(null, '[code: %s, signal: %s]'))
+  .print().run();
+```
+
+#### Result
+
+```
+cyberfunk
+[code: 0, signal: null]
+```
+
+### pluck
+
+Read json from filesystem and pluck field.
+
+```
+ebin/pluck
+```
+
+#### Source
+
+```javascript
+#!/usr/bin/env node
+
+var husk = require('..').core()
+  .plugin([
+    require('husk-fs'),
+    require('husk-buffer'),
+    require('husk-parse'),
+    require('husk-pluck'),
+    require('husk-stringify'),
+  ]);
+
+husk()
+  .read('package.json')
+  .buffer()
+  .parse()
+  .pluck('dependencies')
+  .stringify({indent: 2})
+  //.write('dependencies.json')
+  .print()
+  .run();
+```
+
+#### Result
+
+```
+{
+  "husk-core": "~1.0.0",
+  "husk-exec": "~1.0.0",
+  "zephyr": "~1.2.5"
+}
+```
+
+### series
 
 Execute commands in series.
 
 ```
-ebin/echo
+ebin/series
 ```
 
 #### Source
@@ -67,43 +137,12 @@ husk()
 foo bar
 ```
 
-### lscat
-
-Pipe stdout of a command to the stdin of the next command.
-
-```
-ebin/lscat
-```
-
-#### Source
-
-```javascript
-#!/usr/bin/env node
-
-var husk = require('..').core().exec();
-
-husk()
-  .ls('lib')
-  // pipe `ls` stdout to `cat` stdin
-  .pipe(1)
-  .cat()
-  .print().run();
-```
-
-#### Result
-
-```
-husk.js
-plugin
-stream
-```
-
-### who
+### stdin
 
 Pipe stdin to various plugins to produce json.
 
 ```
-who | ebin/who
+who | ebin/stdin
 ```
 
 #### Source
@@ -143,33 +182,6 @@ husk()
     "when": "Apr 11 15:31 "
   }
 ]
-```
-
-### whoami
-
-Execute an external command with callback.
-
-```
-ebin/whoami
-```
-
-#### Source
-
-```javascript
-#!/usr/bin/env node
-
-var husk = require('..').core().exec();
-
-husk()
-  .whoami(console.log.bind(null, '[code: %s, signal: %s]'))
-  .print().run();
-```
-
-#### Result
-
-```
-cyberfunk
-[code: 0, signal: null]
 ```
 
 ## Developer

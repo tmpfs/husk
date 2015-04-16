@@ -1,22 +1,22 @@
 module.exports = {
-  echo: {
-    cmd: 'ebin/echo',
+  series: {
+    cmd: 'ebin/series',
     description: 'Execute commands in series'
   },
-  file: {
+  pluck: {
     cmd: 'ebin/pluck',
     description: 'Read json from filesystem and pluck field'
   },
-  lscat: {
-    cmd: 'ebin/lscat',
+  pipe: {
+    cmd: 'ebin/process-pipe',
     description: 'Pipe stdout of a command to the stdin of the next command'
   },
-  whoami: {
-    cmd: 'ebin/whoami',
+  exec: {
+    cmd: 'ebin/exec',
     description: 'Execute an external command with callback'
   },
-  who: {
-    cmd: 'who | ebin/who',
+  stdin: {
+    cmd: 'who | ebin/stdin',
     description: 'Pipe stdin to various plugins to produce json'
   },
 }
