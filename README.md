@@ -107,8 +107,8 @@ husk()
 
 ```
 {
-  "pid": "52853",
-  "tt": "s024",
+  "pid": "41262",
+  "tt": "s026",
   "stat": "R+",
   "time": "0:00.12",
   "cmd": "node ebin/filter"
@@ -289,6 +289,7 @@ husk()
   "./stream/buffer/README.md",
   "./stream/concat/README.md",
   "./stream/method/README.md",
+  "./stream/print/README.md",
   "./stream/process/README.md"
 ]
 ```
