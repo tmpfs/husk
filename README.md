@@ -107,7 +107,7 @@ husk()
 
 ```
 {
-  "pid": "23136",
+  "pid": "36632",
   "tt": "s026",
   "stat": "R+",
   "time": "0:00.12",
@@ -141,10 +141,8 @@ husk()
   .read('package.json')
   .buffer()
   .parse()
-  .pluck('dependencies')
-  //.pluck(function(){return this.dependencies})
+  .pluck(function(){return this.dependencies})
   .stringify({indent: 2})
-  //.write('dependencies.json')
   .print()
   .run();
 ```
