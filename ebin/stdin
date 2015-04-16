@@ -5,6 +5,7 @@ var husk = require('..').core()
     require('husk-lines'),
     require('husk-split'),
     require('husk-object'),
+    require('husk-pluck'),
     require('husk-stringify')
   ]);
 
@@ -13,5 +14,6 @@ husk()
   .lines()
   .split()
   .object({schema: {user: 0, line: 1, when: -2}})
+  .pluck(0)
   .stringify({indent: 2})
   .print().run();
