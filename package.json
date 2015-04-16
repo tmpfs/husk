@@ -21,7 +21,7 @@
     "ttycolor": "~0.8.14"
   },
   "engine": [
-    "node >= 0.10.11"
+    "node >= 0.12.2"
   ],
   "keywords": [
     "stream",
