@@ -1,0 +1,19 @@
+{
+  "name": "husk-buffer",
+  "description": "Pipe to buffer stream and write on end.",
+  "version": "1.0.1",
+  "author": "muji <noop@xpm.io>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/freeformsystems/husk.git"
+  },
+  "dependencies": {
+    "buffer-flow": "~1.0.1"
+  },
+  "keywords": [
+    "husk",
+    "plugin",
+    "stream",
+    "buffer"
+  ]
+}
