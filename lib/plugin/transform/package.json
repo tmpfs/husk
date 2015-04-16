@@ -1,6 +1,6 @@
 {
-  "name": "husk-filter",
-  "description": "Filter chunks using function(s).",
+  "name": "husk-transform",
+  "description": "Transform chunks using function(s).",
   "version": "1.0.1",
   "author": "muji <noop@xpm.io>",
   "repository": {

@@ -19,6 +19,10 @@ module.exports = {
     cmd: 'ebin/exec',
     description: 'Execute an external command with callback'
   },
+  transform: {
+    cmd: 'who | ebin/transform',
+    description: 'Find files, filter and transform to a json array'
+  },
   stdin: {
     cmd: 'who | ebin/stdin',
     description: 'Pipe stdin to various plugins to produce json'

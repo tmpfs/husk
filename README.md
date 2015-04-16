@@ -19,6 +19,9 @@ Table of Contents
     * [stdin](#stdin)
       * [Source](#source-4)
       * [Result](#result-4)
+    * [transform](#transform)
+      * [Source](#source-5)
+      * [Result](#result-5)
   * [Developer](#developer)
     * [Test](#test)
     * [Cover](#cover)
@@ -104,11 +107,11 @@ husk()
 
 ```
 {
-  "pid": "63692",
-  "tt": "s026",
-  "stat": "R+",
-  "time": "0:00.16",
-  "cmd": "node ebin/filter"
+  "pid": "",
+  "tt": "5933",
+  "stat": "s026",
+  "time": "R+",
+  "cmd": "0:00.11 node ebin/filter"
 }
 ```
 
@@ -225,6 +228,65 @@ husk()
   "line": "console",
   "when": "Mar 17 15:40 "
 }
+```
+
+### transform
+
+Find files, filter and transform to a json array.
+
+```
+who | ebin/transform
+```
+
+#### Source
+
+```javascript
+#!/usr/bin/env node
+
+var husk = require('..').core().exec()
+  .plugin([
+    require('husk-concat'),
+    require('husk-buffer'),
+    require('husk-lines'),
+    require('husk-filter'),
+    require('husk-transform'),
+    require('husk-stringify')
+  ]);
+
+husk()
+  .cd('lib')
+  .find()
+  .buffer()
+  .lines()
+  .filter(function(){return /\.md$/.test(this)})
+  .transform(function(){return [this]})
+  .concat()
+  .stringify({indent: 2})
+  .print().run();
+```
+
+#### Result
+
+```
+[
+  "./plugin/buffer/README.md",
+  "./plugin/concat/README.md",
+  "./plugin/core/README.md",
+  "./plugin/exec/README.md",
+  "./plugin/filter/README.md",
+  "./plugin/fs/README.md",
+  "./plugin/lines/README.md",
+  "./plugin/object/README.md",
+  "./plugin/parse/README.md",
+  "./plugin/pluck/README.md",
+  "./plugin/split/README.md",
+  "./plugin/stringify/README.md",
+  "./plugin/transform/README.md",
+  "./stream/buffer/README.md",
+  "./stream/concat/README.md",
+  "./stream/method/README.md",
+  "./stream/process/README.md"
+]
 ```
 
 ## Developer

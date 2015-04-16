@@ -1,6 +1,6 @@
 {
-  "name": "husk-filter",
-  "description": "Filter chunks using function(s).",
+  "name": "concat-flow",
+  "description": "Buffer and concatenate chunks as a duplex stream.",
   "version": "1.0.1",
   "author": "muji <noop@xpm.io>",
   "repository": {
@@ -9,10 +9,8 @@
   },
   "keywords": [
     "husk",
-    "plugin",
     "stream",
-    "transform",
-    "filter",
-    "function"
+    "buffer",
+    "concat"
   ]
 }

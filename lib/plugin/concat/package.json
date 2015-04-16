@@ -1,18 +1,21 @@
 {
-  "name": "husk-filter",
-  "description": "Filter chunks using function(s).",
+  "name": "husk-concat",
+  "description": "Concatenate chunks and emit result on end.",
   "version": "1.0.1",
   "author": "muji <noop@xpm.io>",
   "repository": {
     "type": "git",
     "url": "git://github.com/freeformsystems/husk.git"
   },
+  "dependencies": {
+    "concat-stream": "~1.4.8"
+  },
   "keywords": [
     "husk",
     "plugin",
     "stream",
     "transform",
-    "filter",
-    "function"
+    "buffer",
+    "concatenate"
   ]
 }
