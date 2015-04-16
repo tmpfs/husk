@@ -19,4 +19,5 @@ husk()
   .transform(function(){return [this]})
   .concat()
   .stringify({indent: 2})
-  .print().run();
+  .print()
+  .run();

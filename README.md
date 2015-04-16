@@ -107,7 +107,7 @@ husk()
 
 ```
 {
-  "pid": "41262",
+  "pid": "95317",
   "tt": "s026",
   "stat": "R+",
   "time": "0:00.12",
@@ -266,7 +266,8 @@ husk()
   .transform(function(){return [this]})
   .concat()
   .stringify({indent: 2})
-  .print().run();
+  .print()
+  .run();
 ```
 
 #### Result
