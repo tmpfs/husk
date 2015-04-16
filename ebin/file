@@ -5,6 +5,9 @@ var husk = require('..').core()
     require('husk-fs')
   ]);
 
+var buffer = require('buffer-flow');
+
 husk()
   .read('package.json')
+  .pipe(buffer())
   .print().run();

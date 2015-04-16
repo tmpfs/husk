@@ -1,6 +1,6 @@
 {
-  "name": "process-flow",
-  "description": "Child process as a transform stream.",
+  "name": "buffer-flow",
+  "description": "Buffer all data in a stream and write on end.",
   "version": "1.0.1",
   "author": "muji <noop@xpm.io>",
   "repository": {
@@ -10,11 +10,6 @@
   "keywords": [
     "husk",
     "stream",
-    "transform",
-    "command",
-    "shell",
-    "cli",
-    "run",
-    "exec"
+    "buffer"
   ]
 }
