@@ -9,15 +9,16 @@ Table of Contents
       * [Result](#result)
     * [file](#file)
       * [Source](#source-1)
+      * [Result](#result-1)
     * [lscat](#lscat)
       * [Source](#source-2)
-      * [Result](#result-1)
+      * [Result](#result-2)
     * [who](#who)
       * [Source](#source-3)
-      * [Result](#result-2)
+      * [Result](#result-3)
     * [whoami](#whoami)
       * [Source](#source-4)
-      * [Result](#result-3)
+      * [Result](#result-4)
   * [Developer](#developer)
     * [Test](#test)
     * [Cover](#cover)
@@ -87,6 +88,7 @@ var husk = require('..').core()
     require('husk-fs'),
     require('husk-buffer'),
     require('husk-parse'),
+    require('husk-pluck'),
     require('husk-stringify'),
   ]);
 
@@ -94,9 +96,21 @@ husk()
   .read('package.json')
   .buffer()
   .parse()
+  .pluck('dependencies')
   .stringify({indent: 2})
-  .write('dependencies.json')
+  //.write('dependencies.json')
+  .print()
   .run();
+```
+
+#### Result
+
+```
+{
+  "husk-core": "~1.0.0",
+  "husk-exec": "~1.0.0",
+  "zephyr": "~1.2.5"
+}
 ```
 
 ### lscat
@@ -126,7 +140,6 @@ husk()
 
 ```
 README.md
-dependencies.json
 doc
 ebin
 index.js

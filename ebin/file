@@ -5,6 +5,7 @@ var husk = require('..').core()
     require('husk-fs'),
     require('husk-buffer'),
     require('husk-parse'),
+    require('husk-pluck'),
     require('husk-stringify'),
   ]);
 
@@ -12,6 +13,8 @@ husk()
   .read('package.json')
   .buffer()
   .parse()
+  .pluck('dependencies')
   .stringify({indent: 2})
-  .write('dependencies.json')
+  //.write('dependencies.json')
+  .print()
   .run();
