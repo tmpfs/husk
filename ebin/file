@@ -13,4 +13,5 @@ husk()
   .buffer()
   .parse()
   .stringify({indent: 2})
-  .print().run();
+  .write('dependencies.json')
+  .run();

@@ -9,16 +9,15 @@ Table of Contents
       * [Result](#result)
     * [file](#file)
       * [Source](#source-1)
-      * [Result](#result-1)
     * [lscat](#lscat)
       * [Source](#source-2)
-      * [Result](#result-2)
+      * [Result](#result-1)
     * [who](#who)
       * [Source](#source-3)
-      * [Result](#result-3)
+      * [Result](#result-2)
     * [whoami](#whoami)
       * [Source](#source-4)
-      * [Result](#result-4)
+      * [Result](#result-3)
   * [Developer](#developer)
     * [Test](#test)
     * [Cover](#cover)
@@ -96,83 +95,8 @@ husk()
   .buffer()
   .parse()
   .stringify({indent: 2})
-  .print().run();
-```
-
-#### Result
-
-```
-{
-  "name": "husk",
-  "description": "Command execution as transform streams.",
-  "version": "0.3.2",
-  "author": "muji <noop@xpm.io>",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/freeformsystems/husk.git"
-  },
-  "main": "lib/husk.js",
-  "dependencies": {
-    "husk-core": "~1.0.0",
-    "husk-exec": "~1.0.0",
-    "zephyr": "~1.2.5"
-  },
-  "devDependencies": {
-    "async": "~0.9.0",
-    "chai": "~2.2.0",
-    "istanbul": "~0.3.13",
-    "mocha": "~2.2.4",
-    "ttycolor": "~0.8.14"
-  },
-  "engine": [
-    "node >= 0.12.2"
-  ],
-  "keywords": [
-    "stream",
-    "transform",
-    "lines",
-    "parse",
-    "read",
-    "shell",
-    "exec",
-    "json"
-  ],
-  "scripts": {
-    "docs": "npm run readme",
-    "readme": "mdp --force -v",
-    "ebin": "./sbin/ebin",
-    "ln": "./sbin/linkify",
-    "test": "NODE_ENV=test mocha test/spec",
-    "cover": "NODE_ENV=test istanbul cover --root ./lib _mocha -- test/spec"
-  },
-  "mdp": {
-    "title": "Husk",
-    "pedantic": true,
-    "include": "doc/readme",
-    "require": "lib",
-    "links": "links.md",
-    "toc": "Table of Contents",
-    "base": "https://github.com/freeformsystems/husk",
-    "partial": [
-      {
-        "inc": [
-          "introduction.md",
-          "install.md"
-        ]
-      },
-      {
-        "title": "Example",
-        "bin": "sbin/example"
-      },
-      {
-        "inc": [
-          "developer.md",
-          "license.md"
-        ]
-      }
-    ]
-  }
-}
+  .write('dependencies.json')
+  .run();
 ```
 
 ### lscat
@@ -202,13 +126,12 @@ husk()
 
 ```
 README.md
-coverage
+dependencies.json
 doc
 ebin
 index.js
 lib
 node_modules
-npm-debug.log
 package.json
 sbin
 test

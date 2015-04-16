@@ -8,6 +8,7 @@
 /ebin
 /sbin
 /test
+/dependencies.json
 *.log
 *.pid
 *.bak
