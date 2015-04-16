@@ -1,4 +1,8 @@
 module.exports = {
+  filter: {
+    cmd: 'ebin/filter',
+    description: 'Filter array of lines with custom function'
+  },
   series: {
     cmd: 'ebin/series',
     description: 'Execute commands in series'

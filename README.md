@@ -7,15 +7,18 @@ Table of Contents
     * [exec](#exec)
       * [Source](#source)
       * [Result](#result)
-    * [pluck](#pluck)
+    * [filter](#filter)
       * [Source](#source-1)
       * [Result](#result-1)
-    * [series](#series)
+    * [pluck](#pluck)
       * [Source](#source-2)
       * [Result](#result-2)
-    * [stdin](#stdin)
+    * [series](#series)
       * [Source](#source-3)
       * [Result](#result-3)
+    * [stdin](#stdin)
+      * [Source](#source-4)
+      * [Result](#result-4)
   * [Developer](#developer)
     * [Test](#test)
     * [Cover](#cover)
@@ -63,6 +66,50 @@ husk()
 ```
 cyberfunk
 [code: 0, signal: null]
+```
+
+### filter
+
+Filter array of lines with custom function.
+
+```
+ebin/filter
+```
+
+#### Source
+
+```javascript
+#!/usr/bin/env node
+
+var husk = require('..').core().exec()
+  .plugin([
+    require('husk-lines'),
+    require('husk-filter'),
+    require('husk-split'),
+    require('husk-object'),
+    require('husk-stringify')
+  ]);
+
+husk()
+  .ps('ax')
+  .lines()
+  .filter(function(){return this.trim().indexOf(process.pid) === 0})
+  .split()
+  .object({schema: {pid: 0, tt: 1, stat: 2, time: 3, cmd: -4}})
+  .stringify({indent: 2})
+  .print().run();
+```
+
+#### Result
+
+```
+{
+  "pid": "63692",
+  "tt": "s026",
+  "stat": "R+",
+  "time": "0:00.16",
+  "cmd": "node ebin/filter"
+}
 ```
 
 ### pluck
@@ -156,6 +203,7 @@ var husk = require('..').core()
     require('husk-lines'),
     require('husk-split'),
     require('husk-object'),
+    require('husk-pluck'),
     require('husk-stringify')
   ]);
 
@@ -164,6 +212,7 @@ husk()
   .lines()
   .split()
   .object({schema: {user: 0, line: 1, when: -2}})
+  .pluck(0)
   .stringify({indent: 2})
   .print().run();
 ```
@@ -171,18 +220,11 @@ husk()
 #### Result
 
 ```
-[
-  {
-    "user": "cyberfunk",
-    "line": "console",
-    "when": "Mar 17 15:40 "
-  },
-  {
-    "user": "cyberfunk",
-    "line": "ttys000",
-    "when": "Apr 11 15:31 "
-  }
-]
+{
+  "user": "cyberfunk",
+  "line": "console",
+  "when": "Mar 17 15:40 "
+}
 ```
 
 ## Developer
