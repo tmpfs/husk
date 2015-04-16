@@ -2,12 +2,11 @@
 
 var husk = require('..').core()
   .plugin([
-    require('husk-fs')
+    require('husk-fs'),
+    require('husk-buffer')
   ]);
-
-var buffer = require('buffer-flow');
 
 husk()
   .read('package.json')
-  .pipe(buffer())
+  .buffer()
   .print().run();
