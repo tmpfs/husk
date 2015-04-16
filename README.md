@@ -83,26 +83,19 @@ ebin/lscat
 var husk = require('..').core().exec();
 
 husk()
-  .ls()
+  .ls('lib')
   // pipe `ls` stdout to `cat` stdin
   .pipe(1)
-  .cat(console.log.bind(null, '[code: %s, signal: %s]'))
+  .cat()
   .print().run();
 ```
 
 #### Result
 
 ```
-README.md
-doc
-ebin
-index.js
-lib
-node_modules
-package.json
-sbin
-test
-[code: 0, signal: null]
+husk.js
+plugin
+stream
 ```
 
 ### who
