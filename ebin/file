@@ -3,10 +3,14 @@
 var husk = require('..').core()
   .plugin([
     require('husk-fs'),
-    require('husk-buffer')
+    require('husk-buffer'),
+    require('husk-parse'),
+    require('husk-stringify'),
   ]);
 
 husk()
   .read('package.json')
   .buffer()
+  .parse()
+  .stringify({indent: 2})
   .print().run();
