@@ -4,8 +4,8 @@ module.exports = {
     description: 'Execute commands in series'
   },
   file: {
-    cmd: 'ebin/file',
-    description: 'Read and write to filesystem'
+    cmd: 'ebin/pluck',
+    description: 'Read json from filesystem and pluck field'
   },
   lscat: {
     cmd: 'ebin/lscat',
