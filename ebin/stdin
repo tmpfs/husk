@@ -2,18 +2,24 @@
 
 var husk = require('..').core()
   .plugin([
+    require('husk-buffer'),
     require('husk-lines'),
+    require('husk-transform'),
     require('husk-split'),
     require('husk-object'),
+    require('husk-concat'),
     require('husk-pluck'),
     require('husk-stringify')
   ]);
 
 husk()
   .stdin()
+  .buffer()
   .lines()
+  .transform(function(){return [this.trim()]})
   .split()
   .object({schema: {user: 0, line: 1, when: -2}})
+  .concat()
   .pluck(0)
   .stringify({indent: 2})
   .print().run();

@@ -109,7 +109,7 @@ husk()
 
 ```
 {
-  "pid": "32206",
+  "pid": "66261",
   "tt": "s026",
   "stat": "R+",
   "time": "0:00.12",
@@ -205,18 +205,26 @@ who | ebin/stdin
 
 var husk = require('..').core()
   .plugin([
+    require('husk-buffer'),
     require('husk-lines'),
+    require('husk-filter'),
+    require('husk-transform'),
     require('husk-split'),
     require('husk-object'),
+    require('husk-concat'),
     require('husk-pluck'),
     require('husk-stringify')
   ]);
 
 husk()
   .stdin()
+  .buffer()
   .lines()
+  .filter(function(chunk){return chunk !== ''})
+  .transform(function(){return [this.trim()]})
   .split()
   .object({schema: {user: 0, line: 1, when: -2}})
+  .concat()
   .pluck(0)
   .stringify({indent: 2})
   .print().run();
@@ -228,7 +236,7 @@ husk()
 {
   "user": "cyberfunk",
   "line": "console",
-  "when": "Mar 17 15:40 "
+  "when": "Mar 17 15:40"
 }
 ```
 
