@@ -37,7 +37,7 @@
   "scripts": {
     "docs": "npm run readme",
     "readme": "mdp --force -v",
-    "ebin": "./sbin/ebin",
+    "ex": "./sbin/ebin",
     "ln": "./sbin/linkify",
     "test": "NODE_ENV=test mocha test/spec",
     "cover": "NODE_ENV=test istanbul cover --root ./lib _mocha -- test/spec"
