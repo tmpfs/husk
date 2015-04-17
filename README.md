@@ -88,6 +88,7 @@ var husk = require('..').core().exec();
 
 husk()
   .whoami(console.log.bind(null, '[code: %s, signal: %s]'))
+  .once('end', function(){console.log('[end] whoami')})
   .print()
   .run();
 ```
@@ -97,6 +98,7 @@ husk()
 ```
 cyberfunk
 [code: 0, signal: null]
+[end] whoami
 ```
 
 ### filter
@@ -136,7 +138,7 @@ husk()
 
 ```
 {
-  "pid": "28124",
+  "pid": "46071",
   "tt": "s026",
   "stat": "R+",
   "time": "0:00.12",
@@ -322,7 +324,7 @@ var husk = require('..').core()
   , stringify = require('husk-stringify');
 
 function onEnd(phase) {
-  console.log('[end] %s', phase)
+  console.log('[end] %s', phase);
 }
 
 var h = husk();
@@ -342,7 +344,7 @@ h
   .pipe(stringify({indent: 2}))
     .on('end', onEnd.bind(null, 'stringify'))
   .pipe(print(function noop(){}))
-    .on('finish', onEnd.bind(null, 'print'))
+    .on('finish', onEnd.bind(null, 'print'));
 
 h.run();
 ```
