@@ -136,10 +136,10 @@ husk()
 
 ```
 {
-  "pid": "22969",
+  "pid": "35254",
   "tt": "s026",
   "stat": "R+",
-  "time": "0:00.12",
+  "time": "0:00.18",
   "cmd": "node ebin/filter"
 }
 ```
@@ -238,8 +238,9 @@ husk()
 
 ```
 {
-  "husk-core": "~1.0.0",
-  "husk-exec": "~1.0.0",
+  "husk-core": "~1.0.1",
+  "husk-exec": "~1.0.1",
+  "husk-print": "~1.0.1",
   "zephyr": "~1.2.6"
 }
 ```

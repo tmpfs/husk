@@ -9,8 +9,9 @@
   },
   "main": "lib/husk.js",
   "dependencies": {
-    "husk-core": "~1.0.0",
-    "husk-exec": "~1.0.0",
+    "husk-core": "~1.0.1",
+    "husk-exec": "~1.0.1",
+    "husk-print": "~1.0.1",
     "zephyr": "~1.2.6"
   },
   "devDependencies": {
