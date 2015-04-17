@@ -4,24 +4,30 @@ Table of Contents
 * [Husk](#husk)
   * [Install](#install)
   * [Example](#example)
-    * [exec](#exec)
+    * [data-write](#data-write)
       * [Source](#source)
       * [Result](#result)
-    * [filter](#filter)
+    * [exec](#exec)
       * [Source](#source-1)
       * [Result](#result-1)
-    * [pluck](#pluck)
+    * [filter](#filter)
       * [Source](#source-2)
       * [Result](#result-2)
-    * [series](#series)
+    * [pluck](#pluck)
       * [Source](#source-3)
       * [Result](#result-3)
-    * [stdin](#stdin)
+    * [process-pipe](#process-pipe)
       * [Source](#source-4)
       * [Result](#result-4)
-    * [transform](#transform)
+    * [series](#series)
       * [Source](#source-5)
       * [Result](#result-5)
+    * [stdin](#stdin)
+      * [Source](#source-6)
+      * [Result](#result-6)
+    * [transform](#transform)
+      * [Source](#source-7)
+      * [Result](#result-7)
   * [Developer](#developer)
     * [Test](#test)
     * [Cover](#cover)
@@ -43,6 +49,42 @@ npm i husk --save
 ```
 
 ## Example
+
+### data-write
+
+Pass data to be written on run.
+
+```
+ebin/data-write
+```
+
+#### Source
+
+```javascript
+#!/usr/bin/env node
+
+var husk = require('..').core()
+  .plugin([
+    require('husk-pluck'),
+    require('husk-transform'),
+    require('husk-stringify')
+  ]);
+
+husk(process.env)
+  .pluck(function(){return this.EDITOR})
+  .transform(function(){return {editor: this}})
+  .stringify({indent: 2})
+  .print()
+  .run();
+```
+
+#### Result
+
+```
+{
+  "editor": "vim"
+}
+```
 
 ### exec
 
@@ -107,7 +149,7 @@ husk()
 
 ```
 {
-  "pid": "1319",
+  "pid": "42115",
   "tt": "s026",
   "stat": "R+",
   "time": "0:00.11",
@@ -155,6 +197,37 @@ husk()
   "husk-exec": "~1.0.0",
   "zephyr": "~1.2.5"
 }
+```
+
+### process-pipe
+
+Pipe stdout of a command to the stdin of the next command.
+
+```
+ebin/process-pipe
+```
+
+#### Source
+
+```javascript
+#!/usr/bin/env node
+
+var husk = require('..').core().exec();
+
+husk()
+  .ls('lib')
+  // pipe `ls` stdout to `cat` stdin
+  .pipe(1)
+  .cat()
+  .print().run();
+```
+
+#### Result
+
+```
+husk.js
+plugin
+stream
 ```
 
 ### series

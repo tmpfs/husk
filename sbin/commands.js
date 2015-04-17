@@ -1,7 +1,7 @@
 module.exports = {
-  datawrite: {
+  'data-write': {
     cmd: 'ebin/data-write',
-    description: 'Pass data to be written to the first stream on run'
+    description: 'Pass data to be written on run'
   },
   filter: {
     cmd: 'ebin/filter',
@@ -15,7 +15,7 @@ module.exports = {
     cmd: 'ebin/pluck',
     description: 'Read json from filesystem and pluck field'
   },
-  pipe: {
+  'process-pipe': {
     cmd: 'ebin/process-pipe',
     description: 'Pipe stdout of a command to the stdin of the next command'
   },
