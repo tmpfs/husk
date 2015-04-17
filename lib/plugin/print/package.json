@@ -1,0 +1,22 @@
+{
+  "name": "husk-print",
+  "description": "Pipe to a function and passthrough.",
+  "version": "1.0.1",
+  "author": "muji <noop@xpm.io>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/freeformsystems/husk.git"
+  },
+  "dependencies": {
+    "print-flow": "~1.0.1"
+  },
+  "keywords": [
+    "husk",
+    "plugin",
+    "stream",
+    "buffer",
+    "print",
+    "debug",
+    "log"
+  ]
+}

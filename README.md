@@ -7,6 +7,7 @@ Table of Contents
     * [data-write](#data-write)
     * [exec](#exec)
     * [filter](#filter)
+    * [pipe-events](#pipe-events)
     * [pluck](#pluck)
     * [process-pipe](#process-pipe)
     * [series](#series)
@@ -135,12 +136,70 @@ husk()
 
 ```
 {
-  "pid": "40303",
+  "pid": "22969",
   "tt": "s026",
   "stat": "R+",
   "time": "0:00.12",
   "cmd": "node ebin/filter"
 }
+```
+
+### pipe-events
+
+Bypass chained method calls and listen on streams.
+
+```
+ebin/pipe-events
+```
+
+**Source**.
+
+```javascript
+#!/usr/bin/env node
+
+var husk = require('..').core()
+  , exec = require('husk-exec')
+  , print = require('husk-print')
+  , concat = require('husk-concat')
+  , buffer =  require('husk-buffer')
+  , lines = require('husk-lines')
+  , filter = require('husk-filter')
+  , transform = require('husk-transform')
+  , stringify = require('husk-stringify');
+
+var h = husk();
+h
+  .pipe(exec('find', ['lib']))
+    .on('end', console.log.bind(null, 'find end'))
+  .pipe(buffer())
+    .on('end', console.log.bind(null, 'buffer end'))
+  .pipe(lines())
+    .on('end', console.log.bind(null, 'lines end'))
+  .pipe(filter(function(){return /\.md$/.test(this)}))
+    .on('end', console.log.bind(null, 'filter end'))
+  .pipe(transform(function(){return [this]}))
+    .on('end', console.log.bind(null, 'transform end'))
+  .pipe(concat())
+    .on('end', console.log.bind(null, 'concat end'))
+  .pipe(stringify({indent: 2}))
+    .on('end', console.log.bind(null, 'stringify end'))
+  .pipe(print(function noop(){}))
+    .on('finish', console.log.bind(null, 'print end'));
+
+h.run();
+```
+
+**Result**.
+
+```
+find end
+buffer end
+lines end
+filter end
+transform end
+concat end
+stringify end
+print end
 ```
 
 ### pluck
@@ -346,6 +405,7 @@ husk()
   "./plugin/object/README.md",
   "./plugin/parse/README.md",
   "./plugin/pluck/README.md",
+  "./plugin/print/README.md",
   "./plugin/split/README.md",
   "./plugin/stringify/README.md",
   "./plugin/transform/README.md",

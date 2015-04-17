@@ -1,0 +1,32 @@
+#!/usr/bin/env node
+
+var husk = require('..').core()
+  , exec = require('husk-exec')
+  , print = require('husk-print')
+  , concat = require('husk-concat')
+  , buffer =  require('husk-buffer')
+  , lines = require('husk-lines')
+  , filter = require('husk-filter')
+  , transform = require('husk-transform')
+  , stringify = require('husk-stringify');
+
+var h = husk();
+h
+  .pipe(exec('find', ['lib']))
+    .on('end', console.log.bind(null, 'find end'))
+  .pipe(buffer())
+    .on('end', console.log.bind(null, 'buffer end'))
+  .pipe(lines())
+    .on('end', console.log.bind(null, 'lines end'))
+  .pipe(filter(function(){return /\.md$/.test(this)}))
+    .on('end', console.log.bind(null, 'filter end'))
+  .pipe(transform(function(){return [this]}))
+    .on('end', console.log.bind(null, 'transform end'))
+  .pipe(concat())
+    .on('end', console.log.bind(null, 'concat end'))
+  .pipe(stringify({indent: 2}))
+    .on('end', console.log.bind(null, 'stringify end'))
+  .pipe(print(function noop(){}))
+    .on('finish', console.log.bind(null, 'print end'));
+
+h.run();
