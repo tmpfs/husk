@@ -1,0 +1,16 @@
+{
+  "name": "async-stream-flow",
+  "description": "Stream that calls an async function with each chunk.",
+  "version": "1.0.1",
+  "author": "muji <noop@xpm.io>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/freeformsystems/husk.git"
+  },
+  "keywords": [
+    "husk",
+    "stream",
+    "transform",
+    "async"
+  ]
+}
