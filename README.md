@@ -136,10 +136,10 @@ husk()
 
 ```
 {
-  "pid": "35254",
+  "pid": "53229",
   "tt": "s026",
   "stat": "R+",
-  "time": "0:00.18",
+  "time": "0:00.14",
   "cmd": "node ebin/filter"
 }
 ```
@@ -170,21 +170,21 @@ var husk = require('..').core()
 var h = husk();
 h
   .pipe(exec('find', ['lib']))
-    .on('end', console.log.bind(null, 'find end'))
+    .on('end', console.log.bind(null, '[end] find'))
   .pipe(buffer())
-    .on('end', console.log.bind(null, 'buffer end'))
+    .on('end', console.log.bind(null, '[end] buffer'))
   .pipe(lines())
-    .on('end', console.log.bind(null, 'lines end'))
+    .on('end', console.log.bind(null, '[end] lines'))
   .pipe(filter(function(){return /\.md$/.test(this)}))
-    .on('end', console.log.bind(null, 'filter end'))
+    .on('end', console.log.bind(null, '[end] filter'))
   .pipe(transform(function(){return [this]}))
-    .on('end', console.log.bind(null, 'transform end'))
+    .on('end', console.log.bind(null, '[end] transform'))
   .pipe(concat())
-    .on('end', console.log.bind(null, 'concat end'))
+    .on('end', console.log.bind(null, '[end] concat'))
   .pipe(stringify({indent: 2}))
-    .on('end', console.log.bind(null, 'stringify end'))
+    .on('end', console.log.bind(null, '[end] stringify'))
   .pipe(print(function noop(){}))
-    .on('finish', console.log.bind(null, 'print end'));
+    .on('finish', console.log.bind(null, '[finish] print'));
 
 h.run();
 ```
@@ -192,14 +192,14 @@ h.run();
 **Result**.
 
 ```
-find end
-buffer end
-lines end
-filter end
-transform end
-concat end
-stringify end
-print end
+[end] find
+[end] buffer
+[end] lines
+[end] filter
+[end] transform
+[end] concat
+[end] stringify
+[finish] print
 ```
 
 ### pluck
