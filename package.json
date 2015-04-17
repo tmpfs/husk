@@ -11,7 +11,7 @@
   "dependencies": {
     "husk-core": "~1.0.0",
     "husk-exec": "~1.0.0",
-    "zephyr": "~1.2.5"
+    "zephyr": "~1.2.6"
   },
   "devDependencies": {
     "async": "~0.9.0",
