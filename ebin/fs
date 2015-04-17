@@ -11,6 +11,7 @@ var name = path.basename(__filename) + '-example.log'
   , content = 'file content';
 
 husk(name)
+  //.touch(name)
   .open('w')
   .pluck(1)
   .async(function write(fd, cb) {
@@ -18,9 +19,8 @@ husk(name)
       .fwrite(content)
       .transform(function(){return fd;})
       .close()
-      .on('end', function(){console.log('finish')})
+      .on('finish', cb)
       .run();
-    console.dir('' + cb);
   })
   .cat(name)
   .print()
