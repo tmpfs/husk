@@ -135,7 +135,7 @@ husk()
 
 ```
 {
-  "pid": "74481",
+  "pid": "40303",
   "tt": "s026",
   "stat": "R+",
   "time": "0:00.12",
@@ -181,7 +181,7 @@ husk()
 {
   "husk-core": "~1.0.0",
   "husk-exec": "~1.0.0",
-  "zephyr": "~1.2.5"
+  "zephyr": "~1.2.6"
 }
 ```
 
@@ -203,9 +203,10 @@ var husk = require('..').core().exec();
 husk()
   .ls('lib')
   // pipe `ls` stdout to `cat` stdin
-  .pipe(1)
+  .fd(1)
   .cat()
-  .print().run();
+  .print()
+  .run();
 ```
 
 **Result**.
