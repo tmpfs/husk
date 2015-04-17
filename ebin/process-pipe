@@ -7,4 +7,5 @@ husk()
   // pipe `ls` stdout to `cat` stdin
   .fd(1)
   .cat()
-  .print().run();
+  .print()
+  .run();
