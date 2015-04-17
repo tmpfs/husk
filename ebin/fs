@@ -1,0 +1,27 @@
+#!/usr/bin/env node
+
+var path = require('path')
+  , husk = require('..').core().exec().fs()
+  .plugin([
+    require('husk-pluck'),
+    require('husk-transform'),
+  ]);
+
+var name = path.basename(__filename) + '-example.log'
+  , content = 'file content';
+
+husk(name)
+  .open('w')
+  .pluck(1)
+  .async(function write(fd, cb) {
+    var h = husk(fd)
+      .fwrite(content)
+      .transform(function(){return fd;})
+      .close()
+      .on('end', function(){console.log('finish')})
+      .run();
+    console.dir('' + cb);
+  })
+  .cat(name)
+  .print()
+  .run();

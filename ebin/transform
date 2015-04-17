@@ -5,6 +5,7 @@ var husk = require('..').core().exec()
     require('husk-concat'),
     require('husk-buffer'),
     require('husk-lines'),
+    require('husk-each'),
     require('husk-filter'),
     require('husk-transform'),
     require('husk-stringify')
@@ -15,6 +16,7 @@ husk()
   .find()
   .buffer()
   .lines()
+  .each()
   .filter(function(){return /\.md$/.test(this)})
   .transform(function(){return [this]})
   .concat()
