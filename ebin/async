@@ -1,0 +1,22 @@
+#!/usr/bin/env node
+
+var husk = require('..').core().exec()
+  .plugin([
+    require('husk-async'),
+    require('husk-pluck')
+  ]);
+
+function timer(chunk, cb) {
+  function callback() {
+    var s = ('' + chunk).trim().split('').reverse().join('');
+    cb(s);
+  }
+  setTimeout(callback, 10);
+}
+
+husk()
+  .ls('lib')
+  .async(timer)
+  .pluck(0)
+  .print()
+  .run();

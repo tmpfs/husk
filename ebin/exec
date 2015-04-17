@@ -1,15 +1,9 @@
 #!/usr/bin/env node
 
-var husk = require('..').core().exec()
-  .plugin([require('husk-async')]);
-
-function test(chunk, cb) {
-  cb(chunk);
-}
+var husk = require('..').core().exec();
 
 husk()
   .whoami(console.log.bind(null, '[code: %s, signal: %s]'))
     .once('end', console.log.bind(null, '[end] whoami'))
-  .async(test)
   .print()
   .run();

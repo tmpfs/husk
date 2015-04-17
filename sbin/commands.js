@@ -1,4 +1,8 @@
 module.exports = {
+  async: {
+    cmd: 'ebin/async',
+    description: 'Pass data to async functions'
+  },
   'data-write': {
     cmd: 'ebin/data-write',
     description: 'Pass data to be written on run'

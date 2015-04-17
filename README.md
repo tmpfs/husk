@@ -4,6 +4,7 @@ Table of Contents
 * [Husk](#husk)
   * [Install](#install)
   * [Examples](#examples)
+    * [async](#async)
     * [data-write](#data-write)
     * [exec](#exec)
     * [filter](#filter)
@@ -34,6 +35,49 @@ npm i husk --save
 ```
 
 ## Examples
+
+### async
+
+Pass data to async functions.
+
+```
+ebin/async
+```
+
+**Source**.
+
+```javascript
+#!/usr/bin/env node
+
+var husk = require('..').core().exec()
+  .plugin([
+    require('husk-async'),
+    require('husk-pluck')
+  ]);
+
+function timer(chunk, cb) {
+  function callback() {
+    var s = ('' + chunk).trim().split('').reverse().join('');
+    cb(s);
+  }
+  setTimeout(callback, 10);
+}
+
+husk()
+  .ls('lib')
+  .async(timer)
+  .pluck(0)
+  .print()
+  .run();
+```
+
+**Result**.
+
+```
+maerts
+nigulp
+sj.ksuh
+```
 
 ### data-write
 
@@ -88,7 +132,7 @@ var husk = require('..').core().exec();
 
 husk()
   .whoami(console.log.bind(null, '[code: %s, signal: %s]'))
-  .once('end', console.log.bind(null, '[end] whoami'))
+    .once('end', console.log.bind(null, '[end] whoami'))
   .print()
   .run();
 ```
@@ -138,8 +182,8 @@ husk()
 
 ```
 {
-  "pid": "80941",
-  "tt": "s026",
+  "pid": "62883",
+  "tt": "s002",
   "stat": "R+",
   "time": "0:00.12",
   "cmd": "node ebin/filter"
@@ -296,7 +340,7 @@ husk()
 {
   "user": "cyberfunk",
   "line": "console",
-  "when": "Mar 17 15:40"
+  "when": "Jan 1 10:20"
 }
 ```
 
@@ -402,6 +446,7 @@ husk()
 
 ```
 [
+  "./plugin/async/README.md",
   "./plugin/buffer/README.md",
   "./plugin/concat/README.md",
   "./plugin/core/README.md",
@@ -416,6 +461,7 @@ husk()
   "./plugin/split/README.md",
   "./plugin/stringify/README.md",
   "./plugin/transform/README.md",
+  "./stream/async/README.md",
   "./stream/buffer/README.md",
   "./stream/concat/README.md",
   "./stream/method/README.md",
