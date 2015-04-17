@@ -73,7 +73,7 @@ husk(process.env)
 
 ### exec
 
-Execute an external command with callback.
+Execute an external command with callback and listener.
 
 ```
 ebin/exec
@@ -138,10 +138,10 @@ husk()
 
 ```
 {
-  "pid": "46071",
+  "pid": "71919",
   "tt": "s026",
   "stat": "R+",
-  "time": "0:00.12",
+  "time": "0:00.17",
   "cmd": "node ebin/filter"
 }
 ```

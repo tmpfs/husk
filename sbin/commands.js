@@ -25,7 +25,7 @@ module.exports = {
   },
   exec: {
     cmd: 'ebin/exec',
-    description: 'Execute an external command with callback'
+    description: 'Execute an external command with callback and listener'
   },
   transform: {
     cmd: 'who | ebin/transform',
