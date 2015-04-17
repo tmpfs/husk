@@ -3,15 +3,15 @@ Table of Contents
 
 * [Husk](#husk)
   * [Install](#install)
-  * [Example](#example)
+  * [Examples](#examples)
     * [data-write](#data-write)
     * [exec](#exec)
     * [filter](#filter)
-    * [pipe-events](#pipe-events)
     * [pluck](#pluck)
     * [process-pipe](#process-pipe)
     * [series](#series)
     * [stdin](#stdin)
+    * [stream-events](#stream-events)
     * [transform](#transform)
   * [Developer](#developer)
     * [Test](#test)
@@ -33,7 +33,7 @@ Requires [node](http://nodejs.org) and [npm](http://www.npmjs.org).
 npm i husk --save
 ```
 
-## Example
+## Examples
 
 ### data-write
 
@@ -136,74 +136,12 @@ husk()
 
 ```
 {
-  "pid": "13338",
+  "pid": "28124",
   "tt": "s026",
   "stat": "R+",
   "time": "0:00.12",
   "cmd": "node ebin/filter"
 }
-```
-
-### pipe-events
-
-Bypass chained method calls and listen on streams.
-
-```
-ebin/pipe-events
-```
-
-**Source**.
-
-```javascript
-#!/usr/bin/env node
-
-var husk = require('..').core()
-  , exec = require('husk-exec')
-  , print = require('husk-print')
-  , concat = require('husk-concat')
-  , buffer =  require('husk-buffer')
-  , lines = require('husk-lines')
-  , filter = require('husk-filter')
-  , transform = require('husk-transform')
-  , stringify = require('husk-stringify');
-
-function onEnd(phase) {
-  console.log('[end] %s', phase)
-}
-
-var h = husk();
-h
-  .pipe(exec('find', ['lib']))
-    .on('end', onEnd.bind(null, 'find'))
-  .pipe(buffer())
-    .on('end', onEnd.bind(null, 'buffer'))
-  .pipe(lines())
-    .on('end', onEnd.bind(null, 'lines'))
-  .pipe(filter(function(){return /\.md$/.test(this)}))
-    .on('end', onEnd.bind(null, 'filter'))
-  .pipe(transform(function(){return [this]}))
-    .on('end', onEnd.bind(null, 'transform'))
-  .pipe(concat())
-    .on('end', onEnd.bind(null, 'concat'))
-  .pipe(stringify({indent: 2}))
-    .on('end', onEnd.bind(null, 'stringify'))
-  .pipe(print(function noop(){}))
-    .on('finish', onEnd.bind(null, 'print'))
-
-h.run();
-```
-
-**Result**.
-
-```
-[end] find
-[end] buffer
-[end] lines
-[end] filter
-[end] transform
-[end] concat
-[end] stringify
-[end] print
 ```
 
 ### pluck
@@ -358,6 +296,68 @@ husk()
   "line": "console",
   "when": "Mar 17 15:40"
 }
+```
+
+### stream-events
+
+Bypass chained method calls and listen on streams.
+
+```
+ebin/stream-events
+```
+
+**Source**.
+
+```javascript
+#!/usr/bin/env node
+
+var husk = require('..').core()
+  , exec = require('husk-exec')
+  , print = require('husk-print')
+  , concat = require('husk-concat')
+  , buffer =  require('husk-buffer')
+  , lines = require('husk-lines')
+  , filter = require('husk-filter')
+  , transform = require('husk-transform')
+  , stringify = require('husk-stringify');
+
+function onEnd(phase) {
+  console.log('[end] %s', phase)
+}
+
+var h = husk();
+h
+  .pipe(exec('find', ['lib']))
+    .on('end', onEnd.bind(null, 'find'))
+  .pipe(buffer())
+    .on('end', onEnd.bind(null, 'buffer'))
+  .pipe(lines())
+    .on('end', onEnd.bind(null, 'lines'))
+  .pipe(filter(function(){return /\.md$/.test(this)}))
+    .on('end', onEnd.bind(null, 'filter'))
+  .pipe(transform(function(){return [this]}))
+    .on('end', onEnd.bind(null, 'transform'))
+  .pipe(concat())
+    .on('end', onEnd.bind(null, 'concat'))
+  .pipe(stringify({indent: 2}))
+    .on('end', onEnd.bind(null, 'stringify'))
+  .pipe(print(function noop(){}))
+    .on('finish', onEnd.bind(null, 'print'))
+
+h.run();
+```
+
+**Result**.
+
+```
+[end] find
+[end] buffer
+[end] lines
+[end] filter
+[end] transform
+[end] concat
+[end] stringify
+[end] print
 ```
 
 ### transform

@@ -3,8 +3,8 @@ module.exports = {
     cmd: 'ebin/data-write',
     description: 'Pass data to be written on run'
   },
-  'pipe-events': {
-    cmd: 'ebin/pipe-events',
+  'stream-events': {
+    cmd: 'ebin/stream-events',
     description: 'Bypass chained method calls and listen on streams'
   },
   filter: {
