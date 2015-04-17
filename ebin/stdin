@@ -22,4 +22,5 @@ husk()
   .concat()
   .pluck(0)
   .stringify({indent: 2})
-  .print().run();
+  .print()
+  .run();

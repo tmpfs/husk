@@ -42,6 +42,8 @@ Pass data to be written on run.
 ebin/data-write
 ```
 
+**Source**.
+
 ```javascript
 #!/usr/bin/env node
 
@@ -60,6 +62,8 @@ husk(process.env)
   .run();
 ```
 
+**Result**.
+
 ```
 {
   "editor": "vim"
@@ -74,6 +78,8 @@ Execute an external command with callback.
 ebin/exec
 ```
 
+**Source**.
+
 ```javascript
 #!/usr/bin/env node
 
@@ -81,8 +87,11 @@ var husk = require('..').core().exec();
 
 husk()
   .whoami(console.log.bind(null, '[code: %s, signal: %s]'))
-  .print().run();
+  .print()
+  .run();
 ```
+
+**Result**.
 
 ```
 cyberfunk
@@ -96,6 +105,8 @@ Filter array of lines with custom function.
 ```
 ebin/filter
 ```
+
+**Source**.
 
 ```javascript
 #!/usr/bin/env node
@@ -116,15 +127,18 @@ husk()
   .split()
   .object({schema: {pid: 0, tt: 1, stat: 2, time: 3, cmd: -4}})
   .stringify({indent: 2})
-  .print().run();
+  .print()
+  .run();
 ```
+
+**Result**.
 
 ```
 {
-  "pid": "52898",
+  "pid": "74481",
   "tt": "s026",
   "stat": "R+",
-  "time": "0:00.11",
+  "time": "0:00.12",
   "cmd": "node ebin/filter"
 }
 ```
@@ -136,6 +150,8 @@ Read json from filesystem and pluck field.
 ```
 ebin/pluck
 ```
+
+**Source**.
 
 ```javascript
 #!/usr/bin/env node
@@ -159,6 +175,8 @@ husk()
   .run();
 ```
 
+**Result**.
+
 ```
 {
   "husk-core": "~1.0.0",
@@ -175,6 +193,8 @@ Pipe stdout of a command to the stdin of the next command.
 ebin/process-pipe
 ```
 
+**Source**.
+
 ```javascript
 #!/usr/bin/env node
 
@@ -187,6 +207,8 @@ husk()
   .cat()
   .print().run();
 ```
+
+**Result**.
 
 ```
 husk.js
@@ -202,6 +224,8 @@ Execute commands in series.
 ebin/series
 ```
 
+**Source**.
+
 ```javascript
 #!/usr/bin/env node
 
@@ -211,8 +235,11 @@ husk()
   .echo(1, 2, 3)
   .sleep(1)
   .echo('foo', 'bar')
-  .print().run();
+  .print()
+  .run();
 ```
+
+**Result**.
 
 ```
 1 2 3
@@ -226,6 +253,8 @@ Pipe stdin to various plugins to produce json.
 ```
 who | ebin/stdin
 ```
+
+**Source**.
 
 ```javascript
 #!/usr/bin/env node
@@ -252,8 +281,11 @@ husk()
   .concat()
   .pluck(0)
   .stringify({indent: 2})
-  .print().run();
+  .print()
+  .run();
 ```
+
+**Result**.
 
 ```
 {
@@ -270,6 +302,8 @@ Find files, filter and transform to a json array.
 ```
 who | ebin/transform
 ```
+
+**Source**.
 
 ```javascript
 #!/usr/bin/env node
@@ -296,6 +330,8 @@ husk()
   .print()
   .run();
 ```
+
+**Result**.
 
 ```
 [

@@ -6,4 +6,5 @@ husk()
   .echo(1, 2, 3)
   .sleep(1)
   .echo('foo', 'bar')
-  .print().run();
+  .print()
+  .run();
