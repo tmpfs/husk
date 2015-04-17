@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+
+var husk = require('..').core()
+  .plugin([
+    require('husk-pluck'),
+    require('husk-transform'),
+    require('husk-stringify')
+  ]);
+
+husk(process.env)
+  .pluck(function(){return this.EDITOR})
+  .transform(function(){return {editor: this}})
+  .stringify({indent: 2})
+  .print()
+  .run();

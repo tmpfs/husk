@@ -1,4 +1,8 @@
 module.exports = {
+  datawrite: {
+    cmd: 'ebin/data-write',
+    description: 'Pass data to be written to the first stream on run'
+  },
   filter: {
     cmd: 'ebin/filter',
     description: 'Filter array of lines with custom function'
