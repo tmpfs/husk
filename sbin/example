@@ -18,12 +18,10 @@ async.mapSeries(files, function(item, cb) {
   console.log('%s\n', commands[item].description);
   console.log('```\n%s\n```\n', cmd);
 
-  console.log('#### Source\n');
   console.log('```javascript\n%s```\n', fs.readFileSync('ebin/' + item));
 
   exec(cmd, function(err, stdout, stderr) {
     if(stdout) {
-      console.log('#### Result\n');
       console.log('```\n%s```\n', stdout);
     }
     cb(err, cmd);

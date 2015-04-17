@@ -5,29 +5,13 @@ Table of Contents
   * [Install](#install)
   * [Example](#example)
     * [data-write](#data-write)
-      * [Source](#source)
-      * [Result](#result)
     * [exec](#exec)
-      * [Source](#source-1)
-      * [Result](#result-1)
     * [filter](#filter)
-      * [Source](#source-2)
-      * [Result](#result-2)
     * [pluck](#pluck)
-      * [Source](#source-3)
-      * [Result](#result-3)
     * [process-pipe](#process-pipe)
-      * [Source](#source-4)
-      * [Result](#result-4)
     * [series](#series)
-      * [Source](#source-5)
-      * [Result](#result-5)
     * [stdin](#stdin)
-      * [Source](#source-6)
-      * [Result](#result-6)
     * [transform](#transform)
-      * [Source](#source-7)
-      * [Result](#result-7)
   * [Developer](#developer)
     * [Test](#test)
     * [Cover](#cover)
@@ -58,8 +42,6 @@ Pass data to be written on run.
 ebin/data-write
 ```
 
-#### Source
-
 ```javascript
 #!/usr/bin/env node
 
@@ -78,8 +60,6 @@ husk(process.env)
   .run();
 ```
 
-#### Result
-
 ```
 {
   "editor": "vim"
@@ -94,8 +74,6 @@ Execute an external command with callback.
 ebin/exec
 ```
 
-#### Source
-
 ```javascript
 #!/usr/bin/env node
 
@@ -105,8 +83,6 @@ husk()
   .whoami(console.log.bind(null, '[code: %s, signal: %s]'))
   .print().run();
 ```
-
-#### Result
 
 ```
 cyberfunk
@@ -120,8 +96,6 @@ Filter array of lines with custom function.
 ```
 ebin/filter
 ```
-
-#### Source
 
 ```javascript
 #!/usr/bin/env node
@@ -145,11 +119,9 @@ husk()
   .print().run();
 ```
 
-#### Result
-
 ```
 {
-  "pid": "42115",
+  "pid": "52898",
   "tt": "s026",
   "stat": "R+",
   "time": "0:00.11",
@@ -164,8 +136,6 @@ Read json from filesystem and pluck field.
 ```
 ebin/pluck
 ```
-
-#### Source
 
 ```javascript
 #!/usr/bin/env node
@@ -189,8 +159,6 @@ husk()
   .run();
 ```
 
-#### Result
-
 ```
 {
   "husk-core": "~1.0.0",
@@ -207,8 +175,6 @@ Pipe stdout of a command to the stdin of the next command.
 ebin/process-pipe
 ```
 
-#### Source
-
 ```javascript
 #!/usr/bin/env node
 
@@ -221,8 +187,6 @@ husk()
   .cat()
   .print().run();
 ```
-
-#### Result
 
 ```
 husk.js
@@ -238,8 +202,6 @@ Execute commands in series.
 ebin/series
 ```
 
-#### Source
-
 ```javascript
 #!/usr/bin/env node
 
@@ -251,8 +213,6 @@ husk()
   .echo('foo', 'bar')
   .print().run();
 ```
-
-#### Result
 
 ```
 1 2 3
@@ -266,8 +226,6 @@ Pipe stdin to various plugins to produce json.
 ```
 who | ebin/stdin
 ```
-
-#### Source
 
 ```javascript
 #!/usr/bin/env node
@@ -297,8 +255,6 @@ husk()
   .print().run();
 ```
 
-#### Result
-
 ```
 {
   "user": "cyberfunk",
@@ -314,8 +270,6 @@ Find files, filter and transform to a json array.
 ```
 who | ebin/transform
 ```
-
-#### Source
 
 ```javascript
 #!/usr/bin/env node
@@ -342,8 +296,6 @@ husk()
   .print()
   .run();
 ```
-
-#### Result
 
 ```
 [
