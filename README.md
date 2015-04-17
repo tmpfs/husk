@@ -88,7 +88,7 @@ var husk = require('..').core().exec();
 
 husk()
   .whoami(console.log.bind(null, '[code: %s, signal: %s]'))
-  .once('end', function(){console.log('[end] whoami')})
+  .once('end', console.log.bind(null, '[end] whoami'))
   .print()
   .run();
 ```
@@ -138,10 +138,10 @@ husk()
 
 ```
 {
-  "pid": "71919",
+  "pid": "80941",
   "tt": "s026",
   "stat": "R+",
-  "time": "0:00.17",
+  "time": "0:00.12",
   "cmd": "node ebin/filter"
 }
 ```
