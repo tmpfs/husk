@@ -1,7 +1,7 @@
 {
   "name": "husk",
   "description": "Command execution as transform streams.",
-  "version": "0.3.9",
+  "version": "0.3.10",
   "author": "muji <noop@xpm.io>",
   "repository": {
     "type": "git",
