@@ -183,7 +183,7 @@ husk()
 
 ```
 {
-  "pid": "3035",
+  "pid": "10511",
   "tt": "s002",
   "stat": "R+",
   "time": "0:00.14",
@@ -469,8 +469,11 @@ husk()
   "./stream/concat/README.md",
   "./stream/each/README.md",
   "./stream/method/README.md",
+  "./stream/object/README.md",
+  "./stream/parse/README.md",
   "./stream/print/README.md",
   "./stream/process/README.md",
+  "./stream/stringify/README.md",
   "./stream/through3/README.md"
 ]
 ```
