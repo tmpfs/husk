@@ -185,7 +185,7 @@ husk()
 
 ```
 {
-  "pid": "54345",
+  "pid": "35266",
   "tt": "s002",
   "stat": "R+",
   "time": "0:00.14",
@@ -284,7 +284,7 @@ var husk = require('..').core().exec();
 
 husk()
   .echo(1, 2, 3)
-  //.sleep(1)
+  .sleep(.5)
   .echo('foo', 'bar')
   .print()
   .run();
