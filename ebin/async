@@ -8,7 +8,7 @@ var husk = require('..').core().exec()
 
 function timer(chunk, cb) {
   function callback() {
-    var s = ('' + chunk).trim().split('').reverse().join('');
+    var s = ('' + chunk).trim().split('').reverse().join('') + '\n';
     cb(s);
   }
   setTimeout(callback, 10);
