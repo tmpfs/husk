@@ -11,28 +11,28 @@ var husk = require('..').core().exec()
     require('husk-stringify')
   ]);
 
-function onEnd(phase) {
-  console.log('[end] %s', phase);
+function onEnd() {
+  console.log('' + this);
 }
 
 husk()
   .cd('lib')
   .find()
-    .on('end', onEnd.bind(null, 'find'))
+    .on('end', onEnd)
   .buffer()
-    .on('end', onEnd.bind(null, 'buffer'))
+    .on('end', onEnd)
   .lines()
-    .on('end', onEnd.bind(null, 'lines'))
+    .on('end', onEnd)
   .each()
-    .on('end', onEnd.bind(null, 'each'))
+    .on('end', onEnd)
   .filter(function(){return /\.md$/.test(this)})
-    .on('end', onEnd.bind(null, 'filter'))
+    .on('end', onEnd)
   .transform(function(){return [this]})
-    .on('end', onEnd.bind(null, 'transform'))
+    .on('end', onEnd)
   .concat()
-    .on('end', onEnd.bind(null, 'concat'))
+    .on('end', onEnd)
   .stringify({indent: 2})
-    .on('end', onEnd.bind(null, 'stringify'))
+    .on('end', onEnd)
   .print(function noop(){})
-    .on('finish', onEnd.bind(null, 'print'))
+    .on('finish', onEnd)
   .run();

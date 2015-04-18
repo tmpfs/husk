@@ -237,10 +237,10 @@ husk()
 
 ```
 {
-  "pid": "69062",
+  "pid": "27894",
   "tt": "s002",
   "stat": "R+",
-  "time": "0:00.15",
+  "time": "0:00.14",
   "cmd": "node ebin/filter"
 }
 ```
@@ -311,45 +311,45 @@ var husk = require('..').core().exec()
     require('husk-stringify')
   ]);
 
-function onEnd(phase) {
-  console.log('[end] %s', phase);
+function onEnd() {
+  console.log('' + this);
 }
 
 husk()
   .cd('lib')
   .find()
-    .on('end', onEnd.bind(null, 'find'))
+    .on('end', onEnd)
   .buffer()
-    .on('end', onEnd.bind(null, 'buffer'))
+    .on('end', onEnd)
   .lines()
-    .on('end', onEnd.bind(null, 'lines'))
+    .on('end', onEnd)
   .each()
-    .on('end', onEnd.bind(null, 'each'))
+    .on('end', onEnd)
   .filter(function(){return /\.md$/.test(this)})
-    .on('end', onEnd.bind(null, 'filter'))
+    .on('end', onEnd)
   .transform(function(){return [this]})
-    .on('end', onEnd.bind(null, 'transform'))
+    .on('end', onEnd)
   .concat()
-    .on('end', onEnd.bind(null, 'concat'))
+    .on('end', onEnd)
   .stringify({indent: 2})
-    .on('end', onEnd.bind(null, 'stringify'))
+    .on('end', onEnd)
   .print(function noop(){})
-    .on('finish', onEnd.bind(null, 'print'))
+    .on('finish', onEnd)
   .run();
 ```
 
 **Result**.
 
 ```
-[end] find
-[end] buffer
-[end] lines
-[end] each
-[end] filter
-[end] transform
-[end] concat
-[end] stringify
-[end] print
+[Process:PassThrough] find 
+[Buffer:PassThrough]
+[Line:Transform]
+[Each:Transform]
+[Filter:Transform]
+[Transform:Transform]
+[Concat:Transform]
+[Stringify:Transform]
+[Print:Transform] noop
 ```
 
 ### process-pipe
@@ -489,30 +489,30 @@ var husk = require('..').core()
   , transform = require('husk-transform')
   , stringify = require('husk-stringify');
 
-function onEnd(phase) {
-  console.log('[end] %s', phase);
+function onEnd() {
+  console.log('' + this);
 }
 
 var h = husk();
 h
   .pipe(exec('find', ['lib']))
-    .on('end', onEnd.bind(null, 'find'))
+    .on('end', onEnd)
   .pipe(buffer())
-    .on('end', onEnd.bind(null, 'buffer'))
+    .on('end', onEnd)
   .pipe(lines())
-    .on('end', onEnd.bind(null, 'lines'))
+    .on('end', onEnd)
   .pipe(each())
-    .on('end', onEnd.bind(null, 'each'))
+    .on('end', onEnd)
   .pipe(filter(function(){return /\.md$/.test(this)}))
-    .on('end', onEnd.bind(null, 'filter'))
+    .on('end', onEnd)
   .pipe(transform(function(){return [this]}))
-    .on('end', onEnd.bind(null, 'transform'))
+    .on('end', onEnd)
   .pipe(concat())
-    .on('end', onEnd.bind(null, 'concat'))
+    .on('end', onEnd)
   .pipe(stringify({indent: 2}))
-    .on('end', onEnd.bind(null, 'stringify'))
+    .on('end', onEnd)
   .pipe(print(function noop(){}))
-    .on('finish', onEnd.bind(null, 'print'));
+    .on('finish', onEnd);
 
 h.run();
 ```
@@ -520,15 +520,15 @@ h.run();
 **Result**.
 
 ```
-[end] find
-[end] buffer
-[end] lines
-[end] each
-[end] filter
-[end] transform
-[end] concat
-[end] stringify
-[end] print
+[Process:PassThrough]
+[Buffer:PassThrough]
+[Line:Transform]
+[Each:Transform]
+[Filter:Transform]
+[Transform:Transform]
+[Concat:Transform]
+[Stringify:Transform]
+[Print:Transform] noop
 ```
 
 ### transform
