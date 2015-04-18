@@ -57,7 +57,7 @@ var husk = require('..').core().exec()
 
 function timer(chunk, cb) {
   function callback() {
-    var s = ('' + chunk).trim().split('').reverse().join('');
+    var s = ('' + chunk).trim().split('').reverse().join('') + '\n';
     cb(s);
   }
   setTimeout(callback, 10);
@@ -142,7 +142,6 @@ husk()
 ```
 cyberfunk
 [code: 0, signal: null]
-[end] whoami
 ```
 
 ### filter
@@ -161,6 +160,7 @@ ebin/filter
 var husk = require('..').core().exec()
   .plugin([
     require('husk-lines'),
+    require('husk-each'),
     require('husk-filter'),
     require('husk-split'),
     require('husk-object'),
@@ -170,6 +170,7 @@ var husk = require('..').core().exec()
 husk()
   .ps('ax')
   .lines()
+  .each()
   .filter(function(){return this.trim().indexOf(process.pid) === 0})
   .split()
   .object({schema: {pid: 0, tt: 1, stat: 2, time: 3, cmd: -4}})
@@ -182,10 +183,10 @@ husk()
 
 ```
 {
-  "pid": "62883",
+  "pid": "87869",
   "tt": "s002",
   "stat": "R+",
-  "time": "0:00.12",
+  "time": "0:00.13",
   "cmd": "node ebin/filter"
 }
 ```
@@ -203,9 +204,8 @@ ebin/pluck
 ```javascript
 #!/usr/bin/env node
 
-var husk = require('..').core()
+var husk = require('..').core().fs()
   .plugin([
-    require('husk-fs'),
     require('husk-buffer'),
     require('husk-parse'),
     require('husk-pluck'),
@@ -292,7 +292,6 @@ husk()
 
 ```
 1 2 3
-foo bar
 ```
 
 ### stdin
@@ -312,6 +311,7 @@ var husk = require('..').core()
   .plugin([
     require('husk-buffer'),
     require('husk-lines'),
+    require('husk-each'),
     require('husk-transform'),
     require('husk-split'),
     require('husk-object'),
@@ -324,6 +324,7 @@ husk()
   .stdin()
   .buffer()
   .lines()
+  .each()
   .transform(function(){return [this.trim()]})
   .split()
   .object({schema: {user: 0, line: 1, when: -2}})
@@ -401,9 +402,8 @@ h.run();
 [end] lines
 [end] filter
 [end] transform
-[end] concat
-[end] stringify
 [end] print
+[end] concat
 ```
 
 ### transform
@@ -424,6 +424,7 @@ var husk = require('..').core().exec()
     require('husk-concat'),
     require('husk-buffer'),
     require('husk-lines'),
+    require('husk-each'),
     require('husk-filter'),
     require('husk-transform'),
     require('husk-stringify')
@@ -434,6 +435,7 @@ husk()
   .find()
   .buffer()
   .lines()
+  .each()
   .filter(function(){return /\.md$/.test(this)})
   .transform(function(){return [this]})
   .concat()
@@ -450,6 +452,7 @@ husk()
   "./plugin/buffer/README.md",
   "./plugin/concat/README.md",
   "./plugin/core/README.md",
+  "./plugin/each/README.md",
   "./plugin/exec/README.md",
   "./plugin/filter/README.md",
   "./plugin/fs/README.md",
@@ -464,9 +467,11 @@ husk()
   "./stream/async/README.md",
   "./stream/buffer/README.md",
   "./stream/concat/README.md",
+  "./stream/each/README.md",
   "./stream/method/README.md",
   "./stream/print/README.md",
-  "./stream/process/README.md"
+  "./stream/process/README.md",
+  "./stream/through3/README.md"
 ]
 ```
 
