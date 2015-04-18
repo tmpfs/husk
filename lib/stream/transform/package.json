@@ -1,6 +1,6 @@
 {
-  "name": "method-flow",
-  "description": "Stream transform implementation that invokes functions.",
+  "name": "transform-flow",
+  "description": "Stream transform implementation that mutates data.",
   "version": "1.0.1",
   "author": "muji <noop@xpm.io>",
   "repository": {
