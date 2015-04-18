@@ -1,4 +1,8 @@
 module.exports = {
+  argv: {
+    cmd: 'ebin/argv index.js package.json',
+    description: 'Extract values from program arguments'
+  },
   async: {
     cmd: 'ebin/async',
     description: 'Pass data to async functions'

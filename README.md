@@ -4,6 +4,7 @@ Table of Contents
 * [Husk](#husk)
   * [Install](#install)
   * [Examples](#examples)
+    * [argv](#argv)
     * [async](#async)
     * [data-write](#data-write)
     * [exec](#exec)
@@ -36,6 +37,56 @@ npm i husk --save
 ```
 
 ## Examples
+
+### argv
+
+Extract values from program arguments.
+
+```
+ebin/argv index.js package.json
+```
+
+**Source**.
+
+```javascript
+#!/usr/bin/env node
+
+var husk = require('..').core().fs()
+  .plugin([
+    require('husk-argv'),
+    require('husk-concat'),
+    require('husk-pluck'),
+    require('husk-lines'),
+    require('husk-each'),
+    require('husk-transform'),
+    require('husk-stringify')
+  ]);
+
+husk(process.argv.slice(2))
+  .argv()
+  .pluck(function(){return this.unparsed})
+  .each()
+  .stat()
+  .pluck(1)
+  .transform(function(){return [{size: this.size}]})
+  .concat()
+  .stringify({indent: 2})
+  .print()
+  .run();
+```
+
+**Result**.
+
+```
+[
+  {
+    "size": 40
+  },
+  {
+    "size": 1471
+  }
+]
+```
 
 ### async
 
@@ -186,10 +237,10 @@ husk()
 
 ```
 {
-  "pid": "59420",
+  "pid": "69062",
   "tt": "s002",
   "stat": "R+",
-  "time": "0:00.14",
+  "time": "0:00.15",
   "cmd": "node ebin/filter"
 }
 ```
@@ -522,6 +573,7 @@ husk()
 
 ```
 [
+  "./plugin/argv/README.md",
   "./plugin/async/README.md",
   "./plugin/buffer/README.md",
   "./plugin/concat/README.md",
@@ -538,11 +590,13 @@ husk()
   "./plugin/split/README.md",
   "./plugin/stringify/README.md",
   "./plugin/transform/README.md",
+  "./stream/argv/README.md",
   "./stream/async/README.md",
   "./stream/buffer/README.md",
   "./stream/concat/README.md",
   "./stream/each/README.md",
   "./stream/filter/README.md",
+  "./stream/fs/README.md",
   "./stream/object/README.md",
   "./stream/parse/README.md",
   "./stream/print/README.md",
