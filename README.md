@@ -55,7 +55,8 @@ var husk = require('..').core().exec()
     require('husk-pluck')
   ]);
 
-function timer(chunk, cb) {
+function timer(cb) {
+  var chunk = this;
   function callback() {
     var s = ('' + chunk).trim().split('').reverse().join('') + '\n';
     cb(s);
@@ -172,7 +173,7 @@ husk()
   .ps('ax')
   .lines()
   .each()
-  .filter(function(){return this.trim().indexOf(process.pid) === 0})
+  .filter(function(){return parseInt(this.split(/\s+/)[0]) === process.pid})
   .split()
   .object({schema: {pid: 0, tt: 1, stat: 2, time: 3, cmd: -4}})
   .stringify({indent: 2})
@@ -184,10 +185,10 @@ husk()
 
 ```
 {
-  "pid": "75061",
+  "pid": "54345",
   "tt": "s002",
   "stat": "R+",
-  "time": "0:00.16",
+  "time": "0:00.14",
   "cmd": "node ebin/filter"
 }
 ```

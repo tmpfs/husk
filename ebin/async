@@ -6,7 +6,8 @@ var husk = require('..').core().exec()
     require('husk-pluck')
   ]);
 
-function timer(chunk, cb) {
+function timer(cb) {
+  var chunk = this;
   function callback() {
     var s = ('' + chunk).trim().split('').reverse().join('') + '\n';
     cb(s);

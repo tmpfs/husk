@@ -8,22 +8,19 @@ var path = require('path')
   ]);
 
 var name = path.basename(__filename) + '-example.log'
-  , content = 'file content';
+  , content = '[file content]';
 
 husk(name)
-  //.touch(name)
-  .open('w')
+  .open(name, 'w')
   .pluck(1)
-  .async(function write(fd, cb) {
-    //console.log('got fd: %s', fd);
+  .async(function write(cb) {
+    var fd = this.valueOf();
     var h = husk(fd)
-      .fwrite(content)
-      .transform(function(){return fd;})
-      .close()
+      .fwrite(fd, content)
+      .close(fd)
       .on('finish', cb)
-      //.on('finish', function(){console.log('finish after close')})
       .run();
   })
-  //.cat(name)
+  .cat(name)
   .print(function(){console.log('final print');console.dir(arguments)})
   .run();
