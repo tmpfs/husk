@@ -1,0 +1,21 @@
+{
+  "name": "through3",
+  "description": "Extend streams3 classes using through().",
+  "version": "1.0.1",
+  "author": "muji <noop@xpm.io>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/freeformsystems/husk.git"
+  },
+  "engine": [
+    "node >= 0.12.2"
+  ],
+  "keywords": [
+    "stream",
+    "transform",
+    "duplex",
+    "readable",
+    "writable",
+    "passthrough"
+  ]
+}
