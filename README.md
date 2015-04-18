@@ -142,6 +142,7 @@ husk()
 ```
 cyberfunk
 [code: 0, signal: null]
+[end] whoami
 ```
 
 ### filter
@@ -183,7 +184,7 @@ husk()
 
 ```
 {
-  "pid": "10511",
+  "pid": "30278",
   "tt": "s002",
   "stat": "R+",
   "time": "0:00.14",
@@ -282,7 +283,7 @@ var husk = require('..').core().exec();
 
 husk()
   .echo(1, 2, 3)
-  .sleep(1)
+  //.sleep(1)
   .echo('foo', 'bar')
   .print()
   .run();
@@ -292,6 +293,7 @@ husk()
 
 ```
 1 2 3
+foo bar
 ```
 
 ### stdin
@@ -402,8 +404,9 @@ h.run();
 [end] lines
 [end] filter
 [end] transform
-[end] print
 [end] concat
+[end] stringify
+[end] print
 ```
 
 ### transform
