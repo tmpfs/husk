@@ -1,3 +1,3 @@
-# Husk Plugin
+# Husk Stream
 
-Plugin for [husk](https://github.com/freeformsystems/husk).
+Stream for [husk](https://github.com/freeformsystems/husk).
