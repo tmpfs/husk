@@ -2,6 +2,7 @@
 
 var husk = require('..').core()
   , exec = require('husk-exec')
+  , each = require('husk-each')
   , print = require('husk-print')
   , concat = require('husk-concat')
   , buffer =  require('husk-buffer')
@@ -22,6 +23,8 @@ h
     .on('end', onEnd.bind(null, 'buffer'))
   .pipe(lines())
     .on('end', onEnd.bind(null, 'lines'))
+  .pipe(each())
+    .on('end', onEnd.bind(null, 'each'))
   .pipe(filter(function(){return /\.md$/.test(this)}))
     .on('end', onEnd.bind(null, 'filter'))
   .pipe(transform(function(){return [this]}))

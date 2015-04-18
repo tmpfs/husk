@@ -11,6 +11,10 @@ module.exports = {
     cmd: 'ebin/stream-events',
     description: 'Bypass chained method calls and listen on streams'
   },
+  'plugin-events': {
+    cmd: 'ebin/plugin-events',
+    description: 'Listen on streams using plugin chain'
+  },
   filter: {
     cmd: 'ebin/filter',
     description: 'Filter array of lines with custom function'

@@ -9,6 +9,7 @@ Table of Contents
     * [exec](#exec)
     * [filter](#filter)
     * [pluck](#pluck)
+    * [plugin-events](#plugin-events)
     * [process-pipe](#process-pipe)
     * [series](#series)
     * [stdin](#stdin)
@@ -185,7 +186,7 @@ husk()
 
 ```
 {
-  "pid": "35266",
+  "pid": "77748",
   "tt": "s002",
   "stat": "R+",
   "time": "0:00.14",
@@ -233,6 +234,71 @@ husk()
   "husk-print": "~1.0.1",
   "zephyr": "~1.2.6"
 }
+```
+
+### plugin-events
+
+Listen on streams using plugin chain.
+
+```
+ebin/plugin-events
+```
+
+**Source**.
+
+```javascript
+#!/usr/bin/env node
+
+var husk = require('..').core().exec()
+  .plugin([
+    require('husk-concat'),
+    require('husk-buffer'),
+    require('husk-lines'),
+    require('husk-each'),
+    require('husk-filter'),
+    require('husk-transform'),
+    require('husk-stringify')
+  ]);
+
+function onEnd(phase) {
+  console.log('[end] %s', phase);
+}
+
+husk()
+  .cd('lib')
+  .find()
+    .on('end', onEnd.bind(null, 'find'))
+  .buffer()
+    .on('end', onEnd.bind(null, 'buffer'))
+  .lines()
+    .on('end', onEnd.bind(null, 'lines'))
+  .each()
+    .on('end', onEnd.bind(null, 'each'))
+  .filter(function(){return /\.md$/.test(this)})
+    .on('end', onEnd.bind(null, 'filter'))
+  .transform(function(){return [this]})
+    .on('end', onEnd.bind(null, 'transform'))
+  .concat()
+    .on('end', onEnd.bind(null, 'concat'))
+  .stringify({indent: 2})
+    .on('end', onEnd.bind(null, 'stringify'))
+  .print(function noop(){})
+    .on('finish', onEnd.bind(null, 'print'))
+  .run();
+```
+
+**Result**.
+
+```
+[end] find
+[end] buffer
+[end] lines
+[end] each
+[end] filter
+[end] transform
+[end] concat
+[end] stringify
+[end] print
 ```
 
 ### process-pipe
@@ -363,6 +429,7 @@ ebin/stream-events
 
 var husk = require('..').core()
   , exec = require('husk-exec')
+  , each = require('husk-each')
   , print = require('husk-print')
   , concat = require('husk-concat')
   , buffer =  require('husk-buffer')
@@ -383,6 +450,8 @@ h
     .on('end', onEnd.bind(null, 'buffer'))
   .pipe(lines())
     .on('end', onEnd.bind(null, 'lines'))
+  .pipe(each())
+    .on('end', onEnd.bind(null, 'each'))
   .pipe(filter(function(){return /\.md$/.test(this)}))
     .on('end', onEnd.bind(null, 'filter'))
   .pipe(transform(function(){return [this]}))
@@ -403,6 +472,7 @@ h.run();
 [end] find
 [end] buffer
 [end] lines
+[end] each
 [end] filter
 [end] transform
 [end] concat
