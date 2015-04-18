@@ -1,6 +1,6 @@
 {
-  "name": "husk-async",
-  "description": "Call an async function and passthrough callback arguments.",
+  "name": "husk-argv",
+  "description": "Transform stream to parse argv array to an object.",
   "version": "1.0.1",
   "author": "muji <noop@xpm.io>",
   "repository": {
@@ -8,12 +8,12 @@
     "url": "git://github.com/freeformsystems/husk.git"
   },
   "dependencies": {
-    "async-flow": "~1.0.1"
+    "argv-flow": "~1.0.1"
   },
   "keywords": [
     "husk",
     "plugin",
     "stream",
-    "async"
+    "argv"
   ]
 }
