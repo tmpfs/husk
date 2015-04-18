@@ -10,18 +10,17 @@ var path = require('path')
 var name = path.basename(__filename) + '-example.log'
   , content = '[file content]';
 
-husk('')
-  .open(name, 'w')
+husk(name)
+  .open('w')
   .pluck(1)
   .async(function write(cb) {
     var fd = this.valueOf();
     var h = husk(fd)
       .fwrite(fd, content)
       .close(fd)
-      .on('finish', cb)
-      .run();
+      .run(cb);
   })
-  .cat(name)
-  .print(function(){console.log('final print');console.dir(arguments)})
+  .debug()
+  //.print(function(){console.log('final print');console.dir(arguments)})
   .unlink(name)
   .run();
