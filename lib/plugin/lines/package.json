@@ -8,7 +8,7 @@
     "url": "git://github.com/freeformsystems/husk.git"
   },
   "dependencies": {
-    "stream-lines": "~1.0.3"
+    "stream-lines": "~1.1.0"
   },
   "keywords": [
     "husk",
