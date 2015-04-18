@@ -32,7 +32,7 @@ module.exports = {
     description: 'Execute an external command with callback and listener'
   },
   transform: {
-    cmd: 'who | ebin/transform',
+    cmd: 'ebin/transform',
     description: 'Find files, filter and transform to a json array'
   },
   stdin: {

@@ -183,10 +183,10 @@ husk()
 
 ```
 {
-  "pid": "87869",
+  "pid": "3035",
   "tt": "s002",
   "stat": "R+",
-  "time": "0:00.13",
+  "time": "0:00.14",
   "cmd": "node ebin/filter"
 }
 ```
@@ -411,7 +411,7 @@ h.run();
 Find files, filter and transform to a json array.
 
 ```
-who | ebin/transform
+ebin/transform
 ```
 
 **Source**.
