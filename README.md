@@ -184,10 +184,10 @@ husk()
 
 ```
 {
-  "pid": "30278",
+  "pid": "75061",
   "tt": "s002",
   "stat": "R+",
-  "time": "0:00.14",
+  "time": "0:00.16",
   "cmd": "node ebin/filter"
 }
 ```
@@ -471,13 +471,14 @@ husk()
   "./stream/buffer/README.md",
   "./stream/concat/README.md",
   "./stream/each/README.md",
-  "./stream/method/README.md",
+  "./stream/filter/README.md",
   "./stream/object/README.md",
   "./stream/parse/README.md",
   "./stream/print/README.md",
   "./stream/process/README.md",
   "./stream/stringify/README.md",
-  "./stream/through3/README.md"
+  "./stream/through3/README.md",
+  "./stream/transform/README.md"
 ]
 ```
 
