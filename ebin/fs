@@ -15,14 +15,15 @@ husk(name)
   .open('w')
   .pluck(1)
   .async(function write(fd, cb) {
-    console.log('got fd: %s', fd);
+    //console.log('got fd: %s', fd);
     var h = husk(fd)
       .fwrite(content)
       .transform(function(){return fd;})
       .close()
       .on('finish', cb)
+      //.on('finish', function(){console.log('finish after close')})
       .run();
   })
   //.cat(name)
-  .print(function(){console.dir(arguments)})
+  .print(function(){console.log('final print');console.dir(arguments)})
   .run();
