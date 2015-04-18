@@ -15,6 +15,7 @@ husk(name)
   .open('w')
   .pluck(1)
   .async(function write(fd, cb) {
+    console.log('got fd: %s', fd);
     var h = husk(fd)
       .fwrite(content)
       .transform(function(){return fd;})
@@ -22,6 +23,6 @@ husk(name)
       .on('finish', cb)
       .run();
   })
-  .cat(name)
-  .print()
+  //.cat(name)
+  .print(function(){console.dir(arguments)})
   .run();
