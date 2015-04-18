@@ -1,6 +1,6 @@
 {
-  "name": "husk-filter",
-  "description": "Filter chunks using a function.",
+  "name": "filter-flow",
+  "description": "Stream transform implementation that filters by functions.",
   "version": "1.0.1",
   "author": "muji <noop@xpm.io>",
   "repository": {
@@ -8,14 +8,13 @@
     "url": "git://github.com/freeformsystems/husk.git"
   },
   "dependencies": {
-    "filter-flow": "~1.0.1"
+    "through3": "~1.1.0"
   },
   "keywords": [
     "husk",
-    "plugin",
     "stream",
     "transform",
-    "filter",
-    "function"
+    "function",
+    "method"
   ]
 }
