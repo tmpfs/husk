@@ -6,14 +6,22 @@ var husk = require('..').core().fs()
     require('husk-parse'),
     require('husk-filter'),
     require('husk-pluck'),
+    require('husk-transform'),
     require('husk-stringify'),
   ]);
 
 husk('package.json')
   .read()
   .buffer()
-  .parse()
+  .parse(function(){return this.body})
   .pluck(function(){return this.dependencies})
+  .transform(function() {
+    for(var k in this) {
+      this[k] = '~2.0.0';
+    }
+    return this;
+  })
+  .debug()
   .stringify({indent: 2})
   .print()
   .run();
