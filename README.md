@@ -239,10 +239,10 @@ husk()
 
 ```
 {
-  "pid": "81980",
-  "tt": "s003",
+  "pid": "33851",
+  "tt": "s002",
   "stat": "R+",
-  "time": "0:00.15",
+  "time": "0:00.17",
   "cmd": "node ebin/filter"
 }
 ```
@@ -269,17 +269,15 @@ var path = require('path')
   ]);
 
 var name = path.basename(__filename) + '-example.log'
-  , content = '[file content]'
-  , info = {};
+  , content = '[file content]';
 
 husk(name)
-  .through(function file(){info.file = this.valueOf()})
   .open('w')
   .pluck(1)
-  .through(function fd(){info.fd = this.valueOf()})
   .async(function writer(cb) {
     var fd = this.valueOf();
     var h = husk(fd)
+      // write to fd is aliased write() -> fdwrite()
       .fdwrite(fd, content)
       .close(fd)
       .run(cb);
@@ -292,17 +290,13 @@ husk(name)
   .print(console.log)
   // clean up file, demo only
   .unlink(name)
-  //.through(function(){info.unlink = this[0] === null})
-  .run(function() {
-    console.dir(info);
-  });
+  .run();
 ```
 
 **Result**.
 
 ```
 [file content]
-{ file: 'fs-example.log', fd: 11 }
 ```
 
 ### modify-file

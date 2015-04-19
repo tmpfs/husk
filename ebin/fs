@@ -9,17 +9,15 @@ var path = require('path')
   ]);
 
 var name = path.basename(__filename) + '-example.log'
-  , content = '[file content]'
-  , info = {};
+  , content = '[file content]';
 
 husk(name)
-  .through(function file(){info.file = this.valueOf()})
   .open('w')
   .pluck(1)
-  .through(function fd(){info.fd = this.valueOf()})
   .async(function writer(cb) {
     var fd = this.valueOf();
     var h = husk(fd)
+      // write to fd is aliased write() -> fdwrite()
       .fdwrite(fd, content)
       .close(fd)
       .run(cb);
@@ -32,7 +30,4 @@ husk(name)
   .print(console.log)
   // clean up file, demo only
   .unlink(name)
-  //.through(function(){info.unlink = this[0] === null})
-  .run(function() {
-    console.dir(info);
-  });
+  .run();
