@@ -5,7 +5,6 @@ var husk = require('..').core()
     require('husk-buffer'),
     require('husk-lines'),
     require('husk-each'),
-    require('husk-transform'),
     require('husk-split'),
     require('husk-object'),
     require('husk-concat'),
@@ -18,7 +17,6 @@ husk()
   .buffer()
   .lines()
   .each()
-  .transform(function(){return [this.trim()]})
   .split()
   .object({schema: {user: 0, line: 1, when: -2}})
   .concat()
