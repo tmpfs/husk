@@ -237,7 +237,7 @@ husk()
 
 ```
 {
-  "pid": "54329",
+  "pid": "71172",
   "tt": "s002",
   "stat": "R+",
   "time": "0:00.15",
@@ -553,7 +553,7 @@ husk()
   .find()
   .lines({buffer: true})
   .each()
-  .filter(function(){return /\.md$/.test(this)})
+  .filter(function(){return /\/[a].*\/.*\.md$/.test(this)})
   .transform(function(){return [this]})
   .concat()
   .stringify({indent: 2})
@@ -567,37 +567,8 @@ husk()
 [
   "./plugin/argv/README.md",
   "./plugin/async/README.md",
-  "./plugin/buffer/README.md",
-  "./plugin/concat/README.md",
-  "./plugin/core/README.md",
-  "./plugin/each/README.md",
-  "./plugin/exec/README.md",
-  "./plugin/filter/README.md",
-  "./plugin/fs/README.md",
-  "./plugin/lines/README.md",
-  "./plugin/object/README.md",
-  "./plugin/parse/README.md",
-  "./plugin/pluck/README.md",
-  "./plugin/print/README.md",
-  "./plugin/split/README.md",
-  "./plugin/stringify/README.md",
-  "./plugin/transform/README.md",
   "./stream/argv/README.md",
-  "./stream/async/README.md",
-  "./stream/buffer/README.md",
-  "./stream/concat/README.md",
-  "./stream/each/README.md",
-  "./stream/filter/README.md",
-  "./stream/fs/README.md",
-  "./stream/object/README.md",
-  "./stream/parse/README.md",
-  "./stream/pluck/README.md",
-  "./stream/print/README.md",
-  "./stream/process/README.md",
-  "./stream/split/README.md",
-  "./stream/stringify/README.md",
-  "./stream/through3/README.md",
-  "./stream/transform/README.md"
+  "./stream/async/README.md"
 ]
 ```
 
