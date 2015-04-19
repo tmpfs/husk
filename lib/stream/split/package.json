@@ -1,6 +1,6 @@
 {
-  "name": "transform-flow",
-  "description": "Stream transform that mutates data.",
+  "name": "split-flow",
+  "description": "Stream transform that splits strings to arrays.",
   "version": "1.0.1",
   "author": "muji <noop@xpm.io>",
   "repository": {
@@ -14,7 +14,7 @@
     "husk",
     "stream",
     "transform",
-    "function",
-    "method"
+    "split",
+    "string"
   ]
 }
