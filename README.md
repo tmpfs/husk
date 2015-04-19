@@ -239,10 +239,10 @@ husk()
 
 ```
 {
-  "pid": "33851",
+  "pid": "23219",
   "tt": "s002",
   "stat": "R+",
-  "time": "0:00.17",
+  "time": "0:00.15",
   "cmd": "node ebin/filter"
 }
 ```
@@ -283,10 +283,7 @@ husk(name)
       .run(cb);
   })
   // re-read and print file to verify write
-  .push(function(){this.push(name)})
-  .read()
-  .buffer()
-  .pluck(function(){return this.body})
+  .cat(name)
   .print(console.log)
   // clean up file, demo only
   .unlink(name)
@@ -439,36 +436,29 @@ var husk = require('..').core().exec()
     require('husk-stringify')
   ]);
 
-function onEnd() {
-  console.log('' + this);
+function onEnd(stream) {
+  console.log('' + stream);
 }
 
 husk()
+  .on('end', onEnd)
   .cd('lib')
   .find()
-    .on('end', onEnd)
   .buffer()
-    .on('end', onEnd)
   .lines()
-    .on('end', onEnd)
   .each()
-    .on('end', onEnd)
   .filter(function(){return /\.md$/.test(this)})
-    .on('end', onEnd)
   .transform(function(){return [this]})
-    .on('end', onEnd)
   .concat()
-    .on('end', onEnd)
   .stringify({indent: 2})
-    .on('end', onEnd)
   .print(function noop(){})
-  .run(onEnd);
+  .run();
 ```
 
 **Result**.
 
 ```
-[Process:PassThrough] find 
+[Process:Transform] find 
 [Buffer:PassThrough]
 [Line:Transform]
 [Each:Transform]
@@ -642,7 +632,7 @@ h.run(onEnd);
 **Result**.
 
 ```
-[Process:PassThrough]
+[Process:Transform]
 [Buffer:PassThrough]
 [Line:Transform]
 [Each:Transform]
