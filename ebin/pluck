@@ -4,12 +4,13 @@ var husk = require('..').core().fs()
   .plugin([
     require('husk-buffer'),
     require('husk-parse'),
+    require('husk-filter'),
     require('husk-pluck'),
     require('husk-stringify'),
   ]);
 
-husk()
-  .read('package.json')
+husk('package.json')
+  .read()
   .buffer()
   .parse()
   .pluck(function(){return this.dependencies})
