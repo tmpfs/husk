@@ -2,7 +2,6 @@
 
 var husk = require('..').core()
   .plugin([
-    require('husk-buffer'),
     require('husk-lines'),
     require('husk-each'),
     require('husk-split'),
@@ -14,8 +13,7 @@ var husk = require('..').core()
 
 husk()
   .stdin()
-  .buffer()
-  .lines()
+  .lines({buffer: true})
   .each()
   .split()
   .object({schema: {user: 0, line: 1, when: -2}})

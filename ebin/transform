@@ -3,7 +3,6 @@
 var husk = require('..').core().exec()
   .plugin([
     require('husk-concat'),
-    require('husk-buffer'),
     require('husk-lines'),
     require('husk-each'),
     require('husk-filter'),
@@ -14,8 +13,7 @@ var husk = require('..').core().exec()
 husk()
   .cd('lib')
   .find()
-  .buffer()
-  .lines()
+  .lines({buffer: true})
   .each()
   .filter(function(){return /\.md$/.test(this)})
   .transform(function(){return [this]})

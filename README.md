@@ -214,7 +214,6 @@ ebin/filter
 var husk = require('..').core().exec()
   .plugin([
     require('husk-lines'),
-    require('husk-buffer'),
     require('husk-each'),
     require('husk-filter'),
     require('husk-split'),
@@ -224,8 +223,7 @@ var husk = require('..').core().exec()
 
 husk()
   .ps('ax')
-  .lines()
-  .buffer()
+  .lines({buffer: true})
   .each()
   .filter(function(){return parseInt(this.split(/\s+/)[0]) === process.pid})
   .split()
@@ -239,10 +237,10 @@ husk()
 
 ```
 {
-  "pid": "65704",
-  "tt": "s003",
+  "pid": "21909",
+  "tt": "s002",
   "stat": "R+",
-  "time": "0:00.15",
+  "time": "0:00.14",
   "cmd": "node ebin/filter"
 }
 ```
@@ -431,7 +429,6 @@ who | ebin/stdin
 
 var husk = require('..').core()
   .plugin([
-    require('husk-buffer'),
     require('husk-lines'),
     require('husk-each'),
     require('husk-split'),
@@ -443,8 +440,7 @@ var husk = require('..').core()
 
 husk()
   .stdin()
-  .buffer()
-  .lines()
+  .lines({buffer: true})
   .each()
   .split()
   .object({schema: {user: 0, line: 1, when: -2}})
@@ -547,7 +543,6 @@ ebin/transform
 var husk = require('..').core().exec()
   .plugin([
     require('husk-concat'),
-    require('husk-buffer'),
     require('husk-lines'),
     require('husk-each'),
     require('husk-filter'),
@@ -558,8 +553,7 @@ var husk = require('..').core().exec()
 husk()
   .cd('lib')
   .find()
-  .buffer()
-  .lines()
+  .lines({buffer: true})
   .each()
   .filter(function(){return /\.md$/.test(this)})
   .transform(function(){return [this]})

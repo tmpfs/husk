@@ -3,7 +3,6 @@
 var husk = require('..').core().exec()
   .plugin([
     require('husk-lines'),
-    require('husk-buffer'),
     require('husk-each'),
     require('husk-filter'),
     require('husk-split'),
@@ -13,8 +12,7 @@ var husk = require('..').core().exec()
 
 husk()
   .ps('ax')
-  .lines()
-  .buffer()
+  .lines({buffer: true})
   .each()
   .filter(function(){return parseInt(this.split(/\s+/)[0]) === process.pid})
   .split()
