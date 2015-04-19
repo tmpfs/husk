@@ -9,6 +9,7 @@ Table of Contents
     * [data-write](#data-write)
     * [exec](#exec)
     * [filter](#filter)
+    * [modify-file](#modify-file)
     * [pluck](#pluck)
     * [plugin-events](#plugin-events)
     * [process-pipe](#process-pipe)
@@ -237,11 +238,80 @@ husk()
 
 ```
 {
-  "pid": "71172",
+  "pid": "23805",
   "tt": "s002",
   "stat": "R+",
-  "time": "0:00.15",
+  "time": "0:00.16",
   "cmd": "node ebin/filter"
+}
+```
+
+### modify-file
+
+Read, parse, modify and write out file.
+
+```
+ebin/modify-file
+```
+
+**Source**.
+
+```javascript
+#!/usr/bin/env node
+
+var husk = require('..').core().exec().fs()
+  .plugin([
+    require('husk-buffer'),
+    require('husk-parse'),
+    require('husk-filter'),
+    require('husk-pluck'),
+    require('husk-transform'),
+    require('husk-stringify'),
+  ]);
+
+var input = 'package.json'
+  , output = 'dependencies.json';
+
+husk(input)
+  .read()
+  .buffer()
+  // rewrite file path
+  .through(function(){this.path = output})
+  // parse as json and assign
+  .parse(function(){return this.body}, {field: 'body'})
+  // perform transformation
+  .transform(function() {
+    var body = this.body;
+    for(var k in body.dependencies) {
+      body.dependencies[k] = '~2.0.0';
+    }
+    return this;
+  })
+  // back to string for write
+  .stringify(
+    function(){return this.body.dependencies}, {indent: 2, field: 'output'})
+  .write(function(){return this.output})
+  .run(function() {
+    // print file contents (debug)
+    husk(output)
+      .read()
+      .buffer()
+      .pluck(function(){return this.body})
+      .print()
+      // clean up file, demo only
+      .unlink(output)
+      .run();
+  });
+```
+
+**Result**.
+
+```
+{
+  "husk-core": "~2.0.0",
+  "husk-exec": "~2.0.0",
+  "husk-print": "~2.0.0",
+  "zephyr": "~2.0.0"
 }
 ```
 
@@ -262,14 +332,19 @@ var husk = require('..').core().fs()
   .plugin([
     require('husk-buffer'),
     require('husk-parse'),
+    require('husk-filter'),
     require('husk-pluck'),
+    require('husk-transform'),
     require('husk-stringify'),
   ]);
 
-husk()
-  .read('package.json')
+var path = require('path')
+  , output = 'target';
+
+husk('package.json')
+  .read()
   .buffer()
-  .parse()
+  .parse(function(){return this.body})
   .pluck(function(){return this.dependencies})
   .stringify({indent: 2})
   .print()

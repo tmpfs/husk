@@ -19,6 +19,10 @@ module.exports = {
     cmd: 'ebin/plugin-events',
     description: 'Listen on streams using plugin chain'
   },
+  'modify-file': {
+    cmd: 'ebin/modify-file',
+    description: 'Read, parse, modify and write out file.'
+  },
   filter: {
     cmd: 'ebin/filter',
     description: 'Filter array of lines with custom function'
