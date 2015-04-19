@@ -10,18 +10,14 @@ var husk = require('..').core().fs()
     require('husk-stringify'),
   ]);
 
+var path = require('path')
+  , output = 'target';
+
 husk('package.json')
   .read()
   .buffer()
   .parse(function(){return this.body})
   .pluck(function(){return this.dependencies})
-  .transform(function() {
-    for(var k in this) {
-      this[k] = '~2.0.0';
-    }
-    return this;
-  })
-  .debug()
   .stringify({indent: 2})
   .print()
   .run();
