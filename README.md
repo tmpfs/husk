@@ -214,6 +214,7 @@ ebin/filter
 var husk = require('..').core().exec()
   .plugin([
     require('husk-lines'),
+    require('husk-buffer'),
     require('husk-each'),
     require('husk-filter'),
     require('husk-split'),
@@ -224,6 +225,7 @@ var husk = require('..').core().exec()
 husk()
   .ps('ax')
   .lines()
+  .buffer()
   .each()
   .filter(function(){return parseInt(this.split(/\s+/)[0]) === process.pid})
   .split()
@@ -237,10 +239,10 @@ husk()
 
 ```
 {
-  "pid": "27894",
-  "tt": "s002",
+  "pid": "65704",
+  "tt": "s003",
   "stat": "R+",
-  "time": "0:00.14",
+  "time": "0:00.15",
   "cmd": "node ebin/filter"
 }
 ```
@@ -432,7 +434,6 @@ var husk = require('..').core()
     require('husk-buffer'),
     require('husk-lines'),
     require('husk-each'),
-    require('husk-transform'),
     require('husk-split'),
     require('husk-object'),
     require('husk-concat'),
@@ -445,7 +446,6 @@ husk()
   .buffer()
   .lines()
   .each()
-  .transform(function(){return [this.trim()]})
   .split()
   .object({schema: {user: 0, line: 1, when: -2}})
   .concat()
@@ -599,8 +599,10 @@ husk()
   "./stream/fs/README.md",
   "./stream/object/README.md",
   "./stream/parse/README.md",
+  "./stream/pluck/README.md",
   "./stream/print/README.md",
   "./stream/process/README.md",
+  "./stream/split/README.md",
   "./stream/stringify/README.md",
   "./stream/through3/README.md",
   "./stream/transform/README.md"

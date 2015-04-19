@@ -1,6 +1,6 @@
 {
-  "name": "husk-pluck",
-  "description": "Pluck object fields.",
+  "name": "pluck-flow",
+  "description": "Stream transform that plucks properties.",
   "version": "1.0.1",
   "author": "muji <noop@xpm.io>",
   "repository": {
@@ -8,14 +8,13 @@
     "url": "git://github.com/freeformsystems/husk.git"
   },
   "dependencies": {
-    "pluck-flow": "~1.0.1"
+    "through3": "~1.1.0"
   },
   "keywords": [
     "husk",
-    "plugin",
     "stream",
     "transform",
     "pluck",
-    "object"
+    "property"
   ]
 }
