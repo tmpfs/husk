@@ -23,6 +23,10 @@ module.exports = {
     cmd: 'ebin/modify-file',
     description: 'Read, parse, modify and write out file.'
   },
+  fs: {
+    cmd: 'ebin/fs',
+    description: 'Open fd, write close and print file content.'
+  },
   filter: {
     cmd: 'ebin/filter',
     description: 'Filter array of lines with custom function'

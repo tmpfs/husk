@@ -4,6 +4,7 @@ var path = require('path')
   , husk = require('..').core().exec().fs()
   .plugin([
     require('husk-pluck'),
+    require('husk-buffer'),
     require('husk-transform'),
   ]);
 
@@ -23,10 +24,15 @@ husk(name)
       .close(fd)
       .run(cb);
   })
-  //.cat(name)
+  // re-read and print file to verify write
+  .push(function(){this.push(name)})
+  .read()
+  .buffer()
+  .pluck(function(){return this.body})
+  .print(console.log)
+  // clean up file, demo only
   .unlink(name)
-  //.debug()
-  .through(function(){info.unlink = this[0] === null})
+  //.through(function(){info.unlink = this[0] === null})
   .run(function() {
     console.dir(info);
   });

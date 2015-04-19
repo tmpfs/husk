@@ -9,6 +9,7 @@ Table of Contents
     * [data-write](#data-write)
     * [exec](#exec)
     * [filter](#filter)
+    * [fs](#fs)
     * [modify-file](#modify-file)
     * [pluck](#pluck)
     * [plugin-events](#plugin-events)
@@ -238,12 +239,70 @@ husk()
 
 ```
 {
-  "pid": "23805",
-  "tt": "s002",
+  "pid": "81980",
+  "tt": "s003",
   "stat": "R+",
-  "time": "0:00.16",
+  "time": "0:00.15",
   "cmd": "node ebin/filter"
 }
+```
+
+### fs
+
+Open fd, write close and print file content.
+
+```
+ebin/fs
+```
+
+**Source**.
+
+```javascript
+#!/usr/bin/env node
+
+var path = require('path')
+  , husk = require('..').core().exec().fs()
+  .plugin([
+    require('husk-pluck'),
+    require('husk-buffer'),
+    require('husk-transform'),
+  ]);
+
+var name = path.basename(__filename) + '-example.log'
+  , content = '[file content]'
+  , info = {};
+
+husk(name)
+  .through(function file(){info.file = this.valueOf()})
+  .open('w')
+  .pluck(1)
+  .through(function fd(){info.fd = this.valueOf()})
+  .async(function writer(cb) {
+    var fd = this.valueOf();
+    var h = husk(fd)
+      .fdwrite(fd, content)
+      .close(fd)
+      .run(cb);
+  })
+  // re-read and print file to verify write
+  .push(function(){this.push(name)})
+  .read()
+  .buffer()
+  .pluck(function(){return this.body})
+  .print(console.log)
+  // clean up file, demo only
+  .unlink(name)
+  //.through(function(){info.unlink = this[0] === null})
+  .run(function() {
+    console.dir(info);
+  });
+```
+
+**Result**.
+
+```
+[file content]
+{ file: 'fs-example.log', fd: 11 }
 ```
 
 ### modify-file
