@@ -32,14 +32,8 @@ husk(input)
   .stringify(
     function(){return this.body.dependencies}, {indent: 2, field: 'output'})
   .write(function(){return this.output})
-  .run(function() {
-    // print file contents (debug)
-    husk(output)
-      .read()
-      .buffer()
-      .pluck(function(){return this.body})
-      .print()
-      // clean up file, demo only
-      .unlink(output)
-      .run();
-  });
+  .cat(output)
+  .print()
+  // clean up file, demo only
+  .unlink(output)
+  .run();
