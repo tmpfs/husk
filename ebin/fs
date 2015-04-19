@@ -12,11 +12,11 @@ var name = path.basename(__filename) + '-example.log'
   , info = {};
 
 husk(name)
-  .through(function(){info.file = this.valueOf()})
+  .through(function file(){info.file = this.valueOf()})
   .open('w')
   .pluck(1)
-  .through(function(){info.fd = this.valueOf()})
-  .async(function write(cb) {
+  .through(function fd(){info.fd = this.valueOf()})
+  .async(function writer(cb) {
     var fd = this.valueOf();
     var h = husk(fd)
       .fdwrite(fd, content)
@@ -25,6 +25,7 @@ husk(name)
   })
   //.cat(name)
   .unlink(name)
+  //.debug()
   .through(function(){info.unlink = this[0] === null})
   .run(function() {
     console.dir(info);
