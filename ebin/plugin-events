@@ -34,5 +34,4 @@ husk()
   .stringify({indent: 2})
     .on('end', onEnd)
   .print(function noop(){})
-    .on('finish', onEnd)
-  .run();
+  .run(onEnd);

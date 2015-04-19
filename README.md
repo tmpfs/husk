@@ -237,10 +237,10 @@ husk()
 
 ```
 {
-  "pid": "21909",
+  "pid": "54329",
   "tt": "s002",
   "stat": "R+",
-  "time": "0:00.14",
+  "time": "0:00.15",
   "cmd": "node ebin/filter"
 }
 ```
@@ -334,8 +334,7 @@ husk()
   .stringify({indent: 2})
     .on('end', onEnd)
   .print(function noop(){})
-    .on('finish', onEnd)
-  .run();
+  .run(onEnd);
 ```
 
 **Result**.
@@ -507,10 +506,9 @@ h
     .on('end', onEnd)
   .pipe(stringify({indent: 2}))
     .on('end', onEnd)
-  .pipe(print(function noop(){}))
-    .on('finish', onEnd);
+  .pipe(print(function noop(){}));
 
-h.run();
+h.run(onEnd);
 ```
 
 **Result**.
