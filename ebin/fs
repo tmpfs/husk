@@ -19,10 +19,11 @@ husk(name)
   .async(function write(cb) {
     var fd = this.valueOf();
     var h = husk(fd)
-      .fwrite(fd, content)
+      .fdwrite(fd, content)
       .close(fd)
       .run(cb);
   })
+  //.cat(name)
   .unlink(name)
   .through(function(){info.unlink = this[0] === null})
   .run(function() {
