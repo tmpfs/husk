@@ -25,6 +25,6 @@ husk(name)
   // re-read and print file to verify write
   .cat(name)
   .print(console.log)
-  // clean up file, demo only
+  // clean up file
   .unlink(name)
   .run();

@@ -239,10 +239,10 @@ husk()
 
 ```
 {
-  "pid": "38778",
-  "tt": "s003",
+  "pid": "49389",
+  "tt": "s002",
   "stat": "R+",
-  "time": "0:00.15",
+  "time": "0:00.14",
   "cmd": "node ebin/filter"
 }
 ```
@@ -285,7 +285,7 @@ husk(name)
   // re-read and print file to verify write
   .cat(name)
   .print(console.log)
-  // clean up file, demo only
+  // clean up file
   .unlink(name)
   .run();
 ```
@@ -341,9 +341,10 @@ husk(input)
   .stringify(
     function(){return this.body.dependencies}, {indent: 2, field: 'output'})
   .write(function(){return this.output})
+  // re-read and print file to verify write
   .cat(output)
   .print()
-  // clean up file, demo only
+  // clean up file
   .unlink(output)
   .run();
 ```
