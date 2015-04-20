@@ -14,6 +14,7 @@ Table of Contents
     * [pluck](#pluck)
     * [plugin-events](#plugin-events)
     * [process-pipe](#process-pipe)
+    * [reject](#reject)
     * [series](#series)
     * [stdin](#stdin)
     * [stream-events](#stream-events)
@@ -202,7 +203,7 @@ cyberfunk
 
 ### filter
 
-Filter array of lines with custom function.
+Filter array of lines with accept function.
 
 ```
 ebin/filter
@@ -239,10 +240,10 @@ husk()
 
 ```
 {
-  "pid": "49389",
-  "tt": "s002",
+  "pid": "28342",
+  "tt": "s003",
   "stat": "R+",
-  "time": "0:00.14",
+  "time": "0:00.16",
   "cmd": "node ebin/filter"
 }
 ```
@@ -494,6 +495,53 @@ husk()
 husk.js
 plugin
 stream
+```
+
+### reject
+
+Filter array of lines with reject function.
+
+```
+ebin/reject
+```
+
+**Source**.
+
+```javascript
+#!/usr/bin/env node
+
+var husk = require('..').core().exec()
+  .plugin([
+    require('husk-lines'),
+    require('husk-each'),
+    require('husk-reject'),
+    require('husk-split'),
+    require('husk-object'),
+    require('husk-stringify')
+  ]);
+
+husk()
+  .ps('ax')
+  .lines({buffer: true})
+  .each()
+  .reject(function(){return parseInt(this.split(/\s+/)[0]) !== process.pid})
+  .split()
+  .object({schema: {pid: 0, tt: 1, stat: 2, time: 3, cmd: -4}})
+  .stringify({indent: 2})
+  .print()
+  .run();
+```
+
+**Result**.
+
+```
+{
+  "pid": "28516",
+  "tt": "s003",
+  "stat": "R+",
+  "time": "0:00.22",
+  "cmd": "node ebin/reject"
+}
 ```
 
 ### series
