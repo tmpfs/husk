@@ -241,10 +241,10 @@ husk()
 
 ```
 {
-  "pid": "64263",
+  "pid": "60482",
   "tt": "s003",
   "stat": "R+",
-  "time": "0:00.17",
+  "time": "0:00.16",
   "cmd": "node ebin/filter"
 }
 ```
@@ -580,10 +580,10 @@ husk()
 
 ```
 {
-  "pid": "64468",
+  "pid": "60655",
   "tt": "s003",
   "stat": "R+",
-  "time": "0:00.16",
+  "time": "0:00.15",
   "cmd": "node ebin/reject"
 }
 ```
@@ -642,8 +642,7 @@ var husk = require('..')
     require('husk-stringify')
   ]);
 
-husk()
-  .stdin()
+husk(process.stdin)
   .lines({buffer: true})
   .each()
   .split()
