@@ -1,6 +1,6 @@
 {
-  "name": "husk-push",
-  "description": "Push chunks using a function.",
+  "name": "husk-through",
+  "description": "Passthrough chunks via a function.",
   "version": "1.0.1",
   "author": "muji <noop@xpm.io>",
   "repository": {
@@ -8,14 +8,14 @@
     "url": "git://github.com/freeformsystems/husk.git"
   },
   "dependencies": {
-    "push-flow": "~1.0.1"
+    "through-flow": "~1.0.1"
   },
   "keywords": [
     "husk",
     "plugin",
     "stream",
     "transform",
-    "push",
+    "through",
     "function"
   ]
 }
