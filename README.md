@@ -14,6 +14,7 @@ Table of Contents
     * [pluck](#pluck)
     * [plugin-events](#plugin-events)
     * [process-pipe](#process-pipe)
+    * [push](#push)
     * [reject](#reject)
     * [series](#series)
     * [stdin](#stdin)
@@ -69,7 +70,7 @@ husk(process.argv.slice(2))
   .argv()
   .pluck(function(){return this.unparsed})
   .each()
-  .stat()
+  .stat(function(){return [this.valueOf()]})
   .pluck(1)
   .transform(function(){return [{size: this.size}]})
   .concat()
@@ -240,7 +241,7 @@ husk()
 
 ```
 {
-  "pid": "11402",
+  "pid": "20371",
   "tt": "s003",
   "stat": "R+",
   "time": "0:00.15",
@@ -273,7 +274,7 @@ var name = path.basename(__filename) + '-example.log'
   , content = '[file content]';
 
 husk(name)
-  .open('w')
+  .open(name, 'w')
   .pluck(1)
   .async(function writer(cb) {
     var fd = this.valueOf();
@@ -497,6 +498,47 @@ plugin
 stream
 ```
 
+### push
+
+Push multiple chunks.
+
+```
+ebin/push
+```
+
+**Source**.
+
+```javascript
+#!/usr/bin/env node
+
+var path = require('path')
+  , util = require('util')
+  , husk = require('..').core().fs()
+  .plugin([
+    require('husk-push')
+  ]);
+
+husk('')
+  .stat(__filename)
+  .push(function(chunk, cb) {
+    this.push(
+      util.format('%s (%s bytes)', path.basename(__filename), chunk[1].size)
+    );
+    this.push(
+      __filename.replace(path.normalize(path.join(__dirname, '..')), '.')
+    );
+  })
+  .print(console.log)
+  .run();
+```
+
+**Result**.
+
+```
+push (447 bytes)
+./ebin/push
+```
+
 ### reject
 
 Filter array of lines with reject function.
@@ -536,7 +578,7 @@ husk()
 
 ```
 {
-  "pid": "11574",
+  "pid": "20547",
   "tt": "s003",
   "stat": "R+",
   "time": "0:00.15",

@@ -31,6 +31,10 @@ module.exports = {
     cmd: 'ebin/filter',
     description: 'Filter array of lines with accept function'
   },
+  push: {
+    cmd: 'ebin/push',
+    description: 'Push multiple chunks'
+  },
   reject: {
     cmd: 'ebin/reject',
     description: 'Filter array of lines with reject function'

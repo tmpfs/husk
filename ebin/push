@@ -1,18 +1,21 @@
 #!/usr/bin/env node
 
-var husk = require('..').core().fs()
+var path = require('path')
+  , util = require('util')
+  , husk = require('..').core().fs()
   .plugin([
-    require('husk-argv'),
-    require('husk-push'),
-    require('husk-stringify')
+    require('husk-push')
   ]);
 
-husk(process.argv.slice(2))
-  .argv()
-  .push(function(chunk) {
-    this.push({argv: chunk, program: {file: __filename, dir: __dirname}});
+husk('')
+  .stat(__filename)
+  .push(function(chunk, cb) {
+    this.push(
+      util.format('%s (%s bytes)', path.basename(__filename), chunk[1].size)
+    );
+    this.push(
+      __filename.replace(path.normalize(path.join(__dirname, '..')), '.')
+    );
   })
-  .stat(function(){return [this.program.file]})
-  .stringify({indent: 2})
-  .print()
+  .print(console.log)
   .run();
