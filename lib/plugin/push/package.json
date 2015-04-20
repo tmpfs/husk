@@ -1,0 +1,21 @@
+{
+  "name": "husk-push",
+  "description": "Push chunks using a function.",
+  "version": "1.0.1",
+  "author": "muji <noop@xpm.io>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/freeformsystems/husk.git"
+  },
+  "dependencies": {
+    "filter-flow": "~1.0.1"
+  },
+  "keywords": [
+    "husk",
+    "plugin",
+    "stream",
+    "transform",
+    "push",
+    "function"
+  ]
+}

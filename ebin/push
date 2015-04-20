@@ -1,0 +1,18 @@
+#!/usr/bin/env node
+
+var husk = require('..').core().fs()
+  .plugin([
+    require('husk-argv'),
+    require('husk-push'),
+    require('husk-stringify')
+  ]);
+
+husk(process.argv.slice(2))
+  .argv()
+  .push(function(chunk) {
+    this.push({argv: chunk, program: {file: __filename, dir: __dirname}});
+  })
+  .stat(function(){return [this.program.file]})
+  .stringify({indent: 2})
+  .print()
+  .run();

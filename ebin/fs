@@ -12,7 +12,7 @@ var name = path.basename(__filename) + '-example.log'
   , content = '[file content]';
 
 husk(name)
-  .open('w')
+  .open(name, 'w')
   .pluck(1)
   .async(function writer(cb) {
     var fd = this.valueOf();
