@@ -11,8 +11,7 @@ var husk = require('..')
     require('husk-stringify')
   ]);
 
-husk()
-  .stdin()
+husk(process.stdin)
   .lines({buffer: true})
   .each()
   .split()
