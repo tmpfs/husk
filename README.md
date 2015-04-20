@@ -55,7 +55,7 @@ ebin/argv index.js package.json
 ```javascript
 #!/usr/bin/env node
 
-var husk = require('..').core().fs()
+var husk = require('..').fs()
   .plugin([
     require('husk-argv'),
     require('husk-concat'),
@@ -87,7 +87,7 @@ husk(process.argv.slice(2))
     "size": 40
   },
   {
-    "size": 1471
+    "size": 1496
   }
 ]
 ```
@@ -105,7 +105,7 @@ ebin/async
 ```javascript
 #!/usr/bin/env node
 
-var husk = require('..').core().exec()
+var husk = require('..').exec()
   .plugin([
     require('husk-async'),
     require('husk-pluck')
@@ -149,7 +149,7 @@ ebin/data-write
 ```javascript
 #!/usr/bin/env node
 
-var husk = require('..').core()
+var husk = require('..')
   .plugin([
     require('husk-pluck'),
     require('husk-transform'),
@@ -185,7 +185,7 @@ ebin/exec
 ```javascript
 #!/usr/bin/env node
 
-var husk = require('..').core().exec();
+var husk = require('..').exec();
 
 husk()
   .whoami(console.log.bind(null, '[code: %s, signal: %s]'))
@@ -215,7 +215,7 @@ ebin/filter
 ```javascript
 #!/usr/bin/env node
 
-var husk = require('..').core().exec()
+var husk = require('..').exec()
   .plugin([
     require('husk-lines'),
     require('husk-each'),
@@ -241,7 +241,7 @@ husk()
 
 ```
 {
-  "pid": "20371",
+  "pid": "82829",
   "tt": "s003",
   "stat": "R+",
   "time": "0:00.15",
@@ -263,7 +263,7 @@ ebin/fs
 #!/usr/bin/env node
 
 var path = require('path')
-  , husk = require('..').core().exec().fs()
+  , husk = require('..').exec().fs()
   .plugin([
     require('husk-pluck'),
     require('husk-buffer'),
@@ -311,7 +311,7 @@ ebin/modify-file
 ```javascript
 #!/usr/bin/env node
 
-var husk = require('..').core().exec().fs()
+var husk = require('..').exec().fs()
   .plugin([
     require('husk-buffer'),
     require('husk-parse'),
@@ -355,9 +355,10 @@ husk(input)
 
 ```
 {
+  "husk-async": "~2.0.0",
   "husk-core": "~2.0.0",
   "husk-exec": "~2.0.0",
-  "husk-print": "~2.0.0",
+  "husk-fs": "~2.0.0",
   "zephyr": "~2.0.0"
 }
 ```
@@ -375,7 +376,7 @@ ebin/pluck
 ```javascript
 #!/usr/bin/env node
 
-var husk = require('..').core().fs()
+var husk = require('..').fs()
   .plugin([
     require('husk-buffer'),
     require('husk-parse'),
@@ -402,9 +403,10 @@ husk('package.json')
 
 ```
 {
+  "husk-async": "~1.0.1",
   "husk-core": "~1.0.1",
   "husk-exec": "~1.0.1",
-  "husk-print": "~1.0.1",
+  "husk-fs": "~1.0.1",
   "zephyr": "~1.2.6"
 }
 ```
@@ -422,7 +424,7 @@ ebin/plugin-events
 ```javascript
 #!/usr/bin/env node
 
-var husk = require('..').core().exec()
+var husk = require('..').exec()
   .plugin([
     require('husk-concat'),
     require('husk-buffer'),
@@ -479,7 +481,7 @@ ebin/process-pipe
 ```javascript
 #!/usr/bin/env node
 
-var husk = require('..').core().exec();
+var husk = require('..').exec();
 
 husk()
   .ls('lib')
@@ -513,7 +515,7 @@ ebin/push
 
 var path = require('path')
   , util = require('util')
-  , husk = require('..').core().fs()
+  , husk = require('..').fs()
   .plugin([
     require('husk-push')
   ]);
@@ -535,7 +537,7 @@ husk('')
 **Result**.
 
 ```
-push (447 bytes)
+push (440 bytes)
 ./ebin/push
 ```
 
@@ -552,7 +554,7 @@ ebin/reject
 ```javascript
 #!/usr/bin/env node
 
-var husk = require('..').core().exec()
+var husk = require('..').exec()
   .plugin([
     require('husk-lines'),
     require('husk-each'),
@@ -578,10 +580,10 @@ husk()
 
 ```
 {
-  "pid": "20547",
+  "pid": "82842",
   "tt": "s003",
   "stat": "R+",
-  "time": "0:00.15",
+  "time": "0:00.16",
   "cmd": "node ebin/reject"
 }
 ```
@@ -599,7 +601,7 @@ ebin/series
 ```javascript
 #!/usr/bin/env node
 
-var husk = require('..').core().exec();
+var husk = require('..').exec();
 
 husk()
   .echo(1, 2, 3)
@@ -629,7 +631,7 @@ who | ebin/stdin
 ```javascript
 #!/usr/bin/env node
 
-var husk = require('..').core()
+var husk = require('..')
   .plugin([
     require('husk-lines'),
     require('husk-each'),
@@ -676,7 +678,7 @@ ebin/stream-events
 ```javascript
 #!/usr/bin/env node
 
-var husk = require('..').core()
+var husk = require('..')
   , exec = require('husk-exec')
   , each = require('husk-each')
   , print = require('husk-print')
@@ -741,7 +743,7 @@ ebin/transform
 ```javascript
 #!/usr/bin/env node
 
-var husk = require('..').core().exec()
+var husk = require('..').exec()
   .plugin([
     require('husk-concat'),
     require('husk-lines'),
