@@ -1,6 +1,6 @@
 {
-  "name": "filter-flow",
-  "description": "Stream transform implementation that filters by functions.",
+  "name": "reject-flow",
+  "description": "Stream transform implementation that rejects by functions.",
   "version": "1.0.1",
   "author": "muji <noop@xpm.io>",
   "repository": {
@@ -8,7 +8,8 @@
     "url": "git://github.com/freeformsystems/husk.git"
   },
   "dependencies": {
-    "through3": "~1.1.0"
+    "through3": "~1.1.0",
+    "filter-flow": "~1.0.1"
   },
   "keywords": [
     "husk",
@@ -16,6 +17,7 @@
     "transform",
     "function",
     "method",
-    "filter"
+    "filter",
+    "reject"
   ]
 }

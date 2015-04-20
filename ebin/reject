@@ -1,0 +1,22 @@
+#!/usr/bin/env node
+
+var husk = require('..').core().exec()
+  .plugin([
+    require('husk-lines'),
+    require('husk-each'),
+    require('husk-reject'),
+    require('husk-split'),
+    require('husk-object'),
+    require('husk-stringify')
+  ]);
+
+husk()
+  .ps('ax')
+  .lines({buffer: true})
+  .each()
+  .reject(function(){return parseInt(this.split(/\s+/)[0]) !== process.pid})
+  .split()
+  .object({schema: {pid: 0, tt: 1, stat: 2, time: 3, cmd: -4}})
+  .stringify({indent: 2})
+  .print()
+  .run();

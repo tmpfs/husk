@@ -29,7 +29,11 @@ module.exports = {
   },
   filter: {
     cmd: 'ebin/filter',
-    description: 'Filter array of lines with custom function'
+    description: 'Filter array of lines with accept function'
+  },
+  reject: {
+    cmd: 'ebin/reject',
+    description: 'Filter array of lines with reject function'
   },
   series: {
     cmd: 'ebin/series',
