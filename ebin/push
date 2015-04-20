@@ -2,7 +2,7 @@
 
 var path = require('path')
   , util = require('util')
-  , husk = require('..').core().fs()
+  , husk = require('..').fs()
   .plugin([
     require('husk-push')
   ]);

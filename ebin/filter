@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var husk = require('..').core().exec()
+var husk = require('..').exec()
   .plugin([
     require('husk-lines'),
     require('husk-each'),

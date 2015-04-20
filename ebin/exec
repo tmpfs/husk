@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var husk = require('..').core().exec();
+var husk = require('..').exec();
 
 husk()
   .whoami(console.log.bind(null, '[code: %s, signal: %s]'))

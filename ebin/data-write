@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var husk = require('..').core()
+var husk = require('..')
   .plugin([
     require('husk-pluck'),
     require('husk-transform'),

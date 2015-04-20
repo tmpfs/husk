@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var husk = require('..').core().fs()
+var husk = require('..').fs()
   .plugin([
     require('husk-buffer'),
     require('husk-parse'),

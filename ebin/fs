@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 var path = require('path')
-  , husk = require('..').core().exec().fs()
+  , husk = require('..').exec().fs()
   .plugin([
     require('husk-pluck'),
     require('husk-buffer'),

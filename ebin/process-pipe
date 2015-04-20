@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var husk = require('..').core().exec();
+var husk = require('..').exec();
 
 husk()
   .ls('lib')
