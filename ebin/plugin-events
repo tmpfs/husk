@@ -16,7 +16,6 @@ function onEnd(stream) {
 }
 
 husk()
-  .on('end', onEnd)
   .cd('lib')
   .find()
   .buffer()
@@ -27,4 +26,5 @@ husk()
   .concat()
   .stringify({indent: 2})
   .print(function noop(){})
+  .on('end', onEnd)
   .run();
