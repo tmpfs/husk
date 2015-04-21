@@ -4,7 +4,6 @@ var expect = require('chai').expect
 
 describe('husk:', function() {
 
-
   it('should execute command', function(done) {
     var h = husk()
       .ls('doc')

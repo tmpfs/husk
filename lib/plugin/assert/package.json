@@ -1,0 +1,21 @@
+{
+  "name": "husk-assert",
+  "description": "Pass through stream to assert on chunks.",
+  "version": "1.0.1",
+  "author": "muji <noop@xpm.io>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/freeformsystems/husk.git"
+  },
+  "dependencies": {
+    "assert-flow": "~1.0.1"
+  },
+  "keywords": [
+    "husk",
+    "plugin",
+    "stream",
+    "transform",
+    "assert",
+    "function"
+  ]
+}
