@@ -7,7 +7,7 @@ var path = require('path')
     require('husk-push')
   ]);
 
-husk('')
+husk()
   .stat(__filename)
   .push(function(chunk, cb) {
     this.push(

@@ -8,7 +8,7 @@ var husk = require('..').exec()
   ])
   , ask = {message: 'choose directory:', default: 'lib'};
 
-husk('')
+husk()
   // auto fill prompt so it can be automated
   .wait({output: husk.getPrompt(ask).raw, input: 'doc'})
   // show prompt

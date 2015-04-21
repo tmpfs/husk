@@ -88,7 +88,7 @@ husk(process.argv.slice(2))
     "size": 40
   },
   {
-    "size": 1526
+    "size": 1496
   }
 ]
 ```
@@ -244,7 +244,7 @@ husk()
 
 ```
 {
-  "pid": "50079",
+  "pid": "37037",
   "tt": "s003",
   "stat": "R+",
   "time": "0:00.15",
@@ -276,7 +276,7 @@ var path = require('path')
 var name = path.basename(__filename) + '-example.log'
   , content = '[file content]';
 
-husk(name)
+husk()
   .open(name, 'w')
   .pluck(1)
   .async(function writer(cb) {
@@ -362,7 +362,6 @@ husk(input)
   "husk-core": "~2.0.0",
   "husk-exec": "~2.0.0",
   "husk-fs": "~2.0.0",
-  "stream-lines": "~2.0.0",
   "zephyr": "~2.0.0"
 }
 ```
@@ -411,7 +410,6 @@ husk('package.json')
   "husk-core": "~1.0.1",
   "husk-exec": "~1.0.1",
   "husk-fs": "~1.0.1",
-  "stream-lines": "~1.1.3",
   "zephyr": "~1.2.6"
 }
 ```
@@ -526,7 +524,7 @@ var husk = require('..').exec()
   ])
   , ask = {message: 'choose directory:', default: 'lib'};
 
-husk('')
+husk()
   // auto fill prompt so it can be automated
   .wait({output: husk.getPrompt(ask).raw, input: 'doc'})
   // show prompt
@@ -577,7 +575,7 @@ var path = require('path')
     require('husk-push')
   ]);
 
-husk('')
+husk()
   .stat(__filename)
   .push(function(chunk, cb) {
     this.push(
@@ -594,7 +592,7 @@ husk('')
 **Result**.
 
 ```
-push (440 bytes)
+push (438 bytes)
 ./ebin/push
 ```
 
@@ -637,7 +635,7 @@ husk()
 
 ```
 {
-  "pid": "50260",
+  "pid": "37218",
   "tt": "s003",
   "stat": "R+",
   "time": "0:00.15",
@@ -700,6 +698,7 @@ var husk = require('..')
   ]);
 
 husk(process.stdin)
+  //.stdin()
   .lines({buffer: true})
   .each()
   .split()

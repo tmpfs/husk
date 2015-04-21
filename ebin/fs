@@ -11,7 +11,7 @@ var path = require('path')
 var name = path.basename(__filename) + '-example.log'
   , content = '[file content]';
 
-husk(name)
+husk()
   .open(name, 'w')
   .pluck(1)
   .async(function writer(cb) {
