@@ -21,8 +21,8 @@ describe('husk:', function() {
 
   it('should execute command w/ pipe', function(done) {
     var h = husk()
-    h.pipe(exec('ls', ['doc']));
-    h.run(done);
+    h.pipe(exec('ls', ['doc'])).on('end', done);
+    h.run();
   });
 
   it('should callback on empty pipeline', function(done) {

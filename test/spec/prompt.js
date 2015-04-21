@@ -37,11 +37,7 @@ describe('husk:', function() {
       .each()
       .reject(function(){return this.valueOf() === ''})
       .assert(function() {
-        console.dir(this.valueOf());
-        return true;
-      })
-      .on('finish', function() {
-        console.log('finish...');
+        return Boolean(~this.indexOf('doc'));
       })
       .run(done);
   });
