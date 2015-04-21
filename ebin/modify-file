@@ -30,7 +30,8 @@ husk(input)
   })
   // back to string for write
   .stringify(
-    function(){return this.body.dependencies}, {indent: 2, field: 'output'})
+    {indent: 2, field: 'output'},
+    function(){return this.body.dependencies})
   .write(function(){return this.output})
   // re-read and print file to verify write
   .cat(output)
