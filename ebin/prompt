@@ -1,0 +1,19 @@
+#!/usr/bin/env node
+
+var husk = require('..').exec()
+  .plugin([
+    require('husk-prompt')
+  ]);
+
+husk('lib')
+  .prompt(function(ps, chunk, encoding, cb) {
+    ps.prompt(
+      {message: 'directory:', default: 'lib', required: true, repeat: true},
+      function complete(err, val) {
+        ps.close();
+        cb(err, val[0]);
+      })
+  })
+  .find(function(){return [this.valueOf()]})
+  .print()
+  .run();

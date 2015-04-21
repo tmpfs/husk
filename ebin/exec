@@ -3,7 +3,9 @@
 var husk = require('..').exec();
 
 husk()
-  .whoami(console.log.bind(null, '[code: %s, signal: %s]'))
-    .once('end', console.log.bind(null, '%s'))
+  .whoami(function(code, signal) {
+    console.log('[code: %s, signal: %s]', code, signal);
+  })
+  .once('end', console.log.bind(null, '%s'))
   .print()
   .run();

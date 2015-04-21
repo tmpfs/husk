@@ -13,6 +13,7 @@
     "husk-core": "~1.0.1",
     "husk-exec": "~1.0.1",
     "husk-fs": "~1.0.1",
+    "stream-lines": "~1.1.3",
     "zephyr": "~1.2.6"
   },
   "devDependencies": {
