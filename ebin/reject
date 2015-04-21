@@ -14,7 +14,9 @@ husk()
   .ps('ax')
   .lines({buffer: true})
   .each()
-  .reject(function(){return parseInt(this.split(/\s+/)[0]) !== process.pid})
+  .reject(function(){
+    return parseInt(this.split(/\s+/)[0].trim()) !== process.pid
+  })
   .split()
   .object({schema: {pid: 0, tt: 1, stat: 2, time: 3, cmd: -4}})
   .stringify({indent: 2})
