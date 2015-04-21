@@ -3,10 +3,13 @@ var expect = require('chai').expect
   , ask = {message: 'choose directory:', default: 'lib'};
 
 describe('husk:', function() {
-
-  //this.timeout(500);
+  var owrite, ewrite;
 
   before(function(done) {
+    //owrite = process.stdout.write;
+    //ewrite = process.stderr.write;
+    //process.stdout.write = noop;
+    //process.stderr.write = noop;
     delete require.cache[require.resolve('husk-prompt')];
     husk.plugin([require('husk-prompt')]);
     delete require.cache[require.resolve('husk-wait')];
@@ -17,6 +20,14 @@ describe('husk:', function() {
       {plugin: require('husk-prompt'), conf: {terminal: true}},
       require('husk-wait')
     ])
+    done();
+  })
+
+  after(function(done) {
+    //owrite = process.stdout.write;
+    //ewrite = process.stderr.write;
+    //process.stdout.write = owrite;
+    //process.stderr.write = ewrite;
     done();
   })
 
@@ -37,6 +48,7 @@ describe('husk:', function() {
       .each()
       .reject(function(){return this.valueOf() === ''})
       .assert(function() {
+        //console.dir(this);
         return Boolean(~this.indexOf('doc'));
       })
       .run(done);
