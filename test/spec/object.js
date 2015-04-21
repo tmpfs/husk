@@ -59,5 +59,4 @@ describe('husk:', function() {
       .run(done);
   });
 
-
 });

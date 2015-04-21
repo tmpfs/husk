@@ -19,7 +19,7 @@ husk(input)
   // rewrite file path
   .through(function(){this.path = output})
   // parse as json and assign
-  .parse(function(){return this.body}, {field: 'body'})
+  .parse( {field: 'body'}, function(){return this.body})
   // perform transformation
   .transform(function() {
     var body = this.body;
