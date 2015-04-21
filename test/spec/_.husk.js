@@ -1,5 +1,14 @@
 var expect = require('chai').expect
+  , fs = require('fs')
   , husk = require('../..');
+
+// load all plugins
+var dirs = fs.readdirSync('./node_modules');
+dirs.forEach(function(dir) {
+  if(/^husk-/.test(dir)) {
+    husk.plugin([require(dir)]);
+  }
+})
 
 describe('husk:', function() {
 
@@ -23,4 +32,5 @@ describe('husk:', function() {
     expect(h).to.equal(husk);
     done();
   });
+
 });
