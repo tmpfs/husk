@@ -23,4 +23,6 @@ husk()
   // find files in chosen directory
   .find(function(){return [this.valueOf()]})
   .print()
-  .run();
+  .run(function() {
+    console.log('prompt completed');
+  });
