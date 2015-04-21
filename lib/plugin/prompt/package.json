@@ -1,0 +1,21 @@
+{
+  "name": "husk-prompt",
+  "description": "Prompt for user input from stdin.",
+  "version": "1.0.1",
+  "author": "muji <noop@xpm.io>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/freeformsystems/husk.git"
+  },
+  "dependencies": {
+    "prompt-flow": "~1.0.1"
+  },
+  "keywords": [
+    "husk",
+    "plugin",
+    "stream",
+    "transform",
+    "prompt",
+    "stdin"
+  ]
+}
