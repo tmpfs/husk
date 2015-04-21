@@ -14,6 +14,7 @@ Table of Contents
     * [pluck](#pluck)
     * [plugin-events](#plugin-events)
     * [process-pipe](#process-pipe)
+    * [prompt](#prompt)
     * [push](#push)
     * [reject](#reject)
     * [series](#series)
@@ -243,7 +244,7 @@ husk()
 
 ```
 {
-  "pid": "66521",
+  "pid": "86583",
   "tt": "s003",
   "stat": "R+",
   "time": "0:00.15",
@@ -504,6 +505,57 @@ plugin
 stream
 ```
 
+### prompt
+
+Prompt for user input.
+
+```
+ebin/prompt
+```
+
+**Source**.
+
+```javascript
+#!/usr/bin/env node
+
+var husk = require('..').exec()
+  .plugin([
+    // force terminal for sbin/ebin execution (stdin is pipe not tty)
+    {plugin: require('husk-prompt'), conf: {terminal: true}},
+    require('husk-wait')
+  ]);
+
+husk('')
+  // auto fill prompt so it can be automated
+  .wait({output: 'prompt ⚡ choose directory: (lib)', input: 'doc'})
+  // show prompt
+  .prompt(function(ps, chunk, encoding, cb) {
+    ps.prompt(
+      {message: 'choose directory:', default: 'lib'},
+      function complete(err, val) {
+        ps.close();
+        cb(err, val ? val[0] : null);
+      })
+  })
+  // find files in chosen directory
+  .find(function(){return [this.valueOf()]})
+  .print()
+  .run();
+```
+
+**Result**.
+
+```
+[1G[0Jprompt ⚡ choose directory: (lib) [34Gdoc
+doc
+doc/readme
+doc/readme/developer.md
+doc/readme/install.md
+doc/readme/introduction.md
+doc/readme/license.md
+doc/readme/links.md
+```
+
 ### push
 
 Push multiple chunks.
@@ -584,10 +636,10 @@ husk()
 
 ```
 {
-  "pid": "66695",
+  "pid": "86764",
   "tt": "s003",
   "stat": "R+",
-  "time": "0:00.23",
+  "time": "0:00.15",
   "cmd": "node ebin/reject"
 }
 ```

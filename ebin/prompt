@@ -2,30 +2,24 @@
 
 var husk = require('..').exec()
   .plugin([
-    // force terminal for sbin/ebin execution
+    // force terminal for sbin/ebin execution (stdin is pipe not tty)
     {plugin: require('husk-prompt'), conf: {terminal: true}},
     require('husk-wait')
   ]);
 
-husk('lib')
+husk('')
   // auto fill prompt so it can be automated
-  .wait(
-    {
-      output: 'prompt ⚡ choose directory: (lib)',
-      input: 'doc'
-    }
-  )
-  .prompt({terminal: true}, function(ps, chunk, encoding, cb) {
+  .wait({output: 'prompt ⚡ choose directory:', input: 'doc'})
+  // show prompt
+  .prompt(function(ps, chunk, encoding, cb) {
     ps.prompt(
-      {
-        message: 'choose directory:',
-        default: 'lib'
-      },
+      {message: 'choose directory:'},
       function complete(err, val) {
         ps.close();
         cb(err, val ? val[0] : null);
       })
   })
+  // find files in chosen directory
   .find(function(){return [this.valueOf()]})
   .print()
   .run();
