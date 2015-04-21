@@ -244,7 +244,7 @@ husk()
 
 ```
 {
-  "pid": "86583",
+  "pid": "50079",
   "tt": "s003",
   "stat": "R+",
   "time": "0:00.15",
@@ -523,15 +523,16 @@ var husk = require('..').exec()
     // force terminal for sbin/ebin execution (stdin is pipe not tty)
     {plugin: require('husk-prompt'), conf: {terminal: true}},
     require('husk-wait')
-  ]);
+  ])
+  , ask = {message: 'choose directory:', default: 'lib'};
 
 husk('')
   // auto fill prompt so it can be automated
-  .wait({output: 'prompt ⚡ choose directory: (lib)', input: 'doc'})
+  .wait({output: husk.getPrompt(ask).raw, input: 'doc'})
   // show prompt
   .prompt(function(ps, chunk, encoding, cb) {
     ps.prompt(
-      {message: 'choose directory:', default: 'lib'},
+      ask,
       function complete(err, val) {
         ps.close();
         cb(err, val ? val[0] : null);
@@ -636,7 +637,7 @@ husk()
 
 ```
 {
-  "pid": "86764",
+  "pid": "50260",
   "tt": "s003",
   "stat": "R+",
   "time": "0:00.15",
