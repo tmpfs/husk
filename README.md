@@ -87,7 +87,7 @@ husk(process.argv.slice(2))
     "size": 40
   },
   {
-    "size": 1496
+    "size": 1526
   }
 ]
 ```
@@ -188,8 +188,10 @@ ebin/exec
 var husk = require('..').exec();
 
 husk()
-  .whoami(console.log.bind(null, '[code: %s, signal: %s]'))
-    .once('end', console.log.bind(null, '%s'))
+  .whoami(function(code, signal) {
+    console.log('[code: %s, signal: %s]', code, signal);
+  })
+  .once('end', console.log.bind(null, '%s'))
   .print()
   .run();
 ```
@@ -241,10 +243,10 @@ husk()
 
 ```
 {
-  "pid": "60482",
+  "pid": "66521",
   "tt": "s003",
   "stat": "R+",
-  "time": "0:00.16",
+  "time": "0:00.15",
   "cmd": "node ebin/filter"
 }
 ```
@@ -359,6 +361,7 @@ husk(input)
   "husk-core": "~2.0.0",
   "husk-exec": "~2.0.0",
   "husk-fs": "~2.0.0",
+  "stream-lines": "~2.0.0",
   "zephyr": "~2.0.0"
 }
 ```
@@ -407,6 +410,7 @@ husk('package.json')
   "husk-core": "~1.0.1",
   "husk-exec": "~1.0.1",
   "husk-fs": "~1.0.1",
+  "stream-lines": "~1.1.3",
   "zephyr": "~1.2.6"
 }
 ```
@@ -580,10 +584,10 @@ husk()
 
 ```
 {
-  "pid": "60655",
+  "pid": "66695",
   "tt": "s003",
   "stat": "R+",
-  "time": "0:00.15",
+  "time": "0:00.23",
   "cmd": "node ebin/reject"
 }
 ```
