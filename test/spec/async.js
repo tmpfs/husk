@@ -1,6 +1,5 @@
 var expect = require('chai').expect
-  , husk = require('../..')
-  , async = require('husk-async');
+  , husk = require('../..');
 
 describe('husk:', function() {
 
