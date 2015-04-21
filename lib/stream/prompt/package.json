@@ -1,0 +1,24 @@
+{
+  "name": "prompt-flow",
+  "description": "Stream transform that collects data via stdin prompt.",
+  "version": "1.0.1",
+  "author": "muji <noop@xpm.io>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/freeformsystems/husk.git"
+  },
+  "dependencies": {
+    "cli-input": "~0.1.10",
+    "through3": "~1.1.5"
+  },
+  "keywords": [
+    "husk",
+    "stream",
+    "transform",
+    "function",
+    "method",
+    "prompt",
+    "input",
+    "stdin"
+  ]
+}
