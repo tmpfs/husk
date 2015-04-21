@@ -27,6 +27,10 @@ module.exports = {
     cmd: 'ebin/fs',
     description: 'Open fd, write close and print file content.'
   },
+  prompt: {
+    cmd: 'ebin/prompt',
+    description: 'Prompt for user input.'
+  },
   filter: {
     cmd: 'ebin/filter',
     description: 'Filter array of lines with accept function'

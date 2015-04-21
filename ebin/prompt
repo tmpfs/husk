@@ -2,18 +2,28 @@
 
 var husk = require('..').exec()
   .plugin([
-    require('husk-prompt')
+    require('husk-prompt'),
+    require('husk-wait')
   ]);
 
 husk('lib')
-  .prompt(function(ps, chunk, encoding, cb) {
+  // auto fill prompt so it can be automated
+  .wait('prompt ⚡ directory: (lib)', function() {
+    function send() {
+      process.stdin.emit('keypress', 'doc\r\n');
+    }
+    setTimeout(send, 10);
+  })
+  // use terminal for ebin execution
+  .prompt({terminal: true}, function(ps, chunk, encoding, cb) {
     ps.prompt(
       {message: 'directory:', default: 'lib', required: true, repeat: true},
       function complete(err, val) {
         ps.close();
-        cb(err, val[0]);
+        cb(err, val ? val[0] : null);
       })
   })
+  //.debug()
   .find(function(){return [this.valueOf()]})
   .print()
   .run();
