@@ -1,6 +1,6 @@
 {
   "name": "assert-flow",
-  "description": "Stream transform that asserts on chunks.",
+  "description": "Stream pass through that asserts on chunks.",
   "version": "1.0.1",
   "author": "muji <noop@xpm.io>",
   "repository": {
