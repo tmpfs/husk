@@ -9,19 +9,17 @@ var husk = require('..').exec()
 
 husk('lib')
   // auto fill prompt so it can be automated
-  .wait('prompt ⚡ choose directory: (lib)', function() {
-    function send() {
-      process.stdin.emit('keypress', 'doc\r\n');
+  .wait(
+    {
+      output: 'prompt ⚡ choose directory: (lib)',
+      input: 'doc'
     }
-    setTimeout(send, 10);
-  })
+  )
   .prompt({terminal: true}, function(ps, chunk, encoding, cb) {
     ps.prompt(
       {
         message: 'choose directory:',
-        default: 'lib',
-        required: true,
-        repeat: true
+        default: 'lib'
       },
       function complete(err, val) {
         ps.close();
