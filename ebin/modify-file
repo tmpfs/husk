@@ -32,7 +32,7 @@ husk(input)
   .stringify(
     {indent: 2, field: 'contents'},
     function(){return this.body.dependencies})
-  .write(function(){return this.contents})
+  .write(function(){return [this.path]})
   // re-read and print file to verify write
   .cat(output)
   .print()
