@@ -242,6 +242,18 @@ husk()
   .run();
 ```
 
+**Result**.
+
+```
+{
+  "pid": "95570",
+  "tt": "s003",
+  "stat": "R+",
+  "time": "0:00.18",
+  "cmd": "node ebin/filter"
+}
+```
+
 ### fs
 
 Open fd, write close and print file content.
@@ -320,8 +332,6 @@ var input = 'package.json'
 husk(input)
   .read()
   .buffer()
-  // rewrite file path
-  .through(function(){this.path = output})
   // parse as json and assign
   .parse({field: 'body'}, function(){return this.body})
   // perform transformation
@@ -336,7 +346,7 @@ husk(input)
   .stringify(
     {indent: 2, field: 'contents'},
     function(){return this.body.dependencies})
-  .write(function(){return this.contents})
+  .write(function(){return [output]})
   // re-read and print file to verify write
   .cat(output)
   .print()
@@ -622,6 +632,18 @@ husk()
   .stringify({indent: 2})
   .print()
   .run();
+```
+
+**Result**.
+
+```
+{
+  "pid": "95903",
+  "tt": "s003",
+  "stat": "R+",
+  "time": "0:00.15",
+  "cmd": "node ebin/reject"
+}
 ```
 
 ### series
