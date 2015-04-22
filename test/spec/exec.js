@@ -29,4 +29,19 @@ describe('husk:', function() {
     husk().run(done);
   });
 
+  it('should pipe between processes', function(done) {
+    husk()
+      .ls('test')
+      // pipe `ls` stdout to `cat` stdin
+      .fd(1)
+      .cat()
+      .lines({buffer: true})
+      .each()
+      .reject(function(){return this.valueOf() === ''})
+      .assert(function() {
+        return this.valueOf() !== '';
+      })
+      .run(done);
+  });
+
 });
