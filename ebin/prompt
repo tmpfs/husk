@@ -6,7 +6,8 @@ var husk = require('..').exec()
     {plugin: require('husk-prompt'), conf: {terminal: true}},
     require('husk-wait')
   ])
-  , ask = {message: 'choose directory:', default: 'lib'};
+  , ask = {message: 'choose directory:', default: 'lib'}
+  , revert = require('ttycolor')().defaults();
 
 husk()
   // auto fill prompt so it can be automated

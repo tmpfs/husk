@@ -28,7 +28,7 @@ module.exports = {
     description: 'Open fd, write close and print file content.'
   },
   prompt: {
-    cmd: 'ebin/prompt',
+    cmd: 'ebin/prompt --no-color',
     description: 'Prompt for user input.'
   },
   filter: {

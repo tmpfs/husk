@@ -246,10 +246,10 @@ husk()
 
 ```
 {
-  "pid": "62626",
-  "tt": "s003",
+  "pid": "75931",
+  "tt": "s012",
   "stat": "R+",
-  "time": "0:00.16",
+  "time": "0:00.19",
   "cmd": "node ebin/filter"
 }
 ```
@@ -509,7 +509,7 @@ stream
 Prompt for user input.
 
 ```
-ebin/prompt
+ebin/prompt --no-color
 ```
 
 **Source**.
@@ -523,7 +523,8 @@ var husk = require('..').exec()
     {plugin: require('husk-prompt'), conf: {terminal: true}},
     require('husk-wait')
   ])
-  , ask = {message: 'choose directory:', default: 'lib'};
+  , ask = {message: 'choose directory:', default: 'lib'}
+  , revert = require('ttycolor')().defaults();
 
 husk()
   // auto fill prompt so it can be automated
@@ -638,8 +639,8 @@ husk()
 
 ```
 {
-  "pid": "62955",
-  "tt": "s003",
+  "pid": "76176",
+  "tt": "s012",
   "stat": "R+",
   "time": "0:00.15",
   "cmd": "node ebin/reject"
