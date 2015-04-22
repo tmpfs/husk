@@ -17,7 +17,6 @@ husk()
   .filter(function(){
     return parseInt(this.split(/\s+/)[0].trim()) === process.pid
   })
-  .debug()
   .split()
   .object({schema: {pid: 0, tt: 1, stat: 2, time: 3, cmd: -4}})
   .stringify({indent: 2})

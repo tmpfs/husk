@@ -19,7 +19,7 @@ husk(input)
   // rewrite file path
   .through(function(){this.path = output})
   // parse as json and assign
-  .parse( {field: 'body'}, function(){return this.body})
+  .parse({field: 'body'}, function(){return this.body})
   // perform transformation
   .transform(function() {
     var body = this.body;
@@ -30,9 +30,9 @@ husk(input)
   })
   // back to string for write
   .stringify(
-    {indent: 2, field: 'output'},
+    {indent: 2, field: 'contents'},
     function(){return this.body.dependencies})
-  .write(function(){return this.output})
+  .write(function(){return this.contents})
   // re-read and print file to verify write
   .cat(output)
   .print()

@@ -232,24 +232,14 @@ husk()
   .ps('ax')
   .lines({buffer: true})
   .each()
-  .filter(function(){return parseInt(this.split(/\s+/)[0]) === process.pid})
+  .filter(function(){
+    return parseInt(this.split(/\s+/)[0].trim()) === process.pid
+  })
   .split()
   .object({schema: {pid: 0, tt: 1, stat: 2, time: 3, cmd: -4}})
   .stringify({indent: 2})
   .print()
   .run();
-```
-
-**Result**.
-
-```
-{
-  "pid": "70768",
-  "tt": "s003",
-  "stat": "R+",
-  "time": "0:00.15",
-  "cmd": "node ebin/filter"
-}
 ```
 
 ### fs
@@ -333,7 +323,7 @@ husk(input)
   // rewrite file path
   .through(function(){this.path = output})
   // parse as json and assign
-  .parse(function(){return this.body}, {field: 'body'})
+  .parse({field: 'body'}, function(){return this.body})
   // perform transformation
   .transform(function() {
     var body = this.body;
@@ -344,8 +334,9 @@ husk(input)
   })
   // back to string for write
   .stringify(
-    function(){return this.body.dependencies}, {indent: 2, field: 'output'})
-  .write(function(){return this.output})
+    {indent: 2, field: 'contents'},
+    function(){return this.body.dependencies})
+  .write(function(){return this.contents})
   // re-read and print file to verify write
   .cat(output)
   .print()
@@ -623,24 +614,14 @@ husk()
   .ps('ax')
   .lines({buffer: true})
   .each()
-  .reject(function(){return parseInt(this.split(/\s+/)[0]) !== process.pid})
+  .reject(function(){
+    return parseInt(this.split(/\s+/)[0].trim()) !== process.pid
+  })
   .split()
   .object({schema: {pid: 0, tt: 1, stat: 2, time: 3, cmd: -4}})
   .stringify({indent: 2})
   .print()
   .run();
-```
-
-**Result**.
-
-```
-{
-  "pid": "70953",
-  "tt": "s003",
-  "stat": "R+",
-  "time": "0:00.23",
-  "cmd": "node ebin/reject"
-}
 ```
 
 ### series
@@ -826,8 +807,10 @@ husk()
 ```
 [
   "./plugin/argv/README.md",
+  "./plugin/assert/README.md",
   "./plugin/async/README.md",
   "./stream/argv/README.md",
+  "./stream/assert/README.md",
   "./stream/async/README.md"
 ]
 ```

@@ -56,4 +56,25 @@ describe('husk:', function() {
       .run(done);
   });
 
+  it('should pass through on  write w/ unsupported type', function(done) {
+    var h = husk([])
+      .write()
+      .assert(function() {
+        expect(this).to.eql([]);
+        return true;
+      })
+      .run(done);
+  });
+
+  it('should read and write file', function(done) {
+    var h = husk('package.json')
+      .read()
+      .write()
+      .assert(function() {
+        return this.path === 'package.json';
+      })
+      .run(done);
+  });
+
+
 });
