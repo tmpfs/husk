@@ -46,6 +46,14 @@ describe('husk:', function() {
     done();
   });
 
+  it('should pass through on unsupported output', function(done) {
+    var h = husk()
+      .wait({
+        output: []
+      })
+      .run(done);
+  });
+
   it('should create wait stream with custom reader and writer', function(done) {
     var reader = fs.createReadStream('/dev/null')
       , writer = fs.createWriteStream('/dev/null')
