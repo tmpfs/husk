@@ -4,31 +4,16 @@ var expect = require('chai').expect
   , ask = {message: 'choose directory:', default: 'lib'};
 
 describe('husk:', function() {
-  var owrite, ewrite;
 
   before(function(done) {
-    //owrite = process.stdout.write;
-    //ewrite = process.stderr.write;
-    //process.stdout.write = noop;
-    //process.stderr.write = noop;
     delete require.cache[require.resolve('husk-prompt')];
-    husk.plugin([require('husk-prompt')]);
     delete require.cache[require.resolve('husk-wait')];
-    husk.plugin([require('husk-wait')]);
 
     husk.plugin([
       // force terminal for sbin/ebin execution (stdin is pipe not tty)
       {plugin: require('husk-prompt'), conf: {terminal: true}},
       require('husk-wait')
     ])
-    done();
-  })
-
-  after(function(done) {
-    //owrite = process.stdout.write;
-    //ewrite = process.stderr.write;
-    //process.stdout.write = owrite;
-    //process.stderr.write = ewrite;
     done();
   })
 
