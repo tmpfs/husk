@@ -30,7 +30,7 @@ describe('husk:', function() {
 
   it('should debug with function', function(done) {
     var h = husk(new Buffer('foo'))
-      .debug({buffers: true}, function(chunk){
+      .debug({raw: true}, function(chunk){
         expect(Buffer.isBuffer(chunk)).to.eql(true);
         expect('' + chunk).to.eql('foo');
       })

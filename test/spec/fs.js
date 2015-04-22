@@ -46,6 +46,15 @@ describe('husk:', function() {
       .run(done);
   });
 
+  it('should read file w/ function arg', function(done) {
+    var h = husk()
+      .read(function(){return [__filename]})
+      .assert(function() {
+        return Buffer.isBuffer(this.body) && this.body.length > 0;
+      })
+      .run(done);
+  });
+
   it('should see paused file stream (no buffer)', function(done) {
     var h = husk(__filename)
       .read({buffer: false})
@@ -73,6 +82,27 @@ describe('husk:', function() {
       .assert(function() {
         return this.path === 'package.json';
       })
+      .run(done);
+  });
+
+  it('should read and write file w/ function arg', function(done) {
+    var h = husk('package.json')
+      .read()
+      .write(function(){return ['package.json.bak']})
+      .assert(function() {
+        return this.path === 'package.json';
+      })
+      .run(done);
+  });
+
+  it('should read and write file w/ stream pipe', function(done) {
+    var h = husk('package.json')
+      .read({buffer: false})
+      .write(function(){return ['package.json.bak']})
+      .assert(function() {
+        return this.path === 'package.json' && this.dest === 'package.json.bak';
+      })
+      .unlink(function(){return [this.dest]})
       .run(done);
   });
 
