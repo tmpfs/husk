@@ -16,8 +16,6 @@ var input = 'package.json'
 husk(input)
   .read()
   .buffer()
-  // rewrite file path
-  .through(function(){this.path = output})
   // parse as json and assign
   .parse({field: 'body'}, function(){return this.body})
   // perform transformation
@@ -32,7 +30,7 @@ husk(input)
   .stringify(
     {indent: 2, field: 'contents'},
     function(){return this.body.dependencies})
-  .write(function(){return [this.path]})
+  .write(function(){return [output]})
   // re-read and print file to verify write
   .cat(output)
   .print()
