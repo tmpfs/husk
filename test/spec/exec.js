@@ -91,4 +91,23 @@ describe('husk:', function() {
       .run(done);
   });
 
+  it('should change directory', function(done) {
+    husk()
+      .cd(process.cwd())
+      .run(done);
+  });
+
+  it('should emit error on bad working dir', function(done) {
+    husk()
+      .on('error', function(e) {
+        function fn() {
+          throw e;
+        }
+        expect(fn).throws(Error);
+        expect(fn).throws(/ENOENT/);
+        done();
+      })
+      .cd('non-existent')
+      .run();
+  });
 });
