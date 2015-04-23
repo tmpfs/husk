@@ -248,10 +248,10 @@ husk()
 
 ```
 {
-  "pid": "11109",
+  "pid": "20059",
   "tt": "s003",
   "stat": "R+",
-  "time": "0:00.16",
+  "time": "0:00.21",
   "cmd": "node ebin/filter"
 }
 ```
@@ -541,7 +541,7 @@ stream
 Prompt for user input.
 
 ```
-ebin/prompt --no-color
+ebin/prompt
 ```
 
 **Source**.
@@ -668,7 +668,7 @@ husk()
 
 ```
 {
-  "pid": "11292",
+  "pid": "20142",
   "tt": "s003",
   "stat": "R+",
   "time": "0:00.15",

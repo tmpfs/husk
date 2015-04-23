@@ -29,7 +29,7 @@ module.exports = {
   },
   prompt: {
     spawn: true,
-    cmd: 'ebin/prompt --no-color',
+    cmd: 'ebin/prompt',
     description: 'Prompt for user input.'
   },
   filter: {
