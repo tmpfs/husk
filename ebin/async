@@ -8,6 +8,7 @@ var husk = require('..').exec()
 
 function timer(cb) {
   var chunk = this.valueOf();
+  if(!chunk) return cb();
   function callback() {
     var s = ('' + chunk).trim().split('').reverse().join('') + '\n';
     cb(s);

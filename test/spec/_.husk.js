@@ -33,4 +33,20 @@ describe('husk:', function() {
     done();
   });
 
+  it('should accept function callback in run()', function(done) {
+    var h = husk();
+    var core = require('husk-core')
+      , run = core.run;
+    run.call(h, done);
+  });
+
+
+  it('should accept readable stream', function(done) {
+    var reader = fs.createReadStream('/dev/null');
+    var h = husk();
+    var core = require('husk-core')
+      , run = core.run;
+    run.call(h, reader, done);
+  });
+
 });
