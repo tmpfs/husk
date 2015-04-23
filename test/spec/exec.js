@@ -119,6 +119,52 @@ describe('husk:', function() {
       .run(done);
   });
 
+  it('should emit error on no last command', function(done) {
+    husk()
+      .on('error', function(e) {
+        function fn() {
+          throw e;
+        }
+        expect(fn).throws(Error);
+        expect(fn).throws(/cannot pipe/);
+        done();
+      })
+      .fd(-1)
+      .run();
+  });
+
+  it('should emit error on bad fd', function(done) {
+    husk()
+      .on('error', function(e) {
+        function fn() {
+          throw e;
+        }
+        expect(fn).throws(Error);
+        expect(fn).throws(/invalid fd/);
+        done();
+      })
+      .fd(1024)
+      .run();
+  });
+
+  it('should emit error on invalid last stream', function(done) {
+    husk()
+      .on('error', function(e) {
+        function fn() {
+          throw e;
+        }
+        expect(fn).throws(Error);
+        expect(fn).throws(/cannot pipe/);
+        expect(fn).throws(/not a process stream/);
+        done();
+      })
+      .async(function(cb) {
+        cb();
+      })
+      .fd(-1)
+      .run();
+  });
+
   it('should change directory', function(done) {
     husk()
       .cd(process.cwd())
