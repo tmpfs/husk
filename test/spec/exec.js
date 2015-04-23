@@ -76,17 +76,45 @@ describe('husk:', function() {
     husk().run(done);
   });
 
-  it('should pipe between processes', function(done) {
+  it('should pipe between processes (fd: 1)', function(done) {
     husk()
-      .ls('test')
-      // pipe `ls` stdout to `cat` stdin
+      .exec('sbin/printer')
       .fd(1)
       .cat()
       .lines({buffer: true})
       .each()
       .reject(function(){return this.valueOf() === ''})
       .assert(function() {
-        return this.valueOf() !== '';
+        return this.valueOf() === '[stdout] output';
+      })
+      .run(done);
+  });
+
+  it('should pipe between processes (fd: 2)', function(done) {
+    husk()
+      .exec('sbin/printer')
+      .fd(2)
+      .cat()
+      .lines({buffer: true})
+      .each()
+      .reject(function(){return this.valueOf() === ''})
+      .assert(function() {
+        return this.valueOf() === '[stderr] output';
+      })
+      .run(done);
+  });
+
+  it('should pipe between processes (fd: -1)', function(done) {
+    husk()
+      .exec('sbin/printer')
+      .fd(-1)
+      .cat()
+      .lines({buffer: true})
+      .each()
+      .reject(function(){return this.valueOf() === ''})
+      .assert(function() {
+        return this.valueOf() === '[stderr] output'
+          || this.valueOf() === '[stdout] output';
       })
       .run(done);
   });
