@@ -35,6 +35,22 @@ describe('husk:', function() {
       .run();
   });
 
+  it('should execute commands in parallel', function(done) {
+    var h = husk()
+      .echo('foo')
+      .echo('bar')
+      .run(true, done);
+  });
+
+  it('should execute commands in parallel (option)', function(done) {
+    var h = husk()
+      .echo('foo')
+      // trigger code path in parallel start up
+      .debug(function noop(){})
+      .echo('bar')
+      .run({parallel: true}, done);
+  });
+
   it('should execute command w/ callback', function(done) {
     husk()
       .whoami(function(code, signal) {
