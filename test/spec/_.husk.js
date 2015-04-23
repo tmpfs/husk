@@ -21,7 +21,7 @@ describe('husk:', function() {
     expect(h).to.be.instanceof(husk.Type);
     expect(h.opts).to.be.an('object');
     expect(h.pipeline).to.be.an('array');
-    expect(h.data).to.eql(null);
+    expect(h.data).to.eql(new Buffer(0));
     done();
   });
 

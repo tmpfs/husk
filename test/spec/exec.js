@@ -25,10 +25,14 @@ describe('husk:', function() {
     var h = husk()
       .ls('doc')
       .print(function(chunk) {
-        expect(/readme/.test(chunk)).to.eql(true);
+        if(chunk) {
+          expect(/readme/.test(chunk)).to.eql(true);
+          done();
+        }
       })
+      // trigger code path on debug()
       .debug(function noop(){})
-      .run(done);
+      .run();
   });
 
   it('should execute command w/ callback', function(done) {

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var husk = require('..')
+var husk = require('..').exec()
   , exec = require('husk-exec')
   , each = require('husk-each')
   , print = require('husk-print')
