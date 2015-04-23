@@ -11,6 +11,7 @@ Table of Contents
     * [filter](#filter)
     * [fs](#fs)
     * [modify-file](#modify-file)
+    * [parallel](#parallel)
     * [pluck](#pluck)
     * [plugin-events](#plugin-events)
     * [process-pipe](#process-pipe)
@@ -88,7 +89,7 @@ husk(process.argv.slice(2))
     "size": 40
   },
   {
-    "size": 1507
+    "size": 1506
   }
 ]
 ```
@@ -113,7 +114,8 @@ var husk = require('..').exec()
   ]);
 
 function timer(cb) {
-  var chunk = this;
+  var chunk = this.valueOf();
+  if(!chunk.length) return cb();
   function callback() {
     var s = ('' + chunk).trim().split('').reverse().join('') + '\n';
     cb(s);
@@ -246,8 +248,8 @@ husk()
 
 ```
 {
-  "pid": "23583",
-  "tt": "s003",
+  "pid": "50324",
+  "tt": "s012",
   "stat": "R+",
   "time": "0:00.15",
   "cmd": "node ebin/filter"
@@ -365,6 +367,35 @@ husk(input)
   "husk-fs": "~2.0.0",
   "zephyr": "~2.0.0"
 }
+```
+
+### parallel
+
+Execute commands in parallel.
+
+```
+ebin/parallel
+```
+
+**Source**.
+
+```javascript
+#!/usr/bin/env node
+
+var husk = require('..').exec();
+
+husk()
+  .echo('foo', 'bar')
+  .echo('baz', 'qux')
+  .print()
+  .run(true);
+```
+
+**Result**.
+
+```
+foo bar
+baz qux
 ```
 
 ### pluck
@@ -639,10 +670,10 @@ husk()
 
 ```
 {
-  "pid": "23924",
-  "tt": "s003",
+  "pid": "50347",
+  "tt": "s012",
   "stat": "R+",
-  "time": "0:00.16",
+  "time": "0:00.20",
   "cmd": "node ebin/reject"
 }
 ```
@@ -736,7 +767,7 @@ ebin/stream-events
 ```javascript
 #!/usr/bin/env node
 
-var husk = require('..')
+var husk = require('..').exec()
   , exec = require('husk-exec')
   , each = require('husk-each')
   , print = require('husk-print')
