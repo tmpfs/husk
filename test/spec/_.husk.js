@@ -49,4 +49,39 @@ describe('husk:', function() {
     run.call(h, reader, done);
   });
 
+  it('should pipe readable stream to first writer', function(done) {
+    // typically this would be stdin
+    var reader = fs.createReadStream('/dev/null');
+    var h = husk(reader)
+      .print()
+      .run(done);
+  });
+
+  it('should pipe readable stream to first writer (end: false)', function(done) {
+    var h = husk('data', {end: false})
+      .print()
+      .run(done);
+    h.pipeline[0].end();
+  });
+
+  it('should pipe use run options data', function(done) {
+    var h = husk('data')
+      .print()
+      .run({data: 'override'}, done);
+  });
+
+  it('should ignore bad arg on pipe', function(done) {
+    var h = husk()
+      .pipe(false);
+    done();
+  });
+
+  it('should pipe to streams', function(done) {
+    // triggers chained pipe recurse code path
+    var h = husk()
+      .pipe(require('print-flow'))
+      .pipe(require('print-flow'));
+    done();
+  });
+
 });
