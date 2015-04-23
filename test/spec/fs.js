@@ -107,4 +107,17 @@ describe('husk:', function() {
   });
 
 
+  it('should passthrough on bad write data', function(done) {
+    var h = husk(false)
+      .write()
+      .run(done);
+  });
+
+  it('should passthrough on bad contents object', function(done) {
+    var h = husk({path: 'mock.bak', contents: {}})
+      .write()
+      .unlink(function(){return [this.path]})
+      .run(done);
+  });
+
 });
