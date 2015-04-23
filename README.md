@@ -246,7 +246,7 @@ husk()
 
 ```
 {
-  "pid": "28142",
+  "pid": "23583",
   "tt": "s003",
   "stat": "R+",
   "time": "0:00.15",
@@ -461,6 +461,7 @@ husk()
 **Result**.
 
 ```
+[Process:Transform] cd lib
 [Process:Transform] find 
 [Buffer:PassThrough]
 [Line:Transform]
@@ -638,10 +639,10 @@ husk()
 
 ```
 {
-  "pid": "28336",
+  "pid": "23924",
   "tt": "s003",
   "stat": "R+",
-  "time": "0:00.22",
+  "time": "0:00.16",
   "cmd": "node ebin/reject"
 }
 ```
@@ -701,7 +702,6 @@ var husk = require('..')
   ]);
 
 husk(process.stdin)
-  //.stdin()
   .lines({buffer: true})
   .each()
   .split()
