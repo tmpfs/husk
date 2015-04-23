@@ -123,6 +123,23 @@ describe('husk:', function() {
       .run(done);
   });
 
+  it('should pipe between processes with intermediary', function(done) {
+    husk()
+      .exec('sbin/printer')
+      .fd(1)
+      // intermediary stream between process pipes
+      .through(function() {})
+      .cat()
+      .lines({buffer: true})
+      .each()
+      .reject(function(){return this.valueOf() === ''})
+      .assert(function() {
+        return this.valueOf() === '[stdout] output';
+      })
+      .run(done);
+  });
+
+
   it('should emit error on no last command', function(done) {
     husk()
       .on('error', function(e) {
