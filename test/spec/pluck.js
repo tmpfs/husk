@@ -1,7 +1,14 @@
 var expect = require('chai').expect
-  , husk = require('../..');
+  , husk = require('../..')
+  , PluckStream = require('pluck-flow');
 
 describe('husk:', function() {
+
+  it('should use empty array on bad args', function(done) {
+    var s = new PluckStream({});
+    expect(s.fields).to.eql([]);
+    done();
+  });
 
   it('should pass through with no fields', function(done) {
     var h = husk({})
