@@ -44,6 +44,10 @@ module.exports = {
     cmd: 'ebin/reject',
     description: 'Filter array of lines with reject function'
   },
+  parallel: {
+    cmd: 'ebin/parallel',
+    description: 'Execute commands in parallel'
+  },
   series: {
     cmd: 'ebin/series',
     description: 'Execute commands in series'
