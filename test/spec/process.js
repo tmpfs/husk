@@ -16,4 +16,26 @@ describe('husk:', function() {
     ps.start();
   });
 
+  it('should emit error event on ENOENT', function(done) {
+    var h = husk()
+      .on('error', function onError(e) {
+        function fn() {
+          throw e;
+        }
+        expect(fn).throws(Error);
+        expect(fn).throws(/ENOENT/);
+        done();
+      })
+      .exec('non-existent-bin')
+      .run();
+  });
+
+  it('should pass through chunks once started', function(done) {
+    // test process stream passthrough
+    var h = husk([1,2,3])
+      .each()
+      .exec('pwd')
+      .run(done);
+  });
+
 });
