@@ -248,10 +248,10 @@ husk()
 
 ```
 {
-  "pid": "50324",
-  "tt": "s012",
+  "pid": "11109",
+  "tt": "s003",
   "stat": "R+",
-  "time": "0:00.15",
+  "time": "0:00.16",
   "cmd": "node ebin/filter"
 }
 ```
@@ -551,12 +551,10 @@ ebin/prompt --no-color
 
 var husk = require('..').exec()
   .plugin([
-    // force terminal for sbin/ebin execution (stdin is pipe not tty)
-    {plugin: require('husk-prompt')},
+    require('husk-prompt'),
     require('husk-wait')
   ])
-  , ask = {message: 'choose directory:', default: 'lib'}
-  //, revert = require('ttycolor')().defaults();
+  , ask = {message: 'choose directory:', default: 'lib'};
 
 husk()
   // auto fill prompt so it can be automated
@@ -670,10 +668,10 @@ husk()
 
 ```
 {
-  "pid": "50347",
-  "tt": "s012",
+  "pid": "11292",
+  "tt": "s003",
   "stat": "R+",
-  "time": "0:00.20",
+  "time": "0:00.15",
   "cmd": "node ebin/reject"
 }
 ```
