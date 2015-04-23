@@ -6,6 +6,7 @@ var expect = require('chai').expect
 husk.plugin([{plugin: exec, conf: {alias: exec.alias()}}]);
 
 describe('husk:', function() {
+  this.timeout(200);
 
   it('should create custom command', function(done) {
     husk.command('npm');

@@ -1,4 +1,5 @@
 var expect = require('chai').expect
+  , fs = require('fs')
   , husk = require('../..')
   , prompt = require('husk-prompt')
   , ask = {message: 'choose directory:', default: 'lib'};
@@ -29,34 +30,32 @@ describe('husk:', function() {
     h.run(done);
   });
 
-  it('should execute prompt, wait and write', function(done) {
+  it('should handle prompt with no options', function(done) {
     var h = husk()
-      .wait({output: husk.getPrompt(ask).raw, input: 'doc'})
       // show prompt
       .prompt(function(ps, chunk, encoding, cb) {
-        ps.prompt(
-          ask,
-          function complete(err, val) {
-            cb(err, val ? val[0] : null);
-          })
-      })
-      // find files in chosen directory
-      .find(function(){return [this.valueOf()]})
-      .lines()
-      .each()
-      .reject(function(){return this.valueOf() === ''})
-      .assert(function() {
-        //console.dir(this);
-        return Boolean(~this.indexOf('doc'));
+        cb();
       })
       .run(done);
   });
 
-  it('should execute prompt w/ options, wait and write', function(done) {
+
+  it('should execute prompt, wait and write', function(done) {
+    // jump through some hoops to suppress the output and keep
+    // the test runner output clean
+    var reader = fs.createReadStream('/dev/null')
+      , writer = fs.createWriteStream('/dev/null')
+      , prompt = husk.getPrompt(ask).prompt;
     var h = husk()
-      .wait({output: husk.getPrompt(ask).raw, input: 'doc'})
+      .wait(
+        {
+          output: prompt,
+          input: 'doc',
+          reader: reader,
+          writer: writer,
+          keypress: false})
       // show prompt
-      .prompt({terminal: true}, function(ps, chunk, encoding, cb) {
+      .prompt({input: reader, output: writer}, function(ps, chunk, encoding, cb) {
         ps.prompt(
           ask,
           function complete(err, val) {
@@ -69,10 +68,53 @@ describe('husk:', function() {
       .each()
       .reject(function(){return this.valueOf() === ''})
       .assert(function() {
-        //console.dir(this);
         return Boolean(~this.indexOf('doc'));
       })
       .run(done);
+
+      // write out expected data
+      writer.write(prompt);
+  });
+
+  it('should execute prompt w/ keypress, wait and write', function(done) {
+    // jump through some hoops to suppress the output and keep
+    // the test runner output clean
+    var reader = fs.createReadStream('/dev/null')
+      , writer = fs.createWriteStream('/dev/null')
+      , prompt = husk.getPrompt(ask).prompt;
+
+    var h = husk()
+      .wait(
+        {
+          output: prompt,
+          input: 'doc',
+          reader: reader,
+          writer: writer})
+      // show prompt
+      .prompt({input: reader, output: writer}, function(ps, chunk, encoding, cb) {
+        ps.prompt(
+          ask,
+          function complete(err, val) {
+            cb(err, val ? val[0] : null);
+          })
+      })
+      // find files in chosen directory
+      .find(function(){return [this.valueOf()]})
+      .lines()
+      .each()
+      .reject(function(){return this.valueOf() === ''})
+      .assert(function() {
+        return Boolean(~this.indexOf('doc'));
+      })
+      .run(done);
+
+      // simulate keypress logic
+      reader.once('keypress', function(chunk) {
+        reader.push(chunk);
+      })
+
+      // write out expected data
+      writer.write(prompt);
   });
 
 

@@ -81,6 +81,8 @@ describe('husk:', function() {
         }
       }
 
+      writer.write('foo\r\n');
+
       // write out expected data
       writer.write(prompt);
   });
