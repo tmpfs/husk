@@ -3,15 +3,15 @@
 var husk = require('..').exec()
   .plugin([
     // force terminal for sbin/ebin execution (stdin is pipe not tty)
-    {plugin: require('husk-prompt'), conf: {terminal: true}},
+    {plugin: require('husk-prompt')},
     require('husk-wait')
   ])
   , ask = {message: 'choose directory:', default: 'lib'}
-  , revert = require('ttycolor')().defaults();
+  //, revert = require('ttycolor')().defaults();
 
 husk()
   // auto fill prompt so it can be automated
-  .wait({output: husk.getPrompt(ask).raw, input: 'doc'})
+  .wait({output: husk.getPrompt(ask).prompt, input: 'doc'})
   // show prompt
   .prompt(function(ps, chunk, encoding, cb) {
     ps.prompt(

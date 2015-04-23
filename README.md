@@ -88,7 +88,7 @@ husk(process.argv.slice(2))
     "size": 40
   },
   {
-    "size": 1496
+    "size": 1507
   }
 ]
 ```
@@ -246,10 +246,10 @@ husk()
 
 ```
 {
-  "pid": "75931",
-  "tt": "s012",
+  "pid": "28142",
+  "tt": "s003",
   "stat": "R+",
-  "time": "0:00.19",
+  "time": "0:00.15",
   "cmd": "node ebin/filter"
 }
 ```
@@ -520,15 +520,15 @@ ebin/prompt --no-color
 var husk = require('..').exec()
   .plugin([
     // force terminal for sbin/ebin execution (stdin is pipe not tty)
-    {plugin: require('husk-prompt'), conf: {terminal: true}},
+    {plugin: require('husk-prompt')},
     require('husk-wait')
   ])
   , ask = {message: 'choose directory:', default: 'lib'}
-  , revert = require('ttycolor')().defaults();
+  //, revert = require('ttycolor')().defaults();
 
 husk()
   // auto fill prompt so it can be automated
-  .wait({output: husk.getPrompt(ask).raw, input: 'doc'})
+  .wait({output: husk.getPrompt(ask).prompt, input: 'doc'})
   // show prompt
   .prompt(function(ps, chunk, encoding, cb) {
     ps.prompt(
@@ -547,8 +547,7 @@ husk()
 **Result**.
 
 ```
-[1G[0Jprompt ⚡ choose directory: (lib) [34Gdoc
-doc
+prompt ⚡ choose directory: (lib) doc
 doc/readme
 doc/readme/developer.md
 doc/readme/install.md
@@ -639,10 +638,10 @@ husk()
 
 ```
 {
-  "pid": "76176",
-  "tt": "s012",
+  "pid": "28336",
+  "tt": "s003",
   "stat": "R+",
-  "time": "0:00.15",
+  "time": "0:00.22",
   "cmd": "node ebin/reject"
 }
 ```

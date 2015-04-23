@@ -60,7 +60,7 @@
       },
       {
         "title": "Examples",
-        "bin": "sbin/example"
+        "bin": "echo doc | sbin/example"
       },
       {
         "inc": [

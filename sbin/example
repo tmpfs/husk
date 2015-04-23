@@ -4,30 +4,47 @@ var commands = require('./commands')
   , fs = require('fs')
   , util = require('util')
   , async = require('async')
+  , spawn = require('child_process').spawn
   , exec = require('child_process').exec;
 
 var files = fs.readdirSync('ebin');
 
-async.mapSeries(files, function(item, cb) {
-  if(!commands[item]) {
+async.mapSeries(files, function(nm, cb) {
+  if(!commands[nm]) {
     return cb();
   }
-  var cmd = commands[item].cmd;
+  var item = commands[nm]
+    , cmd = item.cmd
+    , args
+    , opts = {stdio: 'inherit'};
 
-  console.log('### %s\n', item);
-  console.log('%s\n', commands[item].description);
+  console.log('### %s\n', nm);
+  console.log('%s\n', commands[nm].description);
   console.log('```\n%s\n```\n', cmd);
 
   console.log('**Source**\n');
-  console.log('```javascript\n%s```\n', fs.readFileSync('ebin/' + item));
+  console.log('```javascript\n%s```\n', fs.readFileSync('ebin/' + nm));
 
-  exec(cmd, function(err, stdout, stderr) {
-    if(stdout) {
-      console.log('**Result**\n');
-      console.log('```\n%s```\n', stdout);
-    }
-    cb(err, cmd);
-  })
+  console.log('**Result**\n');
+
+  if(item.spawn) {
+    console.log('```');
+    cmd = cmd.split(/\s+/);
+    args = cmd.slice(1);
+    cmd = cmd[0];
+    var ps = spawn(cmd, args, opts);
+    ps.once('close', function() {
+      process.stdout.write('```\n\n');
+      cb();
+    });
+  }else{
+    exec(cmd, function(err, stdout, stderr) {
+      if(stdout) {
+        console.log('```\n%s```\n', stdout);
+      }
+      cb(err, cmd);
+    })
+  }
 }, function(err, results) {
   if(err) {
     console.error(err);

@@ -3,6 +3,7 @@
 var commands = require('./commands')
   , async = require('async')
   , exec = require('child_process').exec
+  , spawn = require('child_process').spawn
   , revert = require('ttycolor').defaults();
 
 var list = Object.keys(commands)
@@ -10,17 +11,32 @@ var list = Object.keys(commands)
     = '----------------------------------------'
     + '----------------------------------------';
 
-async.mapSeries(list, function(item, cb) {
-  var cmd = commands[item].cmd;
+async.mapSeries(list, function(nm, cb) {
+  var item = commands[nm]
+    , cmd = item.cmd
+    , args
+    , opts = {stdio: 'inherit'};
+
   console.log(delimiter);
-  console.log(item + ': %s', cmd);
+  console.log(nm + ': %s', cmd);
   console.log(delimiter);
-  exec(cmd, function(err, stdout, stderr) {
-    if(stdout) {
-      process.stdout.write(stdout);
-    }
-    cb(err, cmd);
-  })
+
+  if(item.spawn) {
+    cmd = cmd.split(/\s+/);
+    args = cmd.slice(1);
+    cmd = cmd[0];
+    var ps = spawn(cmd, args, opts);
+    ps.once('close', function() {
+      cb();
+    });
+  }else{
+    exec(cmd, function(err, stdout, stderr) {
+      if(stdout) {
+        process.stdout.write(stdout);
+      }
+      cb(err, cmd);
+    })
+  }
 }, function(err, results) {
   if(err) {
     console.error(err);
