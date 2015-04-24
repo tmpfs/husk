@@ -7,14 +7,13 @@ var husk = require('..').exec().fs()
     require('husk-lines'),
     require('husk-each'),
     require('husk-reject'),
-    require('husk-pluck'),
     require('husk-stringify'),
     require('husk-transform'),
   ]);
 
 husk()
   .find('lib/plugin/exec', '-name', '*.js')
-  .lines({buffer: true})
+  .lines()
   .each()
   .reject(function(){return this.valueOf() === ''})
   .read({buffer: false})

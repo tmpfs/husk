@@ -268,7 +268,7 @@ husk()
 
 ```
 {
-  "pid": "56285",
+  "pid": "62678",
   "tt": "s015",
   "stat": "R+",
   "time": "0:00.15",
@@ -345,14 +345,13 @@ var husk = require('..').exec().fs()
     require('husk-lines'),
     require('husk-each'),
     require('husk-reject'),
-    require('husk-pluck'),
     require('husk-stringify'),
     require('husk-transform'),
   ]);
 
 husk()
   .find('lib/plugin/exec', '-name', '*.js')
-  .lines({buffer: true})
+  .lines()
   .each()
   .reject(function(){return this.valueOf() === ''})
   .read({buffer: false})
@@ -755,7 +754,7 @@ husk()
 
 ```
 {
-  "pid": "56542",
+  "pid": "63024",
   "tt": "s015",
   "stat": "R+",
   "time": "0:00.15",
