@@ -249,7 +249,7 @@ husk()
 
 ```
 {
-  "pid": "68150",
+  "pid": "86840",
   "tt": "s015",
   "stat": "R+",
   "time": "0:00.15",
@@ -308,7 +308,7 @@ husk()
 
 ### hash
 
-Calculate file checksums.
+Stream multiple files to multiple hash checksums.
 
 ```
 ebin/hash
@@ -734,7 +734,7 @@ husk()
 
 ```
 {
-  "pid": "68494",
+  "pid": "87186",
   "tt": "s015",
   "stat": "R+",
   "time": "0:00.15",

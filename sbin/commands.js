@@ -34,7 +34,7 @@ module.exports = {
   },
   hash: {
     cmd: 'ebin/hash',
-    description: 'Calculate file checksums.'
+    description: 'Stream multiple files to multiple hash checksums.'
   },
   filter: {
     cmd: 'ebin/filter',
