@@ -5,7 +5,6 @@ var husk = require('..').fs()
     require('husk-argv'),
     require('husk-concat'),
     require('husk-pluck'),
-    require('husk-lines'),
     require('husk-each'),
     require('husk-transform'),
     require('husk-stringify')

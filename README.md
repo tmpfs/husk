@@ -82,7 +82,6 @@ var husk = require('..').fs()
     require('husk-argv'),
     require('husk-concat'),
     require('husk-pluck'),
-    require('husk-lines'),
     require('husk-each'),
     require('husk-transform'),
     require('husk-stringify')
@@ -268,10 +267,10 @@ husk()
 
 ```
 {
-  "pid": "62678",
+  "pid": "88034",
   "tt": "s015",
   "stat": "R+",
-  "time": "0:00.15",
+  "time": "0:00.21",
   "cmd": "node ebin/filter"
 }
 ```
@@ -754,10 +753,10 @@ husk()
 
 ```
 {
-  "pid": "63024",
+  "pid": "88325",
   "tt": "s015",
   "stat": "R+",
-  "time": "0:00.15",
+  "time": "0:00.23",
   "cmd": "node ebin/reject"
 }
 ```
