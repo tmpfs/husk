@@ -2,21 +2,29 @@
 
 var husk = require('..').exec().fs()
   .plugin([
+    require('husk-concat'),
     require('husk-hash'),
     require('husk-lines'),
     require('husk-each'),
     require('husk-reject'),
     require('husk-pluck'),
+    require('husk-stringify'),
     require('husk-transform'),
   ]);
 
 husk()
-  .find('lib/plugin', '-name', '*.js')
+  .find('lib/plugin/exec', '-name', '*.js')
   .lines({buffer: true})
   .each()
   .reject(function(){return this.valueOf() === ''})
   .read({buffer: false})
-  .hash({algorithm: 'sha1', enc: 'hex', passthrough: true})
-  .pluck(function(){return this.path})
-  .print(console.log)
+  .hash({algorithm: 'sha1', enc: 'hex', passthrough: true, field: 'hash'})
+  .hash({algorithm: 'md5', enc: 'hex', passthrough: true, field: 'hash'})
+  .transform(function(){return {file: this.path, hash: this.hash}})
+  .reject(function(){
+    return this.file === undefined || this.hash.sha1 === undefined
+  })
+  .concat()
+  .stringify({indent: 2})
+  .print()
   .run();

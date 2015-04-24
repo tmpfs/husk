@@ -10,6 +10,7 @@ Table of Contents
     * [exec](#exec)
     * [filter](#filter)
     * [fs](#fs)
+    * [hash](#hash)
     * [modify-file](#modify-file)
     * [parallel](#parallel)
     * [pluck](#pluck)
@@ -248,10 +249,10 @@ husk()
 
 ```
 {
-  "pid": "20059",
-  "tt": "s003",
+  "pid": "63981",
+  "tt": "s015",
   "stat": "R+",
-  "time": "0:00.21",
+  "time": "0:00.15",
   "cmd": "node ebin/filter"
 }
 ```
@@ -303,6 +304,70 @@ husk()
 
 ```
 [file content]
+```
+
+### hash
+
+Calculate file checksums.
+
+```
+ebin/hash
+```
+
+**Source**.
+
+```javascript
+#!/usr/bin/env node
+
+var husk = require('..').exec().fs()
+  .plugin([
+    require('husk-concat'),
+    require('husk-hash'),
+    require('husk-lines'),
+    require('husk-each'),
+    require('husk-reject'),
+    require('husk-pluck'),
+    require('husk-stringify'),
+    require('husk-transform'),
+  ]);
+
+husk()
+  .find('lib/plugin/exec', '-name', '*.js')
+  .lines({buffer: true})
+  .each()
+  .reject(function(){return this.valueOf() === ''})
+  .read({buffer: false})
+  .hash({algorithm: 'sha1', enc: 'hex', passthrough: true, field: 'hash'})
+  .hash({algorithm: 'md5', enc: 'hex', passthrough: true, field: 'hash'})
+  .transform(function(){return {file: this.path, hash: this.hash}})
+  .reject(function(){
+    return this.file === undefined || this.hash.sha1 === undefined
+  })
+  .concat()
+  .stringify({indent: 2})
+  .print()
+  .run();
+```
+
+**Result**.
+
+```
+[
+  {
+    "file": "lib/plugin/exec/alias.js",
+    "hash": {
+      "md5": "80ee710768734a5556d898ff94efb490",
+      "sha1": "558c605334806911227753105d1ec964af426513"
+    }
+  },
+  {
+    "file": "lib/plugin/exec/index.js",
+    "hash": {
+      "md5": "13b58d3cc0608c5c8d1d24d909a5b301",
+      "sha1": "20d6953321ae6d18e133c488d17d99506fce2c5e"
+    }
+  }
+]
 ```
 
 ### modify-file
@@ -668,8 +733,8 @@ husk()
 
 ```
 {
-  "pid": "20142",
-  "tt": "s003",
+  "pid": "64170",
+  "tt": "s015",
   "stat": "R+",
   "time": "0:00.15",
   "cmd": "node ebin/reject"
