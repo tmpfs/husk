@@ -1,6 +1,5 @@
-// MD5 (LICENSE) = d9195d9c75e4988d17450bb9162162e7
-
-var husk = require('../..')
+var expect = require('chai').expect
+  , husk = require('../..')
   , fs = require('fs')
   , file = 'LICENSE'
   , md5 = 'd9195d9c75e4988d17450bb9162162e7';
@@ -67,6 +66,37 @@ describe('husk:', function() {
         return Buffer.isBuffer(this);
       })
       .run(done);
+  });
+
+  it('should compute multiple checksums for multiple files', function(done) {
+    var data = null;
+    function complete() {
+      expect(data).to.be.an('array');
+      data.forEach(function(item) {
+        expect(item.file).to.be.a('string');
+        expect(item.hash).to.be.an('object');
+        expect(item.hash.md5).to.be.a('string');
+        expect(item.hash.sha1).to.be.a('string');
+      })
+      done();
+    }
+
+    husk()
+      .find('lib/plugin/exec', '-name', '*.js')
+      .lines({buffer: true})
+      .each()
+      .reject(function(){return this.valueOf() === ''})
+      .read({buffer: false})
+      .hash({algorithm: 'sha1', enc: 'hex', passthrough: true, field: 'hash'})
+      .hash({algorithm: 'md5', enc: 'hex', passthrough: true, field: 'hash'})
+      .transform(function(){return {file: this.path, hash: this.hash}})
+      .reject(function(){
+        return this.file === undefined
+          || !this.hash || this.hash.sha1 === undefined;
+      })
+      .concat()
+      .through(function(){data = this})
+      .run(complete);
   });
 
 });

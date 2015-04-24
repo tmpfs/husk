@@ -22,7 +22,8 @@ husk()
   .hash({algorithm: 'md5', enc: 'hex', passthrough: true, field: 'hash'})
   .transform(function(){return {file: this.path, hash: this.hash}})
   .reject(function(){
-    return this.file === undefined || this.hash.sha1 === undefined
+    return this.file === undefined
+      || !this.hash || this.hash.sha1 === undefined;
   })
   .concat()
   .stringify({indent: 2})
