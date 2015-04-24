@@ -1,0 +1,21 @@
+{
+  "name": "hash-flow",
+  "description": "Transform stream to generate cryptographic hashes (checksums).",
+  "version": "1.0.1",
+  "author": "muji <noop@xpm.io>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/freeformsystems/husk.git"
+  },
+  "dependencies": {
+    "through3": "~1.1.5"
+  },
+  "keywords": [
+    "husk",
+    "stream",
+    "transform",
+    "crypto",
+    "hash",
+    "checksum"
+  ]
+}

@@ -1,0 +1,19 @@
+#!/usr/bin/env node
+
+var husk = require('..').exec().fs()
+  .plugin([
+    require('husk-hash')
+  ]);
+
+var input = 'README.md';
+
+// MD5 ("foo") = acbd18db4cc2f85cedef654fccc4a4d8
+//input = 'foo';
+
+husk(input)
+  .read({buffer: false})
+  //.buffer()
+  .hash({algorithm: 'md5', encoding: 'hex'})
+  //.debug()
+  .print()
+  .run();

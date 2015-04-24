@@ -1,0 +1,21 @@
+{
+  "name": "husk-hash",
+  "description": "Plugin to generate cryptographic hashes (checksums).",
+  "version": "1.0.1",
+  "author": "muji <noop@xpm.io>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/freeformsystems/husk.git"
+  },
+  "dependencies": {
+    "hash-flow": "~1.0.1"
+  },
+  "keywords": [
+    "husk",
+    "plugin",
+    "stream",
+    "transform",
+    "crypto",
+    "hash"
+  ]
+}
