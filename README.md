@@ -265,10 +265,10 @@ husk()
 
 ```
 {
-  "pid": "83535",
+  "pid": "78713",
   "tt": "s015",
   "stat": "R+",
-  "time": "0:00.16",
+  "time": "0:00.15",
   "cmd": "node ebin/filter"
 }
 ```
@@ -289,8 +289,7 @@ ebin/fs
 var path = require('path')
   , husk = require('..').exec().fs()
   .plugin([
-    require('husk-pluck'),
-    require('husk-buffer'),
+    require('husk-pluck')
   ]);
 
 var name = path.basename(__filename) + '-example.log'
@@ -742,10 +741,10 @@ husk()
 
 ```
 {
-  "pid": "83879",
+  "pid": "79059",
   "tt": "s015",
   "stat": "R+",
-  "time": "0:00.15",
+  "time": "0:00.17",
   "cmd": "node ebin/reject"
 }
 ```
