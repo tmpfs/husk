@@ -267,10 +267,10 @@ husk()
 
 ```
 {
-  "pid": "88034",
+  "pid": "44864",
   "tt": "s015",
   "stat": "R+",
-  "time": "0:00.21",
+  "time": "0:00.16",
   "cmd": "node ebin/filter"
 }
 ```
@@ -293,7 +293,6 @@ var path = require('path')
   .plugin([
     require('husk-pluck'),
     require('husk-buffer'),
-    require('husk-transform'),
   ]);
 
 var name = path.basename(__filename) + '-example.log'
@@ -403,10 +402,7 @@ ebin/modify-file
 
 var husk = require('..').exec().fs()
   .plugin([
-    require('husk-buffer'),
     require('husk-parse'),
-    require('husk-filter'),
-    require('husk-pluck'),
     require('husk-transform'),
     require('husk-stringify'),
   ]);
@@ -416,7 +412,6 @@ var input = 'package.json'
 
 husk(input)
   .read()
-  .buffer()
   // parse as json and assign
   .parse({field: 'body'}, function(){return this.body})
   // perform transformation
@@ -496,11 +491,8 @@ ebin/pluck
 
 var husk = require('..').fs()
   .plugin([
-    require('husk-buffer'),
     require('husk-parse'),
-    require('husk-filter'),
     require('husk-pluck'),
-    require('husk-transform'),
     require('husk-stringify'),
   ]);
 
@@ -509,7 +501,6 @@ var path = require('path')
 
 husk('package.json')
   .read()
-  .buffer()
   .parse(function(){return this.body})
   .pluck(function(){return this.dependencies})
   .stringify({indent: 2})
@@ -753,10 +744,10 @@ husk()
 
 ```
 {
-  "pid": "88325",
+  "pid": "45212",
   "tt": "s015",
   "stat": "R+",
-  "time": "0:00.23",
+  "time": "0:00.15",
   "cmd": "node ebin/reject"
 }
 ```

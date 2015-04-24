@@ -2,11 +2,8 @@
 
 var husk = require('..').fs()
   .plugin([
-    require('husk-buffer'),
     require('husk-parse'),
-    require('husk-filter'),
     require('husk-pluck'),
-    require('husk-transform'),
     require('husk-stringify'),
   ]);
 
@@ -15,7 +12,6 @@ var path = require('path')
 
 husk('package.json')
   .read()
-  .buffer()
   .parse(function(){return this.body})
   .pluck(function(){return this.dependencies})
   .stringify({indent: 2})

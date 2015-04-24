@@ -2,10 +2,7 @@
 
 var husk = require('..').exec().fs()
   .plugin([
-    require('husk-buffer'),
     require('husk-parse'),
-    require('husk-filter'),
-    require('husk-pluck'),
     require('husk-transform'),
     require('husk-stringify'),
   ]);
@@ -15,7 +12,6 @@ var input = 'package.json'
 
 husk(input)
   .read()
-  .buffer()
   // parse as json and assign
   .parse({field: 'body'}, function(){return this.body})
   // perform transformation

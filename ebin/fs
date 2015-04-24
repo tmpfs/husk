@@ -5,7 +5,6 @@ var path = require('path')
   .plugin([
     require('husk-pluck'),
     require('husk-buffer'),
-    require('husk-transform'),
   ]);
 
 var name = path.basename(__filename) + '-example.log'
