@@ -1,6 +1,6 @@
 {
   "name": "husk",
-  "description": "Command execution as transform streams.",
+  "description": "Modular stream transformation system.",
   "version": "0.4.2",
   "author": "muji <noop@xpm.io>",
   "repository": {
