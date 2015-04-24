@@ -56,6 +56,7 @@
         "inc": [
           "introduction.md",
           "install.md",
+          "usage.md",
           "plugins.md"
         ]
       },

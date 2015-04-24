@@ -3,6 +3,7 @@ Table of Contents
 
 * [Husk](#husk)
   * [Install](#install)
+  * [Usage](#usage)
   * [Plugin Guide](#plugin-guide)
   * [Examples](#examples)
     * [argv](#argv)
@@ -44,6 +45,17 @@ Requires [node](http://nodejs.org) and [npm](http://www.npmjs.org).
 
 ```
 npm i husk --save
+```
+
+## Usage
+
+```javascript
+var husk = require('husk').exec();
+husk()
+  .pwd()
+  .ls()
+  .print()
+  .run();
 ```
 
 ## Plugin Guide
@@ -97,7 +109,7 @@ husk(process.argv.slice(2))
     "size": 40
   },
   {
-    "size": 1530
+    "size": 1552
   }
 ]
 ```
@@ -256,7 +268,7 @@ husk()
 
 ```
 {
-  "pid": "54488",
+  "pid": "56285",
   "tt": "s015",
   "stat": "R+",
   "time": "0:00.15",
@@ -658,6 +670,7 @@ doc/readme/introduction.md
 doc/readme/license.md
 doc/readme/links.md
 doc/readme/plugins.md
+doc/readme/usage.md
 ```
 
 ### push
@@ -742,10 +755,10 @@ husk()
 
 ```
 {
-  "pid": "54836",
+  "pid": "56542",
   "tt": "s015",
   "stat": "R+",
-  "time": "0:00.16",
+  "time": "0:00.15",
   "cmd": "node ebin/reject"
 }
 ```
