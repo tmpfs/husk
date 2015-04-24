@@ -249,7 +249,7 @@ husk()
 
 ```
 {
-  "pid": "63981",
+  "pid": "68150",
   "tt": "s015",
   "stat": "R+",
   "time": "0:00.15",
@@ -341,7 +341,8 @@ husk()
   .hash({algorithm: 'md5', enc: 'hex', passthrough: true, field: 'hash'})
   .transform(function(){return {file: this.path, hash: this.hash}})
   .reject(function(){
-    return this.file === undefined || this.hash.sha1 === undefined
+    return this.file === undefined
+      || !this.hash || this.hash.sha1 === undefined;
   })
   .concat()
   .stringify({indent: 2})
@@ -733,7 +734,7 @@ husk()
 
 ```
 {
-  "pid": "64170",
+  "pid": "68494",
   "tt": "s015",
   "stat": "R+",
   "time": "0:00.15",
