@@ -2,18 +2,21 @@
 
 var husk = require('..').exec().fs()
   .plugin([
-    require('husk-hash')
+    require('husk-hash'),
+    require('husk-lines'),
+    require('husk-each'),
+    require('husk-reject'),
+    require('husk-pluck'),
+    require('husk-transform'),
   ]);
 
-var input = 'LICENSE';
-
-// MD5 ("foo") = acbd18db4cc2f85cedef654fccc4a4d8
-//input = 'foo';
-
-husk(input)
+husk()
+  .find('lib/plugin', '-name', '*.js')
+  .lines({buffer: true})
+  .each()
+  .reject(function(){return this.valueOf() === ''})
   .read({buffer: false})
-  //.buffer()
-  .hash({algorithm: 'md5', enc: 'hex'})
-  //.debug()
-  .print()
+  .hash({algorithm: 'sha1', enc: 'hex', passthrough: true})
+  .pluck(function(){return this.path})
+  .print(console.log)
   .run();

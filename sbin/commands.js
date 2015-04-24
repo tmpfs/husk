@@ -32,6 +32,10 @@ module.exports = {
     cmd: 'ebin/prompt',
     description: 'Prompt for user input.'
   },
+  hash: {
+    cmd: 'ebin/hash',
+    description: 'Calculate file checksums.'
+  },
   filter: {
     cmd: 'ebin/filter',
     description: 'Filter array of lines with accept function'
