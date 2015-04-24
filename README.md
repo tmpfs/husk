@@ -108,7 +108,7 @@ husk(process.argv.slice(2))
     "size": 40
   },
   {
-    "size": 1552
+    "size": 1550
   }
 ]
 ```
@@ -173,14 +173,12 @@ ebin/data-write
 
 var husk = require('..')
   .plugin([
-    require('husk-pluck'),
     require('husk-transform'),
     require('husk-stringify')
   ]);
 
 husk(process.env)
-  .pluck(function(){return this.EDITOR})
-  .transform(function(){return {editor: this}})
+  .transform(function(){return {editor: this.EDITOR}})
   .stringify({indent: 2})
   .print()
   .run();
@@ -267,7 +265,7 @@ husk()
 
 ```
 {
-  "pid": "44864",
+  "pid": "83535",
   "tt": "s015",
   "stat": "R+",
   "time": "0:00.16",
@@ -744,7 +742,7 @@ husk()
 
 ```
 {
-  "pid": "45212",
+  "pid": "83879",
   "tt": "s015",
   "stat": "R+",
   "time": "0:00.15",

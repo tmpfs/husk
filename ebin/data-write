@@ -2,14 +2,12 @@
 
 var husk = require('..')
   .plugin([
-    require('husk-pluck'),
     require('husk-transform'),
     require('husk-stringify')
   ]);
 
 husk(process.env)
-  .pluck(function(){return this.EDITOR})
-  .transform(function(){return {editor: this}})
+  .transform(function(){return {editor: this.EDITOR}})
   .stringify({indent: 2})
   .print()
   .run();
