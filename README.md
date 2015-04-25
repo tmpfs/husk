@@ -265,7 +265,7 @@ husk()
 
 ```
 {
-  "pid": "78713",
+  "pid": "74021",
   "tt": "s015",
   "stat": "R+",
   "time": "0:00.15",
@@ -350,8 +350,8 @@ husk()
   .each()
   .reject(function(){return this.valueOf() === ''})
   .read({buffer: false})
-  .hash({algorithm: 'sha1', enc: 'hex', passthrough: true, field: 'hash'})
-  .hash({algorithm: 'md5', enc: 'hex', passthrough: true, field: 'hash'})
+  .hash({
+    algorithm: ['sha1', 'md5'], enc: 'hex', passthrough: true, field: 'hash'})
   .transform(function(){return {file: this.path, hash: this.hash}})
   .reject(function(){
     return this.file === undefined
@@ -370,15 +370,15 @@ husk()
   {
     "file": "lib/plugin/exec/alias.js",
     "hash": {
-      "md5": "80ee710768734a5556d898ff94efb490",
-      "sha1": "558c605334806911227753105d1ec964af426513"
+      "sha1": "558c605334806911227753105d1ec964af426513",
+      "md5": "80ee710768734a5556d898ff94efb490"
     }
   },
   {
     "file": "lib/plugin/exec/index.js",
     "hash": {
-      "md5": "13b58d3cc0608c5c8d1d24d909a5b301",
-      "sha1": "20d6953321ae6d18e133c488d17d99506fce2c5e"
+      "sha1": "20d6953321ae6d18e133c488d17d99506fce2c5e",
+      "md5": "13b58d3cc0608c5c8d1d24d909a5b301"
     }
   }
 ]
@@ -741,10 +741,10 @@ husk()
 
 ```
 {
-  "pid": "79059",
+  "pid": "74207",
   "tt": "s015",
   "stat": "R+",
-  "time": "0:00.17",
+  "time": "0:00.15",
   "cmd": "node ebin/reject"
 }
 ```

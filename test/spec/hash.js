@@ -14,6 +14,16 @@ describe('husk:', function() {
     done();
   })
 
+  it('should emit error on bad algorithm', function(done) {
+    var h = husk(file)
+      .on('error', function(e) {
+        done();
+      })
+      .read({buffer: false})
+      .hash({algorithm: ['unknown']})
+      .run();
+  });
+
   it('should pass through unsupported type', function(done) {
     var h = husk(false)
       .hash({algorithm: 'md5'})
@@ -25,7 +35,7 @@ describe('husk:', function() {
       .read({buffer: false})
       .hash({algorithm: 'md5', enc: 'hex'})
       .assert(function(){
-        return this.valueOf() === md5;
+        return this.md5.valueOf() === md5;
       })
       .run(done);
   });
@@ -35,7 +45,7 @@ describe('husk:', function() {
       .read()
       .hash({algorithm: 'md5', enc: 'hex'})
       .assert(function(){
-        return this.valueOf() === md5;
+        return this.md5.valueOf() === md5;
       })
       .run(done);
   });
@@ -45,7 +55,7 @@ describe('husk:', function() {
       .read()
       .hash({algorithm: 'md5', enc: 'hex'})
       .assert(function(){
-        return this.valueOf() === md5;
+        return this.md5.valueOf() === md5;
       })
       .run(done);
   });
@@ -54,7 +64,7 @@ describe('husk:', function() {
     var h = husk('' + fs.readFileSync(file))
       .hash({algorithm: 'md5', enc: 'hex'})
       .assert(function(){
-        return this.valueOf() === md5;
+        return this.md5.valueOf() === md5;
       })
       .run(done);
   });
@@ -63,7 +73,7 @@ describe('husk:', function() {
     var h = husk('' + fs.readFileSync(file))
       .hash()
       .assert(function() {
-        return Buffer.isBuffer(this);
+        return Buffer.isBuffer(this.sha512);
       })
       .run(done);
   });
@@ -87,12 +97,46 @@ describe('husk:', function() {
       .each()
       .reject(function(){return this.valueOf() === ''})
       .read({buffer: false})
-      .hash({algorithm: 'sha1', enc: 'hex', passthrough: true, field: 'hash'})
-      .hash({algorithm: 'md5', enc: 'hex', passthrough: true, field: 'hash'})
+      .hash({
+        algorithm: ['sha1', 'md5'],
+        enc: 'hex',
+        passthrough: true,
+        field: 'hash'
+      })
       .transform(function(){return {file: this.path, hash: this.hash}})
       .reject(function(){
         return this.file === undefined
           || !this.hash || this.hash.sha1 === undefined;
+      })
+      .concat()
+      .through(function(){data = this})
+      .run(complete);
+  });
+
+  it('should compute multiple checksums without field', function(done) {
+    var data = null;
+    function complete() {
+      expect(data).to.be.an('array');
+      data.forEach(function(item) {
+        expect(item.md5).to.be.a('string');
+        expect(item.sha1).to.be.a('string');
+      })
+      done();
+    }
+
+    husk()
+      .find('lib/plugin/exec', '-name', '*.js')
+      .lines({buffer: true})
+      .each()
+      .reject(function(){return this.valueOf() === ''})
+      .read({buffer: false})
+      .hash({
+        algorithm: ['sha1', 'md5'],
+        enc: 'hex',
+        passthrough: true
+      })
+      .reject(function(){
+        return this.sha1 === undefined;
       })
       .concat()
       .through(function(){data = this})

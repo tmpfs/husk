@@ -17,8 +17,8 @@ husk()
   .each()
   .reject(function(){return this.valueOf() === ''})
   .read({buffer: false})
-  .hash({algorithm: 'sha1', enc: 'hex', passthrough: true, field: 'hash'})
-  .hash({algorithm: 'md5', enc: 'hex', passthrough: true, field: 'hash'})
+  .hash({
+    algorithm: ['sha1', 'md5'], enc: 'hex', passthrough: true, field: 'hash'})
   .transform(function(){return {file: this.path, hash: this.hash}})
   .reject(function(){
     return this.file === undefined
