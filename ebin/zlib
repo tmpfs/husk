@@ -1,0 +1,30 @@
+#!/usr/bin/env node
+
+var husk = require('..').exec().fs()
+  .plugin([
+    require('husk-concat'),
+    require('husk-lines'),
+    require('husk-each'),
+    require('husk-reject'),
+    require('husk-zlib'),
+    require('husk-pluck'),
+    require('husk-stringify'),
+  ]);
+
+husk()
+  .find('lib/plugin/core', '-name', '*.js')
+  .lines()
+  .each()
+  .reject(function(){return this.valueOf() === ''})
+  .read({buffer: false})
+  .through(function(){this.dest = this.path + '.gz'})
+  .zlib({type: 'gzip'})
+  .write()
+  //.stat(function(){return [this.dest]})
+  .pluck(function(){
+    return {source: this.path, file: this.dest}
+  })
+  .concat()
+  .stringify({indent: 2})
+  .print()
+  .run();
