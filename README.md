@@ -274,10 +274,10 @@ husk()
 
 ```
 {
-  "pid": "98681",
-  "tt": "s012",
+  "pid": "83552",
+  "tt": "s015",
   "stat": "R+",
-  "time": "0:00.16",
+  "time": "0:00.15",
   "cmd": "node ebin/filter"
 }
 ```
@@ -750,8 +750,8 @@ husk()
 
 ```
 {
-  "pid": "98867",
-  "tt": "s012",
+  "pid": "83736",
+  "tt": "s015",
   "stat": "R+",
   "time": "0:00.16",
   "cmd": "node ebin/reject"
@@ -967,6 +967,7 @@ var husk = require('..')
     require('husk-pluck'),
     require('husk-each'),
     require('husk-url'),
+    require('husk-pluck'),
     require('husk-concat'),
     require('husk-stringify'),
   ]);
@@ -975,9 +976,10 @@ husk(process.argv.slice(2))
   .argv()
   .pluck(function(){return this.unparsed})
   .each()
-  .url()
-  // override `href` property with url.format()
+  .url({qs: true})
+  // demo: override `href` property with url.format()
   .url({field: 'href'})
+  .pluck(function(){return this.query})
   .concat()
   .stringify({indent: 2})
   .print()
@@ -988,20 +990,7 @@ husk(process.argv.slice(2))
 
 ```
 [
-  {
-    "protocol": "https:",
-    "slashes": true,
-    "auth": null,
-    "host": "example.com:443",
-    "port": "443",
-    "hostname": "example.com",
-    "hash": "#intro?var=foo",
-    "search": "",
-    "query": {},
-    "pathname": "/",
-    "path": "/",
-    "href": "https://example.com:443/#intro?var=foo"
-  }
+  {}
 ]
 ```
 

@@ -6,6 +6,7 @@ var husk = require('..')
     require('husk-pluck'),
     require('husk-each'),
     require('husk-url'),
+    require('husk-pluck'),
     require('husk-concat'),
     require('husk-stringify'),
   ]);
@@ -14,9 +15,10 @@ husk(process.argv.slice(2))
   .argv()
   .pluck(function(){return this.unparsed})
   .each()
-  .url()
-  // override `href` property with url.format()
+  .url({qs: true})
+  // demo: override `href` property with url.format()
   .url({field: 'href'})
+  .pluck(function(){return this.query})
   .concat()
   .stringify({indent: 2})
   .print()
