@@ -1,0 +1,23 @@
+#!/usr/bin/env node
+
+var husk = require('..')
+  .plugin([
+    require('husk-argv'),
+    require('husk-pluck'),
+    require('husk-each'),
+    require('husk-url'),
+    require('husk-concat'),
+    require('husk-stringify'),
+  ]);
+
+husk(process.argv.slice(2))
+  .argv()
+  .pluck(function(){return this.unparsed})
+  .each()
+  .url()
+  // override `href` property with url.format()
+  .url({field: 'href'})
+  .concat()
+  .stringify({indent: 2})
+  .print()
+  .run();

@@ -25,6 +25,7 @@ Table of Contents
     * [stdin](#stdin)
     * [stream-events](#stream-events)
     * [transform](#transform)
+    * [url](#url)
   * [Developer](#developer)
     * [Link](#link)
     * [Example](#example)
@@ -273,10 +274,10 @@ husk()
 
 ```
 {
-  "pid": "70983",
+  "pid": "83393",
   "tt": "s015",
   "stat": "R+",
-  "time": "0:00.23",
+  "time": "0:00.15",
   "cmd": "node ebin/filter"
 }
 ```
@@ -749,10 +750,10 @@ husk()
 
 ```
 {
-  "pid": "71331",
+  "pid": "83581",
   "tt": "s015",
   "stat": "R+",
-  "time": "0:00.21",
+  "time": "0:00.15",
   "cmd": "node ebin/reject"
 }
 ```
@@ -944,6 +945,65 @@ husk()
   "./stream/argv/README.md",
   "./stream/assert/README.md",
   "./stream/async/README.md"
+]
+```
+
+### url
+
+Parse and format URL arguments.
+
+```
+ebin/url http://example.com?var=foo
+```
+
+**Source**.
+
+```javascript
+#!/usr/bin/env node
+
+var husk = require('..')
+  .plugin([
+    require('husk-argv'),
+    require('husk-pluck'),
+    require('husk-each'),
+    require('husk-url'),
+    require('husk-concat'),
+    require('husk-stringify'),
+  ]);
+
+husk(process.argv.slice(2))
+  .argv()
+  .pluck(function(){return this.unparsed})
+  .each()
+  .url()
+  // override `href` property with url.format()
+  .url({field: 'href'})
+  .concat()
+  .stringify({indent: 2})
+  .print()
+  .run();
+```
+
+**Result**.
+
+```
+[
+  {
+    "protocol": "http:",
+    "slashes": true,
+    "auth": null,
+    "host": "example.com",
+    "port": null,
+    "hostname": "example.com",
+    "hash": null,
+    "search": "?var=foo",
+    "query": {
+      "var": "foo"
+    },
+    "pathname": "/",
+    "path": "/?var=foo",
+    "href": "http://example.com/?var=foo"
+  }
 ]
 ```
 
