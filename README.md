@@ -26,6 +26,7 @@ Table of Contents
     * [stream-events](#stream-events)
     * [transform](#transform)
     * [url](#url)
+    * [zlib](#zlib)
   * [Developer](#developer)
     * [Link](#link)
     * [Example](#example)
@@ -271,16 +272,6 @@ husk()
 ```
 
 **Result**.
-
-```
-{
-  "pid": "83552",
-  "tt": "s015",
-  "stat": "R+",
-  "time": "0:00.15",
-  "cmd": "node ebin/filter"
-}
-```
 
 ### fs
 
@@ -748,16 +739,6 @@ husk()
 
 **Result**.
 
-```
-{
-  "pid": "83736",
-  "tt": "s015",
-  "stat": "R+",
-  "time": "0:00.16",
-  "cmd": "node ebin/reject"
-}
-```
-
 ### series
 
 Execute commands in series.
@@ -950,10 +931,10 @@ husk()
 
 ### url
 
-Parse and format URL arguments.
+Parse URL arguments.
 
 ```
-ebin/url https://example.com:443#intro?var=foo
+ebin/url https://example.com:443/?var=foo
 ```
 
 **Source**.
@@ -977,8 +958,6 @@ husk(process.argv.slice(2))
   .pluck(function(){return this.unparsed})
   .each()
   .url({qs: true})
-  // demo: override `href` property with url.format()
-  .url({field: 'href'})
   .pluck(function(){return this.query})
   .concat()
   .stringify({indent: 2})
@@ -990,7 +969,90 @@ husk(process.argv.slice(2))
 
 ```
 [
-  {}
+  {
+    "var": "foo"
+  }
+]
+```
+
+### zlib
+
+Compress files and print compressed ratio.
+
+```
+ebin/zlib
+```
+
+**Source**.
+
+```javascript
+#!/usr/bin/env node
+
+var husk = require('..').exec().fs()
+  .plugin([
+    require('husk-concat'),
+    require('husk-lines'),
+    require('husk-each'),
+    require('husk-reject'),
+    require('husk-zlib'),
+    require('husk-pluck'),
+    require('husk-stringify'),
+  ]);
+
+husk()
+  .find('lib/plugin/exec', '-name', '*.js')
+  .lines()
+  .each()
+  .reject(function(){return this.valueOf() === ''})
+  .read({buffer: false})
+  .stat(function(){return [this.path]})
+  .through(function(){
+    this.dest = this.path + '.gz';
+    this.orig = this.stat;
+  })
+  .zlib({type: 'gzip'})
+  .write()
+  .stat(function(){return [this.dest]})
+  .pluck(function(){
+    return {
+      source: this.path,
+      file: this.dest,
+      ratio: (this.stat.size / this.orig.size),
+      percent: Math.round((this.stat.size / this.orig.size) * 100) + '%'
+    }
+  })
+  // demo: clean up compressed files
+  .async(function(cb) {
+    var chunk = this;
+    husk(chunk)
+      .unlink(function() {return [this.file]})
+      .run(function complete() {
+        cb(null, chunk);
+      });
+  })
+  .pluck(1)
+  .concat()
+  .stringify({indent: 2})
+  .print()
+  .run();
+```
+
+**Result**.
+
+```
+[
+  {
+    "source": "lib/plugin/exec/alias.js",
+    "file": "lib/plugin/exec/alias.js.gz",
+    "ratio": 0.3085770621097601,
+    "percent": "31%"
+  },
+  {
+    "source": "lib/plugin/exec/index.js",
+    "file": "lib/plugin/exec/index.js.gz",
+    "ratio": 0.3408343203053033,
+    "percent": "34%"
+  }
 ]
 ```
 

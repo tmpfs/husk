@@ -28,8 +28,12 @@ module.exports = {
     description: 'Open fd, write close and print file content.'
   },
   url: {
-    cmd: 'ebin/url https://example.com:443#intro?var=foo',
-    description: 'Parse and format URL arguments.'
+    cmd: 'ebin/url https://example.com:443/?var=foo',
+    description: 'Parse URL arguments.'
+  },
+  zlib: {
+    cmd: 'ebin/zlib',
+    description: 'Compress files and print compressed ratio.'
   },
   prompt: {
     spawn: true,

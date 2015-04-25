@@ -12,18 +12,37 @@ var husk = require('..').exec().fs()
   ]);
 
 husk()
-  .find('lib/plugin/core', '-name', '*.js')
+  .find('lib/plugin/exec', '-name', '*.js')
   .lines()
   .each()
   .reject(function(){return this.valueOf() === ''})
   .read({buffer: false})
-  .through(function(){this.dest = this.path + '.gz'})
+  .stat(function(){return [this.path]})
+  .through(function(){
+    this.dest = this.path + '.gz';
+    this.orig = this.stat;
+  })
   .zlib({type: 'gzip'})
   .write()
-  //.stat(function(){return [this.dest]})
+  .stat(function(){return [this.dest]})
   .pluck(function(){
-    return {source: this.path, file: this.dest}
+    return {
+      source: this.path,
+      file: this.dest,
+      ratio: (this.stat.size / this.orig.size),
+      percent: Math.round((this.stat.size / this.orig.size) * 100) + '%'
+    }
   })
+  // demo: clean up compressed files
+  .async(function(cb) {
+    var chunk = this;
+    husk(chunk)
+      .unlink(function() {return [this.file]})
+      .run(function complete() {
+        cb(null, chunk);
+      });
+  })
+  .pluck(1)
   .concat()
   .stringify({indent: 2})
   .print()
