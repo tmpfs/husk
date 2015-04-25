@@ -28,7 +28,7 @@ module.exports = {
     description: 'Open fd, write close and print file content.'
   },
   url: {
-    cmd: 'ebin/url http://example.com?var=foo',
+    cmd: 'ebin/url https://example.com:443#intro?var=foo',
     description: 'Parse and format URL arguments.'
   },
   prompt: {

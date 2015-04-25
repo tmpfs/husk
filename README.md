@@ -274,7 +274,7 @@ husk()
 
 ```
 {
-  "pid": "83393",
+  "pid": "93451",
   "tt": "s015",
   "stat": "R+",
   "time": "0:00.15",
@@ -750,7 +750,7 @@ husk()
 
 ```
 {
-  "pid": "83581",
+  "pid": "93636",
   "tt": "s015",
   "stat": "R+",
   "time": "0:00.15",
@@ -953,7 +953,7 @@ husk()
 Parse and format URL arguments.
 
 ```
-ebin/url http://example.com?var=foo
+ebin/url https://example.com:443#intro?var=foo
 ```
 
 **Source**.
@@ -989,20 +989,18 @@ husk(process.argv.slice(2))
 ```
 [
   {
-    "protocol": "http:",
+    "protocol": "https:",
     "slashes": true,
     "auth": null,
-    "host": "example.com",
-    "port": null,
+    "host": "example.com:443",
+    "port": "443",
     "hostname": "example.com",
-    "hash": null,
-    "search": "?var=foo",
-    "query": {
-      "var": "foo"
-    },
+    "hash": "#intro?var=foo",
+    "search": "",
+    "query": {},
     "pathname": "/",
-    "path": "/?var=foo",
-    "href": "http://example.com/?var=foo"
+    "path": "/",
+    "href": "https://example.com:443/#intro?var=foo"
   }
 ]
 ```
