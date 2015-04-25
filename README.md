@@ -39,7 +39,7 @@ Husk
 
 Modular stream transformation system using a plugin architecture.
 
-Designed with command execution and file manipulation as the primary goal it is flexible enough for many common tasks.
+Designed with command execution and file manipulation at the core it is flexible enough for many common tasks.
 
 Requires [node](http://nodejs.org) and [npm](http://www.npmjs.org).
 
@@ -267,10 +267,10 @@ husk()
 
 ```
 {
-  "pid": "47136",
-  "tt": "s012",
+  "pid": "91368",
+  "tt": "s015",
   "stat": "R+",
-  "time": "0:00.17",
+  "time": "0:00.15",
   "cmd": "node ebin/filter"
 }
 ```
@@ -743,10 +743,10 @@ husk()
 
 ```
 {
-  "pid": "47484",
-  "tt": "s012",
+  "pid": "91714",
+  "tt": "s015",
   "stat": "R+",
-  "time": "0:00.16",
+  "time": "0:00.15",
   "cmd": "node ebin/reject"
 }
 ```
