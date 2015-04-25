@@ -26,6 +26,8 @@ Table of Contents
     * [stream-events](#stream-events)
     * [transform](#transform)
   * [Developer](#developer)
+    * [Link](#link)
+    * [Example](#example)
     * [Test](#test)
     * [Cover](#cover)
     * [Documentation](#documentation)
@@ -265,10 +267,10 @@ husk()
 
 ```
 {
-  "pid": "74021",
-  "tt": "s015",
+  "pid": "47136",
+  "tt": "s012",
   "stat": "R+",
-  "time": "0:00.15",
+  "time": "0:00.17",
   "cmd": "node ebin/filter"
 }
 ```
@@ -741,10 +743,10 @@ husk()
 
 ```
 {
-  "pid": "74207",
-  "tt": "s015",
+  "pid": "47484",
+  "tt": "s012",
   "stat": "R+",
-  "time": "0:00.15",
+  "time": "0:00.16",
   "cmd": "node ebin/reject"
 }
 ```
@@ -940,6 +942,30 @@ husk()
 ```
 
 ## Developer
+
+Whilst the design is modular the repository is monolithic to reduce maintenance, all the modules in [plugin](https://github.com/freeformsystems/husk/blob/master/lib/plugin) and [stream](https://github.com/freeformsystems/husk/blob/master/lib/stream) should be linked and it is easiest to resolve all dependencies at the top-level during development.
+
+To get up and running:
+
+```
+npm i -dd && npm run ln
+```
+
+### Link
+
+Runs `npm link` on all modules:
+
+```
+npm run ln
+```
+
+### Example
+
+To view the output from all examples in [ebin](https://github.com/freeformsystems/husk/blob/master/ebin) (also includes in the readme build):
+
+```
+sbin/ebin
+```
 
 ### Test
 
