@@ -274,10 +274,10 @@ husk()
 
 ```
 {
-  "pid": "93451",
-  "tt": "s015",
+  "pid": "98681",
+  "tt": "s012",
   "stat": "R+",
-  "time": "0:00.15",
+  "time": "0:00.16",
   "cmd": "node ebin/filter"
 }
 ```
@@ -750,10 +750,10 @@ husk()
 
 ```
 {
-  "pid": "93636",
-  "tt": "s015",
+  "pid": "98867",
+  "tt": "s012",
   "stat": "R+",
-  "time": "0:00.15",
+  "time": "0:00.16",
   "cmd": "node ebin/reject"
 }
 ```
@@ -1025,7 +1025,7 @@ npm run ln
 
 ### Example
 
-To view the output from all examples in [ebin](https://github.com/freeformsystems/husk/blob/master/ebin) (also includes in the readme build):
+To view the output from all examples in [ebin](https://github.com/freeformsystems/husk/blob/master/ebin) (also included in the readme build):
 
 ```
 sbin/ebin

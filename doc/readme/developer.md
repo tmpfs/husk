@@ -18,7 +18,7 @@ npm run ln
 
 ### Example
 
-To view the output from all examples in [ebin](/ebin) (also includes in the readme build):
+To view the output from all examples in [ebin](/ebin) (also included in the readme build):
 
 ```
 sbin/ebin
