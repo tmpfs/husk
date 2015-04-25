@@ -64,6 +64,12 @@ husk()
 
 Plugin functionality is provided by [zephyr](https://github.com/socialally/zephyr) see the [zephyr plugins](https://github.com/socialally/zephyr#plugins) documentation.
 
+Plugin implementations that encapsulate a stream should export a function that creates a new stream so that the plugin is fully compatible with calling `pipe()` and define a `plugin` function that defines the plugin functionality, see [argv](https://github.com/freeformsystems/husk/blob/master/lib/plugin/argv/index.js).
+
+For plugins that do not expose a stream they can export the plugin function directly, see [core](https://github.com/freeformsystems/husk/blob/master/lib/plugin/core/index.js).
+
+The design of the system is such that the plugins and stream implementations are separate modules so that the streams may be used outside of the plugin system if required. The majority of the plugins are thin wrappers for the stream to support chained method calls without always calling `pipe()` directly.
+
 ## Examples
 
 ### argv
@@ -267,10 +273,10 @@ husk()
 
 ```
 {
-  "pid": "91368",
+  "pid": "70983",
   "tt": "s015",
   "stat": "R+",
-  "time": "0:00.15",
+  "time": "0:00.23",
   "cmd": "node ebin/filter"
 }
 ```
@@ -743,10 +749,10 @@ husk()
 
 ```
 {
-  "pid": "91714",
+  "pid": "71331",
   "tt": "s015",
   "stat": "R+",
-  "time": "0:00.15",
+  "time": "0:00.21",
   "cmd": "node ebin/reject"
 }
 ```
