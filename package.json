@@ -40,8 +40,8 @@
     "readme": "mdp --force -v",
     "ex": "./sbin/ebin",
     "ln": "./sbin/linkify",
-    "test": "NODE_ENV=test mocha test/spec",
-    "cover": "NODE_ENV=test istanbul cover --root ./lib _mocha -- test/spec"
+    "test": "NODE_ENV=test mocha test/global.js test/spec",
+    "cover": "NODE_ENV=test istanbul cover --root ./lib _mocha -- test/global.js test/spec"
   },
   "mdp": {
     "title": "Husk",
