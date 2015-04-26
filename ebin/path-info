@@ -5,25 +5,22 @@ var husk = require('..').exec()
     require('husk-argv'),
     require('husk-io'),
     require('husk-concat'),
-    require('husk-pluck'),
     require('husk-lines'),
     require('husk-each'),
     require('husk-transform'),
     require('husk-stringify')
   ]);
 
-husk(process.argv.slice(2))
-  .argv()
-  .pluck(function(){return this.unparsed})
+husk()
   .find('doc/readme')
   .lines()
   .concat()
   .each()
   .file()
-  //.debug()
+  .debug()
   //.stat(function(){return [this.valueOf()]})
   //.transform(function(){return [{size: this.size}]})
   //.concat()
   .stringify({indent: 2})
-  .print()
+  //.print()
   .run();
