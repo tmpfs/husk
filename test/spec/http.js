@@ -28,4 +28,17 @@ describe('husk:', function() {
       .run(complete);
   });
 
+  it('should GET url with get() alias', function(done) {
+    var result;
+    function complete() {
+      // passes response socket stream
+      expect(result.readable).to.eql(true);
+      done();
+    }
+    var h = husk('http://localhost:3000')
+      .get()
+      .through(function(){result = this})
+      .run(complete);
+  });
+
 });
