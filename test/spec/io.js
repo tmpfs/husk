@@ -1,5 +1,6 @@
 var expect = require('chai').expect
   , fs = require('fs')
+  , path = require('path')
   , husk = require('../..')
   , io = husk.io;
 
@@ -153,6 +154,38 @@ describe('husk (io):', function() {
     expect(f.isStream()).to.eql(false);
     expect(f.isRemote()).to.eql(false);
     expect(f.isContent()).to.eql(true);
+    done();
+  });
+
+  it('should get empty basename', function(done) {
+    var f = io.file();
+    expect(f.basename()).to.eql('');
+    done();
+  });
+
+  it('should get dot dirname', function(done) {
+    var f = io.file();
+    expect(f.dirname()).to.eql('.');
+    done();
+  });
+
+  it('should rewrite file path with basename', function(done) {
+    var s = './file.txt'
+      , n = 'file.txt.bak';
+    var f = io.file(s);
+    f.basename(n);
+    expect(f.path).to.eql(n);
+    expect(f.basename()).to.eql(n);
+    done();
+  });
+
+  it('should rewrite file path with dirname', function(done) {
+    var s = './file.txt'
+      , n = 'target';
+    var f = io.file(s);
+    f.dirname(n);
+    expect(f.path).to.eql(path.join(n, path.basename(s)));
+    expect(f.dirname()).to.eql(n);
     done();
   });
 
