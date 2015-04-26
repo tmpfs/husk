@@ -23,7 +23,7 @@ describe('husk (io):', function() {
 
   it('should create file with file system path', function(done) {
     var path = './file.txt';
-    var f = new io.File(path);
+    var f = io.file(path);
     expect(f.fd).to.eql(null);
     expect(f.path).to.eql(path);
     expect(f.url).to.be.an('object');
