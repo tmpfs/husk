@@ -34,4 +34,13 @@ describe('husk (io):', function() {
     done();
   });
 
+  it('should create duplex file', function(done) {
+    var s = 'file.txt'
+      , t = 'file.txt.bak';
+    var f = io.duplex(s, t);
+    expect(f.source).to.be.an('object');
+    expect(f.target).to.be.an('object');
+    done();
+  });
+
 });
