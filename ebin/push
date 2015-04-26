@@ -11,7 +11,7 @@ husk()
   .stat(__filename)
   .push(function(chunk) {
     this.push(
-      util.format('%s (%s bytes)', path.basename(__filename), chunk[1].size)
+      util.format('%s (%s bytes)', path.basename(__filename), chunk.size)
     );
     this.push(
       __filename.replace(path.normalize(path.join(__dirname, '..')), '.')

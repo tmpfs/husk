@@ -42,7 +42,6 @@ husk()
         cb(null, chunk);
       });
   })
-  .pluck(1)
   .concat()
   .stringify({indent: 2})
   .print()

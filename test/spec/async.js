@@ -30,6 +30,17 @@ describe('husk:', function() {
       .run(done);
   });
 
+  it('should call async function with args and options', function(done) {
+    function fn(dir, cb) {
+      expect(this.valueOf()).to.eql(__filename);
+      expect(dir).to.eql(__dirname);
+      cb();
+    }
+    var h = husk(__filename)
+      .async(fn, [__dirname], {result: false})
+      .run(done);
+  });
+
   it('should call anonymous function', function(done) {
     var h = husk(__filename)
       .async(function(cb) {

@@ -8,10 +8,10 @@ var husk = require('..').exec()
 
 function timer(cb) {
   var chunk = this.valueOf();
-  if(!chunk.length) return cb();
+  if(!chunk.length) return cb(null, chunk);
   function callback() {
     var s = ('' + chunk).trim().split('').reverse().join('') + '\n';
-    cb(s);
+    cb(null, s);
   }
   setTimeout(callback, 10);
 }

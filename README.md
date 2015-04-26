@@ -102,7 +102,6 @@ husk(process.argv.slice(2))
   .pluck(function(){return this.unparsed})
   .each()
   .stat(function(){return [this.valueOf()]})
-  .pluck(1)
   .transform(function(){return [{size: this.size}]})
   .concat()
   .stringify({indent: 2})
@@ -144,10 +143,10 @@ var husk = require('..').exec()
 
 function timer(cb) {
   var chunk = this.valueOf();
-  if(!chunk.length) return cb();
+  if(!chunk.length) return cb(null, chunk);
   function callback() {
     var s = ('' + chunk).trim().split('').reverse().join('') + '\n';
-    cb(s);
+    cb(null, s);
   }
   setTimeout(callback, 10);
 }
@@ -275,10 +274,10 @@ husk()
 
 ```
 {
-  "pid": "53722",
+  "pid": "95076",
   "tt": "s015",
   "stat": "R+",
-  "time": "0:00.22",
+  "time": "0:00.17",
   "cmd": "node ebin/filter"
 }
 ```
@@ -691,9 +690,9 @@ var path = require('path')
 
 husk()
   .stat(__filename)
-  .push(function(chunk, cb) {
+  .push(function(chunk) {
     this.push(
-      util.format('%s (%s bytes)', path.basename(__filename), chunk[1].size)
+      util.format('%s (%s bytes)', path.basename(__filename), chunk.size)
     );
     this.push(
       __filename.replace(path.normalize(path.join(__dirname, '..')), '.')
@@ -706,7 +705,7 @@ husk()
 **Result**.
 
 ```
-push (438 bytes)
+push (431 bytes)
 ./ebin/push
 ```
 
@@ -751,7 +750,7 @@ husk()
 
 ```
 {
-  "pid": "54055",
+  "pid": "95261",
   "tt": "s015",
   "stat": "R+",
   "time": "0:00.23",
@@ -1050,7 +1049,6 @@ husk()
         cb(null, chunk);
       });
   })
-  .pluck(1)
   .concat()
   .stringify({indent: 2})
   .print()
