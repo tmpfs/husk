@@ -6,12 +6,28 @@ var http = require('http')
  *  Simple echo server for test specs.
  */
 function request(req, res) {
-  var msg = {headers: req.headers, method: req.method, url: req.url}
-    , body = JSON.stringify(msg, undefined, 2);
-  res.writeHead(200, {
-    'content-type': 'application/json',
-    'content-length': Buffer.byteLength(body)});
-  res.end(body);
+  var buf = new Buffer(0);
+
+  req.on('data', function(chunk) {
+    buf = Buffer.concat([buf, chunk]);
+  })
+
+  req.on('end', function() {
+
+    var msg = {
+        headers: req.headers,
+        method: req.method,
+        url: req.url,
+        length: buf.length
+      }
+      , body = JSON.stringify(msg, undefined, 2)
+
+    res.writeHead(200, {
+      'content-type': 'application/json',
+      'content-length': Buffer.byteLength(body)});
+    res.end(body);
+
+  });
 }
 
 function start(cb) {
