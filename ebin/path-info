@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 
-var husk = require('..').fs()
+var husk = require('..').exec()
   .plugin([
     require('husk-argv'),
     require('husk-io'),
     require('husk-concat'),
     require('husk-pluck'),
+    require('husk-lines'),
     require('husk-each'),
     require('husk-transform'),
     require('husk-stringify')
@@ -14,8 +15,12 @@ var husk = require('..').fs()
 husk(process.argv.slice(2))
   .argv()
   .pluck(function(){return this.unparsed})
+  .find('doc/readme')
+  .lines()
+  .concat()
   .each()
   .file()
+  //.debug()
   //.stat(function(){return [this.valueOf()]})
   //.transform(function(){return [{size: this.size}]})
   //.concat()
