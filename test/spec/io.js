@@ -129,4 +129,31 @@ describe('husk (io):', function() {
     done();
   });
 
+  it('should create file with read stream path', function(done) {
+    var s = '/dev/null'
+      , b = fs.createReadStream(s);
+    var f = io.file(b);
+    expect(f.path).to.eql(s);
+    expect(f.body).to.eql(b);
+    expect(f.url).to.be.an('object');
+    expect(f.isBuffer()).to.eql(false);
+    expect(f.isStream()).to.eql(true);
+    expect(f.isRemote()).to.eql(false);
+    expect(f.isContent()).to.eql(true);
+    done();
+  });
+
+  it('should create file with buffer path', function(done) {
+    var s = '/dev/null'
+      , b = new Buffer(0);
+    var f = io.file(b);
+    expect(f.path).to.eql(null);
+    expect(f.body).to.eql(b);
+    expect(f.isBuffer()).to.eql(true);
+    expect(f.isStream()).to.eql(false);
+    expect(f.isRemote()).to.eql(false);
+    expect(f.isContent()).to.eql(true);
+    done();
+  });
+
 });
