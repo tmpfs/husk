@@ -9,7 +9,8 @@ var husk = require('..').exec().fs()
     require('husk-zlib'),
     require('husk-pluck'),
     require('husk-stringify'),
-  ]);
+  ])
+  , zlib = husk.zlib;
 
 husk()
   .find('lib/plugin/exec', '-name', '*.js')
@@ -22,7 +23,7 @@ husk()
     this.dest = this.path + '.gz';
     this.orig = this.stat;
   })
-  .zlib({type: 'gzip'})
+  .zlib(zlib.gzip())
   .write()
   .stat(function(){return [this.dest]})
   .pluck(function(){

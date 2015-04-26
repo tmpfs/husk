@@ -1,6 +1,7 @@
 var expect = require('chai').expect
   , husk = require('../..')
-  , fs = require('fs');
+  , fs = require('fs')
+  , zlib = husk.zlib;
 
 describe('husk:', function() {
 
@@ -27,6 +28,19 @@ describe('husk:', function() {
     }
     husk(input)
       .zlib({type: 'gzip'})
+      .through(function(){result = this})
+      .run(complete);
+  });
+
+  it('should use static stream function', function(done) {
+    var input = 'foo'
+      , result;
+    function complete() {
+      expect(Buffer.isBuffer(result)).to.eql(true);
+      done();
+    }
+    husk(input)
+      .zlib(zlib.gzip())
       .through(function(){result = this})
       .run(complete);
   });
