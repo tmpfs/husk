@@ -273,6 +273,16 @@ husk()
 
 **Result**.
 
+```
+{
+  "pid": "18431",
+  "tt": "s015",
+  "stat": "R+",
+  "time": "0:00.15",
+  "cmd": "node ebin/filter"
+}
+```
+
 ### fs
 
 Open fd, write close and print file content.
@@ -738,6 +748,16 @@ husk()
 ```
 
 **Result**.
+
+```
+{
+  "pid": "18779",
+  "tt": "s015",
+  "stat": "R+",
+  "time": "0:00.26",
+  "cmd": "node ebin/reject"
+}
+```
 
 ### series
 
