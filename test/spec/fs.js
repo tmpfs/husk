@@ -120,4 +120,15 @@ describe('husk:', function() {
       .run(done);
   });
 
+  it('should read, stat and assign to field', function(done) {
+    var h = husk('package.json')
+      .read({buffer: false})
+      .stat(function(){return this.path})
+      .assert(function() {
+        return this.stat && typeof this.stat.size === 'number';
+        return true;
+      })
+      .run(done);
+  });
+
 });

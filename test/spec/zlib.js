@@ -1,5 +1,6 @@
 var expect = require('chai').expect
-  , husk = require('../..');
+  , husk = require('../..')
+  , fs = require('fs');
 
 describe('husk:', function() {
 
@@ -41,6 +42,24 @@ describe('husk:', function() {
       .zlib({type: 'gzip'})
       .through(function(){result = this})
       .run(complete);
+  });
+
+  it('should compress readable stream type', function(done) {
+    var input = fs.createReadStream('package.json')
+      , result;
+
+    function complete() {
+      expect(result.writable).to.eql(true);
+      done();
+    }
+
+    husk()
+      .zlib({type: 'gzip'})
+      .through(function(){result = this})
+      // NOTE: if a readable stream is passed to husk() it is piped
+      // NOTE: to first in pipeline, by overriding data in run() we
+      // NOTE: can transform on the stream
+      .run({data: input}, complete);
   });
 
 });
