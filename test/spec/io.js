@@ -116,14 +116,14 @@ describe('husk (io):', function() {
     done();
   });
 
-  it('should create file with body option (string)', function(done) {
+  it('should create file with body option', function(done) {
     var s = './file.txt'
-      , b = 'bar';
+      , b = new Buffer('bar');
 
     var f = io.file(s, {body: b});
     expect(f.path).to.eql(s);
     expect(f.body).to.eql(b);
-    expect(f.isBuffer()).to.eql(false);
+    expect(f.isBuffer()).to.eql(true);
     expect(f.isStream()).to.eql(false);
     expect(f.isRemote()).to.eql(false);
     expect(f.isContent()).to.eql(true);
