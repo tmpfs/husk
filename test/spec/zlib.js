@@ -18,6 +18,19 @@ describe('husk:', function() {
       .run();
   });
 
+  it('should pass through on unsupported type', function(done) {
+    var input = []
+      , result;
+    function complete() {
+      expect(result).to.eql(input);
+      done();
+    }
+    husk(input)
+      .zlib({type: 'gzip'})
+      .through(function(){result = this})
+      .run(complete);
+  });
+
   it('should compress string type', function(done) {
     var input = 'foo'
       , result;
@@ -60,6 +73,22 @@ describe('husk:', function() {
       // NOTE: to first in pipeline, by overriding data in run() we
       // NOTE: can transform on the stream
       .run({data: input}, complete);
+  });
+
+  it('should compress file object stream', function(done) {
+    var result;
+
+    function complete() {
+
+      //expect(result.contents.writable).to.eql(true);
+      done();
+    }
+
+    husk('package.json')
+      .read({buffer: false})
+      .zlib({type: 'gzip'})
+      .through(function(){result = this})
+      .run(complete);
   });
 
 });
