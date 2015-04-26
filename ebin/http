@@ -1,0 +1,11 @@
+#!/usr/bin/env node
+
+var husk = require('..')
+  .plugin([
+    require('husk-http')
+  ]);
+
+husk('http://localhost:3000')
+  .request()
+  .print(console.log)
+  .run();
