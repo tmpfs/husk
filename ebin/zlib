@@ -33,15 +33,7 @@ husk()
       percent: Math.round((this.stat.size / this.orig.size) * 100) + '%'
     }
   })
-  // demo: clean up compressed files
-  .async(function(cb) {
-    var chunk = this;
-    husk(chunk)
-      .unlink(function() {return [this.file]})
-      .run(function complete() {
-        cb(null, chunk);
-      });
-  })
+  .unlink(function() {return [this.file]})
   .concat()
   .stringify({indent: 2})
   .print()
