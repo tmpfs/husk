@@ -13,7 +13,6 @@ function request(req, res) {
   })
 
   req.on('end', function() {
-
     var msg = {
         headers: req.headers,
         method: req.method,
@@ -26,7 +25,6 @@ function request(req, res) {
       'content-type': 'application/json',
       'content-length': Buffer.byteLength(body)});
     res.end(body);
-
   });
 }
 
