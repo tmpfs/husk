@@ -9,7 +9,7 @@ var path = require('path')
 
 husk()
   .stat(__filename)
-  .push(function(chunk, cb) {
+  .push(function(chunk) {
     this.push(
       util.format('%s (%s bytes)', path.basename(__filename), chunk[1].size)
     );
