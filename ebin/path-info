@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+
+var husk = require('..').fs()
+  .plugin([
+    require('husk-argv'),
+    require('husk-io'),
+    require('husk-concat'),
+    require('husk-pluck'),
+    require('husk-each'),
+    require('husk-transform'),
+    require('husk-stringify')
+  ]);
+
+husk(process.argv.slice(2))
+  .argv()
+  .pluck(function(){return this.unparsed})
+  .each()
+  .file()
+  //.stat(function(){return [this.valueOf()]})
+  //.transform(function(){return [{size: this.size}]})
+  //.concat()
+  .stringify({indent: 2})
+  .print()
+  .run();
