@@ -1,4 +1,5 @@
 var expect = require('chai').expect
+  , fs = require('fs')
   , husk = require('../..')
   , print = require('husk-print');
 
@@ -36,5 +37,26 @@ describe('husk:', function() {
       })
       .run(done);
   });
+
+  it('should print with readable stream', function(done) {
+    var reader = fs.createReadStream('/dev/null')
+      , result;
+
+    function complete() {
+      // when the input is a readable stream
+      // print will push itself and pipe the readable
+      // to itself
+      expect(result.writable).to.eql(true);
+      done();
+    }
+
+    husk()
+      .debug()
+      .print()
+      .through(function(){result = this})
+      .run({data: reader}, complete);
+    reader.push(null);
+  });
+
 
 });
