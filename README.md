@@ -274,10 +274,10 @@ husk()
 
 ```
 {
-  "pid": "95076",
-  "tt": "s015",
+  "pid": "50395",
+  "tt": "s012",
   "stat": "R+",
-  "time": "0:00.17",
+  "time": "0:00.20",
   "cmd": "node ebin/filter"
 }
 ```
@@ -750,10 +750,10 @@ husk()
 
 ```
 {
-  "pid": "95261",
-  "tt": "s015",
+  "pid": "50581",
+  "tt": "s012",
   "stat": "R+",
-  "time": "0:00.23",
+  "time": "0:00.16",
   "cmd": "node ebin/reject"
 }
 ```
@@ -1040,15 +1040,7 @@ husk()
       percent: Math.round((this.stat.size / this.orig.size) * 100) + '%'
     }
   })
-  // demo: clean up compressed files
-  .async(function(cb) {
-    var chunk = this;
-    husk(chunk)
-      .unlink(function() {return [this.file]})
-      .run(function complete() {
-        cb(null, chunk);
-      });
-  })
+  .unlink(function() {return [this.file]})
   .concat()
   .stringify({indent: 2})
   .print()
