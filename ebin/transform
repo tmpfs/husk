@@ -9,7 +9,6 @@ var husk = require('..').exec()
     require('husk-transform'),
     require('husk-stringify')
   ]);
-
 husk()
   .cd('lib')
   .find()

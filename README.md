@@ -117,7 +117,7 @@ husk(process.argv.slice(2))
     "size": 40
   },
   {
-    "size": 1550
+    "size": 1580
   }
 ]
 ```
@@ -228,7 +228,7 @@ husk()
 **Result**.
 
 ```
-cyberfunk
+muji
 [code: 0, signal: null]
 [Process:Transform] whoami
 ```
@@ -274,10 +274,10 @@ husk()
 
 ```
 {
-  "pid": "50395",
-  "tt": "s012",
-  "stat": "R+",
-  "time": "0:00.20",
+  "pid": "30596",
+  "tt": "pts/24",
+  "stat": "Rl+",
+  "time": "0:00",
   "cmd": "node ebin/filter"
 }
 ```
@@ -379,15 +379,15 @@ husk()
   {
     "file": "lib/plugin/exec/alias.js",
     "hash": {
-      "sha1": "558c605334806911227753105d1ec964af426513",
-      "md5": "80ee710768734a5556d898ff94efb490"
+      "sha1": "a82a88fb21865c7592ce6237b1c3765be4968126",
+      "md5": "91706a26c49eb622a3539a3a48f04b37"
     }
   },
   {
     "file": "lib/plugin/exec/index.js",
     "hash": {
-      "sha1": "20d6953321ae6d18e133c488d17d99506fce2c5e",
-      "md5": "13b58d3cc0608c5c8d1d24d909a5b301"
+      "sha1": "8775085e0d8907b5fea469e8b3a1463fc7a25eca",
+      "md5": "481666ba90a1a7b5300ea579eeff8e4e"
     }
   }
 ]
@@ -444,6 +444,7 @@ husk(input)
 **Result**.
 
 ```
+parse {"field":"body"}
 {
   "husk-async": "~2.0.0",
   "husk-core": "~2.0.0",
@@ -517,6 +518,7 @@ husk('package.json')
 **Result**.
 
 ```
+parse undefined
 {
   "husk-async": "~1.0.1",
   "husk-core": "~1.0.1",
@@ -572,13 +574,12 @@ husk()
 **Result**.
 
 ```
-[Process:Transform] cd lib
 [Process:Transform] find 
 [Buffer:PassThrough]
 [Line:Transform]
 [Each:Transform]
 [Filter:Transform]
-[Transform:Transform]
+[TransformStream:Transform]
 [Concat:Transform]
 [Stringify:Transform]
 [Print:Transform] noop
@@ -659,13 +660,13 @@ husk()
 ```
 prompt ⚡ choose directory: (lib) doc
 doc/readme
-doc/readme/developer.md
+doc/readme/usage.md
+doc/readme/plugins.md
 doc/readme/install.md
+doc/readme/developer.md
 doc/readme/introduction.md
 doc/readme/license.md
 doc/readme/links.md
-doc/readme/plugins.md
-doc/readme/usage.md
 ```
 
 ### push
@@ -750,10 +751,10 @@ husk()
 
 ```
 {
-  "pid": "50581",
-  "tt": "s012",
-  "stat": "R+",
-  "time": "0:00.16",
+  "pid": "30699",
+  "tt": "pts/24",
+  "stat": "Rl+",
+  "time": "0:00",
   "cmd": "node ebin/reject"
 }
 ```
@@ -828,9 +829,9 @@ husk(process.stdin)
 
 ```
 {
-  "user": "cyberfunk",
-  "line": "console",
-  "when": "Jan 1 10:20"
+  "user": "muji",
+  "line": ":0",
+  "when": "2015-07-09 12:09 (:0)"
 }
 ```
 
@@ -893,7 +894,7 @@ h.run(onEnd);
 [Line:Transform]
 [Each:Transform]
 [Filter:Transform]
-[Transform:Transform]
+[TransformStream:Transform]
 [Concat:Transform]
 [Stringify:Transform]
 [Print:Transform] noop
@@ -921,7 +922,6 @@ var husk = require('..').exec()
     require('husk-transform'),
     require('husk-stringify')
   ]);
-
 husk()
   .cd('lib')
   .find()
@@ -939,12 +939,12 @@ husk()
 
 ```
 [
-  "./plugin/argv/README.md",
-  "./plugin/assert/README.md",
   "./plugin/async/README.md",
-  "./stream/argv/README.md",
+  "./plugin/assert/README.md",
+  "./plugin/argv/README.md",
+  "./stream/async/README.md",
   "./stream/assert/README.md",
-  "./stream/async/README.md"
+  "./stream/argv/README.md"
 ]
 ```
 
@@ -1016,7 +1016,8 @@ var husk = require('..').exec().fs()
     require('husk-zlib'),
     require('husk-pluck'),
     require('husk-stringify'),
-  ]);
+  ])
+  , zlib = husk.zlib;
 
 husk()
   .find('lib/plugin/exec', '-name', '*.js')
@@ -1029,7 +1030,7 @@ husk()
     this.dest = this.path + '.gz';
     this.orig = this.stat;
   })
-  .zlib({type: 'gzip'})
+  .zlib(zlib.gzip())
   .write()
   .stat(function(){return [this.dest]})
   .pluck(function(){
@@ -1054,13 +1055,13 @@ husk()
   {
     "source": "lib/plugin/exec/alias.js",
     "file": "lib/plugin/exec/alias.js.gz",
-    "ratio": 0.3085770621097601,
-    "percent": "31%"
+    "ratio": 0.3165910563836682,
+    "percent": "32%"
   },
   {
     "source": "lib/plugin/exec/index.js",
     "file": "lib/plugin/exec/index.js.gz",
-    "ratio": 0.3408343203053033,
+    "ratio": 0.3401954397394137,
     "percent": "34%"
   }
 ]
