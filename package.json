@@ -9,10 +9,10 @@
   },
   "main": "lib/husk.js",
   "dependencies": {
-    "husk-async": "~1.0.1",
-    "husk-core": "~1.0.1",
-    "husk-exec": "~1.0.1",
-    "husk-fs": "~1.0.1",
+    "husk-async": "~1.0.2",
+    "husk-core": "~1.0.3",
+    "husk-exec": "~1.0.2",
+    "husk-fs": "~1.0.2",
     "zephyr": "~1.2.6"
   },
   "devDependencies": {

@@ -1,7 +1,7 @@
 {
   "name": "husk-print",
   "description": "Pipe to a function and passthrough.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "muji <noop@xpm.io>",
   "repository": {
     "type": "git",
