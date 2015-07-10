@@ -1,7 +1,7 @@
 {
   "name": "through-flow",
   "description": "Stream transform passthrough that calls a function.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "muji <noop@xpm.io>",
   "repository": {
     "type": "git",
