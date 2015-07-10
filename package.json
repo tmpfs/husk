@@ -36,6 +36,7 @@
     "json"
   ],
   "scripts": {
+    "clean": "rm -rf coverage",
     "docs": "npm run readme",
     "readme": "mdp --force -v",
     "ex": "./sbin/ebin",
