@@ -1,7 +1,7 @@
 {
   "name": "parse-flow",
   "description": "Transform from string json.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "muji <noop@xpm.io>",
   "repository": {
     "type": "git",
