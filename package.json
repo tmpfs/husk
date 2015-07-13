@@ -44,32 +44,6 @@
     "test": "NODE_ENV=test mocha test/global.js test/spec",
     "cover": "NODE_ENV=test istanbul cover --root ./lib _mocha -- test/global.js test/spec"
   },
-  "tmux": {
-    "run": [
-      "new-window -n mxl -c ${mxl_project}",
-      [
-        "send-keys",
-        "-t:",
-        "vim .",
-        "C-m"
-      ],
-      "split-window -h -t: -c ${mxl_project}",
-      [
-        "send-keys",
-        "-t:",
-        "git status",
-        "C-m"
-      ],
-      "split-window -v -t: -c ${mxl_project}",
-      [
-        "send-keys",
-        "-t:",
-        "npm test",
-        "C-m"
-      ],
-      "select-pane -L"
-    ]
-  },
   "mdp": {
     "title": "Husk",
     "pedantic": true,
