@@ -1,14 +1,14 @@
 {
   "name": "husk-reject",
   "description": "Reject chunks using a function.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "muji <noop@xpm.io>",
   "repository": {
     "type": "git",
     "url": "git://github.com/freeformsystems/husk.git"
   },
   "dependencies": {
-    "reject-flow": "~1.0.1"
+    "reject-flow": "~1.0.3"
   },
   "keywords": [
     "husk",

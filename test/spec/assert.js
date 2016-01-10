@@ -1,8 +1,6 @@
 var expect = require('chai').expect
   , husk = require('../..');
 
-husk.plugin([require('husk-assert')]);
-
 describe('husk:', function() {
 
   it('should assert on chunk', function(done) {

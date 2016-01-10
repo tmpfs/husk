@@ -1,14 +1,14 @@
 {
   "name": "husk-http",
   "description": "HTTP client request plugin.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "muji <noop@xpm.io>",
   "repository": {
     "type": "git",
     "url": "git://github.com/freeformsystems/husk.git"
   },
   "dependencies": {
-    "http-flow": "~1.0.1"
+    "http-flow": "~1.0.2"
   },
   "keywords": [
     "husk",

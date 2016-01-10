@@ -1,14 +1,14 @@
 {
   "name": "husk-pluck",
   "description": "Pluck object fields.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "muji <noop@xpm.io>",
   "repository": {
     "type": "git",
     "url": "git://github.com/freeformsystems/husk.git"
   },
   "dependencies": {
-    "pluck-flow": "~1.0.1"
+    "pluck-flow": "~1.0.2"
   },
   "keywords": [
     "husk",

@@ -1,14 +1,14 @@
 {
   "name": "husk-exec",
   "description": "Transform a process to a stream.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "muji <noop@xpm.io>",
   "repository": {
     "type": "git",
     "url": "git://github.com/freeformsystems/husk.git"
   },
   "dependencies": {
-    "process-flow": "~1.0.1"
+    "process-flow": "~1.0.2"
   },
   "keywords": [
     "husk",

@@ -1,14 +1,14 @@
 {
   "name": "husk-io",
   "description": "File I/O adapters.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "muji <noop@xpm.io>",
   "repository": {
     "type": "git",
     "url": "git://github.com/freeformsystems/husk.git"
   },
   "dependencies": {
-    "io-flow": "~1.0.1"
+    "io-flow": "~1.0.2"
   },
   "keywords": [
     "husk",

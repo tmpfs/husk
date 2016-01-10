@@ -1,7 +1,7 @@
 {
   "name": "url-flow",
   "description": "Stream transform that parses and formats URLs.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "muji <noop@xpm.io>",
   "repository": {
     "type": "git",

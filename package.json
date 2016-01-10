@@ -12,7 +12,7 @@
   "dependencies": {
     "husk-async": "~1.0.2",
     "husk-core": "~1.0.3",
-    "husk-exec": "~1.0.2",
+    "husk-exec": "~1.0.3",
     "husk-fs": "~1.0.2",
     "zephyr": "~1.2.6"
   },
