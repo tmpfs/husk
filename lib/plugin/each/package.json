@@ -1,14 +1,14 @@
 {
   "name": "husk-each",
   "description": "Iterate chunks elements.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "muji <noop@xpm.io>",
   "repository": {
     "type": "git",
     "url": "git://github.com/freeformsystems/husk.git"
   },
   "dependencies": {
-    "each-flow": "~1.0.1"
+    "each-flow": "~1.0.2"
   },
   "keywords": [
     "husk",

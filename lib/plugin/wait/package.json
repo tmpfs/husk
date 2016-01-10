@@ -1,14 +1,14 @@
 {
   "name": "husk-wait",
   "description": "Wait for input on a stream and call method.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "muji <noop@xpm.io>",
   "repository": {
     "type": "git",
     "url": "git://github.com/freeformsystems/husk.git"
   },
   "dependencies": {
-    "through-flow": "~1.0.1"
+    "wait-flow": "~1.0.1"
   },
   "keywords": [
     "husk",

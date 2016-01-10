@@ -1,6 +1,8 @@
 var expect = require('chai').expect
   , husk = require('../..');
 
+husk.plugin([require('husk-argv')]);
+
 describe('husk:', function() {
 
   it('should parse chunk argv', function(done) {

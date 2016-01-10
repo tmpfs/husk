@@ -1,7 +1,7 @@
 {
   "name": "zlib-flow",
   "description": "Stream transform for zlib.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "muji <noop@xpm.io>",
   "repository": {
     "type": "git",

@@ -8,12 +8,21 @@ To get up and running:
 npm i -dd && npm run ln
 ```
 
+### Install
+
+Runs `npm install` on all modules:
+
+```
+npm run installify
+```
+
+
 ### Link
 
 Runs `npm link` on all modules:
 
 ```
-npm run ln
+npm run linkify
 ```
 
 ### Example

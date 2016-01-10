@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# install all plugins
+for f in lib/plugin/*
+  do
+    if [ -d "$f" ]; then
+      echo "."
+      npm install "$f" || exit 1;
+    fi
+done

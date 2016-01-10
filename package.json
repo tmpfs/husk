@@ -22,6 +22,8 @@
     "coveralls": "~2.11.6",
     "istanbul": "~0.4.1",
     "mocha": "~2.3.4",
+    "pluck-flow": "~1.0.1",
+    "print-flow": "~1.0.1",
     "ttycolor": "~0.8.14"
   },
   "engine": [
@@ -42,7 +44,8 @@
     "docs": "npm run readme",
     "readme": "mdp --force -v",
     "ex": "./sbin/ebin",
-    "ln": "./sbin/linkify",
+    "linkify": "./sbin/linkify",
+    "installify": "./sbin/installify",
     "test": "NODE_ENV=test mocha test/global.js test/spec",
     "cover": "NODE_ENV=test istanbul cover --root ./lib _mocha -- test/global.js test/spec",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
