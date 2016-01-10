@@ -64,11 +64,11 @@ husk()
 
 ## Plugin Guide
 
-Plugin functionality is provided by [zephyr](https://github.com/socialally/zephyr) see the [zephyr plugins](https://github.com/socialally/zephyr#plugins) documentation.
+Plugin functionality is provided by [zephyr](https://github.com/tmpfs/zephyr) see the [zephyr plugins](https://github.com/tmpfs/zephyr#plugins) documentation.
 
-Plugin implementations that encapsulate a stream should export a function that creates a new stream so that the plugin is fully compatible with calling `pipe()` and define a `plugin` function that defines the plugin functionality, see [argv](https://github.com/freeformsystems/husk/blob/master/lib/plugin/argv/index.js).
+Plugin implementations that encapsulate a stream should export a function that creates a new stream so that the plugin is fully compatible with calling `pipe()` and define a `plugin` function that defines the plugin functionality, see [argv](https://github.com/tmpfs/husk/blob/master/lib/plugin/argv/index.js).
 
-For plugins that do not expose a stream they can export the plugin function directly, see [core](https://github.com/freeformsystems/husk/blob/master/lib/plugin/core/index.js).
+For plugins that do not expose a stream they can export the plugin function directly, see [core](https://github.com/tmpfs/husk/blob/master/lib/plugin/core/index.js).
 
 The design of the system is such that the plugins and stream implementations are separate modules so that the streams may be used outside of the plugin system if required. The majority of the plugins are thin wrappers for the stream to support chained method calls without always calling `pipe()` directly.
 
@@ -117,7 +117,7 @@ husk(process.argv.slice(2))
     "size": 40
   },
   {
-    "size": 1580
+    "size": 1729
   }
 ]
 ```
@@ -272,16 +272,6 @@ husk()
 
 **Result**.
 
-```
-{
-  "pid": "30596",
-  "tt": "pts/24",
-  "stat": "Rl+",
-  "time": "0:00",
-  "cmd": "node ebin/filter"
-}
-```
-
 ### fs
 
 Open fd, write close and print file content.
@@ -386,8 +376,8 @@ husk()
   {
     "file": "lib/plugin/exec/index.js",
     "hash": {
-      "sha1": "8775085e0d8907b5fea469e8b3a1463fc7a25eca",
-      "md5": "481666ba90a1a7b5300ea579eeff8e4e"
+      "sha1": "c41cea1024dc5d8e43ea9aacedcd0216481f73fe",
+      "md5": "165a2753158ff1552144746a9d69af76"
     }
   }
 ]
@@ -444,7 +434,6 @@ husk(input)
 **Result**.
 
 ```
-parse {"field":"body"}
 {
   "husk-async": "~2.0.0",
   "husk-core": "~2.0.0",
@@ -518,12 +507,11 @@ husk('package.json')
 **Result**.
 
 ```
-parse undefined
 {
-  "husk-async": "~1.0.1",
-  "husk-core": "~1.0.1",
-  "husk-exec": "~1.0.1",
-  "husk-fs": "~1.0.1",
+  "husk-async": "~1.0.2",
+  "husk-core": "~1.0.3",
+  "husk-exec": "~1.0.2",
+  "husk-fs": "~1.0.2",
   "zephyr": "~1.2.6"
 }
 ```
@@ -660,13 +648,13 @@ husk()
 ```
 prompt ⚡ choose directory: (lib) doc
 doc/readme
-doc/readme/usage.md
-doc/readme/plugins.md
 doc/readme/install.md
-doc/readme/developer.md
-doc/readme/introduction.md
-doc/readme/license.md
 doc/readme/links.md
+doc/readme/introduction.md
+doc/readme/usage.md
+doc/readme/developer.md
+doc/readme/plugins.md
+doc/readme/license.md
 ```
 
 ### push
@@ -749,16 +737,6 @@ husk()
 
 **Result**.
 
-```
-{
-  "pid": "30699",
-  "tt": "pts/24",
-  "stat": "Rl+",
-  "time": "0:00",
-  "cmd": "node ebin/reject"
-}
-```
-
 ### series
 
 Execute commands in series.
@@ -831,7 +809,7 @@ husk(process.stdin)
 {
   "user": "muji",
   "line": ":0",
-  "when": "2015-07-09 12:09 (:0)"
+  "when": "2016-01-04 02:58 (:0)"
 }
 ```
 
@@ -939,12 +917,12 @@ husk()
 
 ```
 [
-  "./plugin/async/README.md",
-  "./plugin/assert/README.md",
-  "./plugin/argv/README.md",
+  "./stream/argv/README.md",
   "./stream/async/README.md",
   "./stream/assert/README.md",
-  "./stream/argv/README.md"
+  "./plugin/argv/README.md",
+  "./plugin/async/README.md",
+  "./plugin/assert/README.md"
 ]
 ```
 
@@ -1061,7 +1039,7 @@ husk()
   {
     "source": "lib/plugin/exec/index.js",
     "file": "lib/plugin/exec/index.js.gz",
-    "ratio": 0.3401954397394137,
+    "ratio": 0.3395860284605433,
     "percent": "34%"
   }
 ]
@@ -1069,7 +1047,7 @@ husk()
 
 ## Developer
 
-Whilst the design is modular the repository is monolithic to reduce maintenance, all the modules in [plugin](https://github.com/freeformsystems/husk/blob/master/lib/plugin) and [stream](https://github.com/freeformsystems/husk/blob/master/lib/stream) should be linked and it is easiest to resolve all dependencies at the top-level during development.
+Whilst the design is modular the repository is monolithic to reduce maintenance, all the modules in [plugin](https://github.com/tmpfs/husk/blob/master/lib/plugin) and [stream](https://github.com/tmpfs/husk/blob/master/lib/stream) should be linked and it is easiest to resolve all dependencies at the top-level during development.
 
 To get up and running:
 
@@ -1087,7 +1065,7 @@ npm run ln
 
 ### Example
 
-To view the output from all examples in [ebin](https://github.com/freeformsystems/husk/blob/master/ebin) (also included in the readme build):
+To view the output from all examples in [ebin](https://github.com/tmpfs/husk/blob/master/ebin) (also included in the readme build):
 
 ```
 sbin/ebin
@@ -1119,7 +1097,7 @@ npm run docs
 
 ### Readme
 
-To build the readme file from the partial definitions (requires [mdp](https://github.com/freeformsystems/mdp)):
+To build the readme file from the partial definitions (requires [mdp](https://github.com/tmpfs/mdp)):
 
 ```
 npm run readme
@@ -1127,12 +1105,12 @@ npm run readme
 
 ## License
 
-Everything is [MIT](http://en.wikipedia.org/wiki/MIT_License). Read the [license](https://github.com/freeformsystems/husk/blob/master/LICENSE) if you feel inclined.
+Everything is [MIT](http://en.wikipedia.org/wiki/MIT_License). Read the [license](https://github.com/tmpfs/husk/blob/master/LICENSE) if you feel inclined.
 
 Generated by [mdp(1)](https://github.com/freeformsystems/mdp).
 
 [node]: http://nodejs.org
 [npm]: http://www.npmjs.org
-[mdp]: https://github.com/freeformsystems/mdp
-[zephyr]: https://github.com/socialally/zephyr
-[zephyr-plugins]: https://github.com/socialally/zephyr#plugins
+[mdp]: https://github.com/tmpfs/mdp
+[zephyr]: https://github.com/tmpfs/zephyr
+[zephyr-plugins]: https://github.com/tmpfs/zephyr#plugins
