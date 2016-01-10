@@ -41,7 +41,9 @@ describe('husk:', function() {
     }
     husk(input)
       .zlib(zlib.gzip())
-      .through(function(){result = this})
+      .through(function(){
+        result = this
+      })
       .run(complete);
   });
 
