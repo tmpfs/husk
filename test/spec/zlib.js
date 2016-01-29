@@ -5,23 +5,6 @@ var expect = require('chai').expect
 
 describe('husk:', function() {
 
-  it('should use static stream function', function(done) {
-    var input = 'foo'
-      , result;
-    function complete() {
-      console.dir(result);
-      expect(Buffer.isBuffer(result)).to.eql(true);
-      done();
-    }
-    husk(input)
-      .zlib(zlib.gzip())
-      .through(function(){
-        console.dir('through called');
-        result = this;
-      })
-      .run(complete);
-  });
-
   it('should emit error on bad type', function(done) {
     husk()
       .on('error', function(e) {
@@ -46,6 +29,21 @@ describe('husk:', function() {
     husk(input)
       .zlib({type: 'gzip'})
       .through(function(){result = this})
+      .run(complete);
+  });
+
+  it('should use static stream function', function(done) {
+    var input = 'foo'
+      , result;
+    function complete() {
+      expect(Buffer.isBuffer(result)).to.eql(true);
+      done();
+    }
+    husk(input)
+      .zlib(zlib.gzip())
+      .through(function(){
+        result = this;
+      })
       .run(complete);
   });
 
