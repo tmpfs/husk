@@ -2,14 +2,6 @@ var expect = require('chai').expect
   , fs = require('fs')
   , husk = require('../..');
 
-// load all plugins
-var dirs = fs.readdirSync('./node_modules');
-dirs.forEach(function(dir) {
-  if(/^husk-/.test(dir)) {
-    husk.plugin([require(dir)]);
-  }
-})
-
 describe('husk:', function() {
 
   it('should export function', function(done) {
@@ -52,7 +44,7 @@ describe('husk:', function() {
   it('should pipe readable stream to first writer', function(done) {
     // typically this would be stdin
     var reader = fs.createReadStream('/dev/null');
-    var h = husk(reader)
+    husk(reader)
       .print()
       .run(done);
   });
@@ -65,20 +57,20 @@ describe('husk:', function() {
   });
 
   it('should pipe use run options data', function(done) {
-    var h = husk('data')
+    husk('data')
       .print()
       .run({data: 'override'}, done);
   });
 
   it('should ignore bad arg on pipe', function(done) {
-    var h = husk()
+    husk()
       .pipe(false);
     done();
   });
 
   it('should pipe to streams', function(done) {
     // triggers chained pipe recurse code path
-    var h = husk()
+    husk()
       .pipe(require('print-flow'))
       .pipe(require('print-flow'));
     done();
