@@ -1,7 +1,7 @@
 -u bdd
 --recursive
 --bail
--t 250
+-t 500
 --reporter list 
 --check-leaks
 -A
