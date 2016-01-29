@@ -40,6 +40,10 @@ Table of Contents
 Husk
 ====
 
+[<img src="https://travis-ci.org/tmpfs/husk.svg" alt="Build Status">](https://travis-ci.org/tmpfs/husk)
+[<img src="http://img.shields.io/npm/v/husk.svg" alt="npm version">](https://npmjs.org/package/husk)
+[<img src="https://coveralls.io/repos/tmpfs/husk/badge.svg?branch=master&service=github&v=1" alt="Coverage Status">](https://coveralls.io/github/tmpfs/husk?branch=master).
+
 Modular stream transformation system using a plugin architecture.
 
 Designed with command execution and file manipulation at the core it is flexible enough for many common tasks.
@@ -272,16 +276,6 @@ husk()
 ```
 
 **Result**.
-
-```
-{
-  "pid": "30006",
-  "tt": "pts/35",
-  "stat": "Sl+",
-  "time": "0:00",
-  "cmd": "node ebin/filter"
-}
-```
 
 ### fs
 
@@ -747,16 +741,6 @@ husk()
 ```
 
 **Result**.
-
-```
-{
-  "pid": "30095",
-  "tt": "pts/35",
-  "stat": "Sl+",
-  "time": "0:00",
-  "cmd": "node ebin/reject"
-}
-```
 
 ### series
 
