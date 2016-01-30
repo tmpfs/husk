@@ -197,4 +197,13 @@ describe('husk (io):', function() {
     done();
   });
 
+  it('should transform file stream', function(done) {
+    var s = 'test/fixtures/mock.json'
+      //, t = './output.json';
+    husk(s)
+      .file()
+      //.print(function(){console.dir(this)})
+      .run(done);
+  });
+
 });
