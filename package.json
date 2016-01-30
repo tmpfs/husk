@@ -1,7 +1,7 @@
 {
   "name": "husk",
   "description": "Modular stream transformation system.",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "author": "muji <noop@xpm.io>",
   "license": "MIT",
   "repository": {
