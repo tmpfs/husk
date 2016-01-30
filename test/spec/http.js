@@ -19,7 +19,7 @@ describe('husk:', function() {
       expect(result).to.eql([]);
       done();
     }
-    var h = husk([])
+    husk([])
       .request()
       .through(function(){result = this})
       .run(complete);
@@ -32,7 +32,7 @@ describe('husk:', function() {
       expect(result.readable).to.eql(true);
       done();
     }
-    var h = husk('http://localhost:3000')
+    husk('http://localhost:3000')
       .request()
       .through(function(){result = this})
       .run(complete);
@@ -45,7 +45,7 @@ describe('husk:', function() {
       expect(result.readable).to.eql(true);
       done();
     }
-    var h = husk('http://localhost:3000')
+    husk('http://localhost:3000')
       .get()
       .through(function(){result = this})
       .run(complete);

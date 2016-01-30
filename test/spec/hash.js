@@ -15,8 +15,12 @@ describe('husk:', function() {
   })
 
   it('should emit error on bad algorithm', function(done) {
-    var h = husk(file)
+    husk(file)
       .on('error', function(e) {
+        function fn() {
+          throw e;
+        }
+        expect(fn).throws(Error);
         done();
       })
       .read({buffer: false})
@@ -25,13 +29,13 @@ describe('husk:', function() {
   });
 
   it('should pass through unsupported type', function(done) {
-    var h = husk(false)
+    husk(false)
       .hash({algorithm: 'md5'})
       .run(done);
   });
 
   it('should generate checksum for file read stream', function(done) {
-    var h = husk(file)
+    husk(file)
       .read({buffer: false})
       .hash({algorithm: 'md5', enc: 'hex'})
       .assert(function(){
@@ -41,7 +45,7 @@ describe('husk:', function() {
   });
 
   it('should generate checksum for file buffer', function(done) {
-    var h = husk(file)
+    husk(file)
       .read()
       .hash({algorithm: 'md5', enc: 'hex'})
       .assert(function(){
@@ -51,7 +55,7 @@ describe('husk:', function() {
   });
 
   it('should generate checksum for buffer input', function(done) {
-    var h = husk(fs.readFileSync(file))
+    husk(fs.readFileSync(file))
       .read()
       .hash({algorithm: 'md5', enc: 'hex'})
       .assert(function(){
@@ -61,7 +65,7 @@ describe('husk:', function() {
   });
 
   it('should generate checksum for string input', function(done) {
-    var h = husk('' + fs.readFileSync(file))
+    husk('' + fs.readFileSync(file))
       .hash({algorithm: 'md5', enc: 'hex'})
       .assert(function(){
         return this.md5.valueOf() === md5;
@@ -70,7 +74,7 @@ describe('husk:', function() {
   });
 
   it('should push buffer with default algorithm', function(done) {
-    var h = husk('' + fs.readFileSync(file))
+    husk('' + fs.readFileSync(file))
       .hash()
       .assert(function() {
         return Buffer.isBuffer(this.sha512);

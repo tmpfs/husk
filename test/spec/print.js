@@ -24,13 +24,13 @@ describe('husk:', function() {
       expect(val).to.eql('foo');
       done();
     }
-    var h = husk(new Buffer('foo'))
+    husk(new Buffer('foo'))
       .debug({buffers: false})
       .run();
   });
 
   it('should debug with function', function(done) {
-    var h = husk(new Buffer('foo'))
+    husk(new Buffer('foo'))
       .debug({raw: true}, function(chunk){
         expect(Buffer.isBuffer(chunk)).to.eql(true);
         expect('' + chunk).to.eql('foo');

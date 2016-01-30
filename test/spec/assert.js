@@ -4,7 +4,7 @@ var expect = require('chai').expect
 describe('husk:', function() {
 
   it('should assert on chunk', function(done) {
-    var h = husk(__filename)
+    husk(__filename)
       .assert(function(){
         return (this instanceof String) && (typeof this.valueOf() === 'string')
       })
@@ -12,14 +12,14 @@ describe('husk:', function() {
   });
 
   it('should pass through on no function', function(done) {
-    var h = husk(__filename)
+    husk(__filename)
       .assert()
       .run(done);
   });
 
 
   it('should emit error on throw', function(done) {
-    var h = husk(__filename)
+    husk(__filename)
       .on('error', function(e) {
         function fn() {
           throw e;
@@ -37,7 +37,7 @@ describe('husk:', function() {
       process.exit = exit;
       done();
     }
-    var h = husk(__filename)
+    husk(__filename)
       .on('error', function(e) {
         expect(e.code).to.eql(255);
         function fn() {
@@ -50,7 +50,7 @@ describe('husk:', function() {
   });
 
   it('should emit error from string message', function(done) {
-    var h = husk(__filename)
+    husk(__filename)
       .on('error', function(e) {
         function fn() {
           throw e;

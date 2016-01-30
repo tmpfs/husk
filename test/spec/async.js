@@ -4,7 +4,7 @@ var expect = require('chai').expect
 describe('husk:', function() {
 
   it('should pass through on no function', function(done) {
-    var h = husk(__filename)
+    husk(__filename)
       .async()
       .run(done);
   });
@@ -14,7 +14,7 @@ describe('husk:', function() {
       expect(this.valueOf()).to.eql(__filename);
       cb();
     }
-    var h = husk(__filename)
+    husk(__filename)
       .async(fn)
       .run(done);
   });
@@ -25,7 +25,7 @@ describe('husk:', function() {
       expect(dir).to.eql(__dirname);
       cb();
     }
-    var h = husk(__filename)
+    husk(__filename)
       .async(fn, [__dirname])
       .run(done);
   });
@@ -36,13 +36,13 @@ describe('husk:', function() {
       expect(dir).to.eql(__dirname);
       cb();
     }
-    var h = husk(__filename)
+    husk(__filename)
       .async(fn, [__dirname], {result: false})
       .run(done);
   });
 
   it('should call anonymous function', function(done) {
-    var h = husk(__filename)
+    husk(__filename)
       .async(function(cb) {
         cb();
       })
@@ -55,7 +55,7 @@ describe('husk:', function() {
     }
     fn.id = 'fn';
 
-    var h = husk(__filename)
+    husk(__filename)
       .async(fn)
       .run(done);
   });
@@ -64,7 +64,7 @@ describe('husk:', function() {
     function fn(cb) {
       cb(new Error('mock cb err'));
     }
-    var h = husk(__filename)
+    husk(__filename)
       .on('error', function(e) {
         function f() {
           throw e;

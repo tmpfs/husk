@@ -1,5 +1,4 @@
 var expect = require('chai').expect
-  , fs = require('fs')
   , husk = require('../..')
   , process = require('husk-exec');
 
@@ -17,7 +16,7 @@ describe('husk:', function() {
   });
 
   it('should emit error event on ENOENT', function(done) {
-    var h = husk()
+    husk()
       .on('error', function onError(e) {
         function fn() {
           throw e;
@@ -32,7 +31,7 @@ describe('husk:', function() {
 
   it('should pass through chunks once started', function(done) {
     // test process stream passthrough
-    var h = husk([1,2,3])
+    husk([1,2,3])
       .each()
       .exec('pwd')
       .run(done);

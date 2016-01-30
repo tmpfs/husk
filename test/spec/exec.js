@@ -9,20 +9,20 @@ describe('husk:', function() {
 
   it('should create custom command', function(done) {
     husk.command('npm');
-    var h = husk()
+    var h = husk();
     expect(h.npm).to.be.a('function');
     done();
   });
 
   it('should create custom command w/ alias', function(done) {
     husk.command('npm', 'n');
-    var h = husk()
+    var h = husk();
     expect(h.n).to.be.a('function');
     done();
   });
 
   it('should execute command', function(done) {
-    var h = husk()
+    husk()
       .ls('doc')
       .print(function(chunk) {
         if(chunk) {
@@ -37,14 +37,14 @@ describe('husk:', function() {
   });
 
   it('should execute commands in parallel', function(done) {
-    var h = husk()
+    husk()
       .echo('foo')
       .echo('bar')
       .run(true, done);
   });
 
   it('should execute commands in parallel (option)', function(done) {
-    var h = husk()
+    husk()
       .echo('foo')
       // trigger code path in parallel start up
       .debug(function noop(){})

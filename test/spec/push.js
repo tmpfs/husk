@@ -1,16 +1,15 @@
-var expect = require('chai').expect
-  , husk = require('../..');
+var husk = require('../..');
 
 describe('husk:', function() {
 
   it('should pass through with no function', function(done) {
-    var h = husk({})
+    husk({})
       .push()
       .run(done);
   });
 
   it('should push with sync callback', function(done) {
-    var h = husk()
+    husk()
       .push(function(){this.push({field: 'value'})})
       .assert(function() {
         return this.field === 'value';
@@ -19,7 +18,7 @@ describe('husk:', function() {
   });
 
   it('should push with async callback', function(done) {
-    var h = husk()
+    husk()
       .push(function(chunk, cb){this.push({field: 'value'}); cb();})
       .assert(function() {
         return this.field === 'value';
@@ -28,7 +27,7 @@ describe('husk:', function() {
   });
 
   it('should push with async encoding callback', function(done) {
-    var h = husk()
+    husk()
       .push(function(chunk, encoding, cb){this.push({field: 'value'}); cb();})
       .assert(function() {
         return this.field === 'value';

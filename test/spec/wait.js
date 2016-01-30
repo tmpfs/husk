@@ -47,7 +47,7 @@ describe('husk:', function() {
   });
 
   it('should pass through on unsupported output', function(done) {
-    var h = husk()
+    husk()
       .wait({
         output: []
       })
@@ -60,7 +60,7 @@ describe('husk:', function() {
       , prompt = '$>'
       , message = 'hi';
 
-    var h = husk()
+    husk()
       .wait({
         keypress: false,
         reader: reader,

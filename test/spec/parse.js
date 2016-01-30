@@ -4,7 +4,7 @@ var expect = require('chai').expect
 describe('husk:', function() {
 
   it('should emit error on bad json', function(done) {
-    var h = husk('{a:1}')
+    husk('{a:1}')
       .on('error', function(e) {
         function fn() {
           throw e;
@@ -17,13 +17,13 @@ describe('husk:', function() {
   });
 
   it('should pass through unsupported type', function(done) {
-    var h = husk([])
+    husk([])
       .parse()
       .run(done);
   });
 
   it('should parse json string', function(done) {
-    var h = husk('{"a":1}')
+    husk('{"a":1}')
       .parse()
       .assert(function() {
         return this.a === 1;
@@ -32,7 +32,7 @@ describe('husk:', function() {
   });
 
   it('should parse json buffer', function(done) {
-    var h = husk(new Buffer('{"a":1}'))
+    husk(new Buffer('{"a":1}'))
       .parse()
       .assert(function() {
         return this.a === 1;
@@ -41,7 +41,7 @@ describe('husk:', function() {
   });
 
   it('should parse with function', function(done) {
-    var h = husk()
+    husk()
       .parse(function(){return '{"a":1}'})
       .assert(function() {
         return this.a === 1;
@@ -50,7 +50,7 @@ describe('husk:', function() {
   });
 
   it('should parse with options and function', function(done) {
-    var h = husk({})
+    husk({})
       .parse({field: 'doc'}, function(){return '{"a":1}'})
       .assert(function() {
         return this.doc.a === 1;

@@ -1,16 +1,15 @@
-var expect = require('chai').expect
-  , husk = require('../..');
+var husk = require('../..');
 
 describe('husk:', function() {
 
   it('should pass through with no function', function(done) {
-    var h = husk({})
+    husk({})
       .transform()
       .run(done);
   });
 
   it('should use transform function return value', function(done) {
-    var h = husk({})
+    husk({})
       .transform(function(){return {field: 'value'}})
       .assert(function() {
         return this.field === 'value';
@@ -19,7 +18,7 @@ describe('husk:', function() {
   });
 
   it('should use named transform function return value', function(done) {
-    var h = husk({})
+    husk({})
       .transform(function transformer(){return {field: 'value'}})
       .assert(function() {
         return this.field === 'value';

@@ -5,7 +5,7 @@ describe('husk:', function() {
 
   it('should parse chunk argv', function(done) {
     var args = [__dirname, __filename];
-    var h = husk(args)
+    husk(args)
       .argv()
       .through(function(){
         expect(this.unparsed).to.eql(args);
@@ -14,7 +14,7 @@ describe('husk:', function() {
   });
 
   it('should parse default argv', function(done) {
-    var h = husk()
+    husk()
       .argv()
       .through(function(){
         expect(Boolean(~this.unparsed.indexOf('bdd'))).to.eql(true);

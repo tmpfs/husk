@@ -1,5 +1,4 @@
-var expect = require('chai').expect
-  , fs = require('fs')
+var fs = require('fs')
   , husk = require('../..')
   , prompt = require('husk-prompt')
   , ask = {message: 'choose directory:', default: 'lib'};
@@ -19,7 +18,7 @@ describe('husk:', function() {
   })
 
   it('should pass through with no function', function(done) {
-    var h = husk()
+    husk()
       .prompt()
       .run(done);
   });
@@ -31,7 +30,7 @@ describe('husk:', function() {
   });
 
   it('should handle prompt with no options', function(done) {
-    var h = husk()
+    husk()
       // show prompt
       .prompt(function(ps, chunk, encoding, cb) {
         cb();
@@ -46,7 +45,7 @@ describe('husk:', function() {
     var reader = fs.createReadStream('/dev/null')
       , writer = fs.createWriteStream('/dev/null')
       , prompt = husk.getPrompt(ask).prompt;
-    var h = husk()
+    husk()
       .wait(
         {
           output: prompt,
@@ -83,7 +82,7 @@ describe('husk:', function() {
       , writer = fs.createWriteStream('/dev/null')
       , prompt = husk.getPrompt(ask).prompt;
 
-    var h = husk()
+    husk()
       .wait(
         {
           output: prompt,

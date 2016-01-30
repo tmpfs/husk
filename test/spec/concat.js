@@ -4,14 +4,14 @@ var expect = require('chai').expect
 describe('husk:', function() {
 
   it('should return empty data on no chunks', function(done) {
-    var h = husk('')
+    husk('')
       .each()
       .concat()
       .run(done);
   });
 
   it('should concat strings', function(done) {
-    var h = husk(['a', 'b', 'c'])
+    husk(['a', 'b', 'c'])
       .each()
       .concat()
       .assert(function() {
@@ -21,7 +21,7 @@ describe('husk:', function() {
   });
 
   it('should concat strings w/ coerced value', function(done) {
-    var h = husk(['a', 1, 'c'])
+    husk(['a', 1, 'c'])
       .each()
       .concat()
       .assert(function() {
@@ -31,7 +31,7 @@ describe('husk:', function() {
   });
 
   it('should concat strings w/ encoding', function(done) {
-    var h = husk(['a', 'b', 'c'])
+    husk(['a', 'b', 'c'])
       .each()
       .concat({enc: 'string'})
       .assert(function() {
@@ -41,7 +41,7 @@ describe('husk:', function() {
   });
 
   it('should pass through w/ unknown encoding', function(done) {
-    var h = husk(['a', 'b', 'c'])
+    husk(['a', 'b', 'c'])
       .each()
       .concat({enc: 'unknown'})
       .assert(function() {
@@ -52,7 +52,7 @@ describe('husk:', function() {
   });
 
   it('should pass through w/ unknown infer types', function(done) {
-    var h = husk([{}, {}, {}])
+    husk([{}, {}, {}])
       .each()
       .concat()
       .assert(function() {
@@ -63,7 +63,7 @@ describe('husk:', function() {
   });
 
   it('should concat arrays', function(done) {
-    var h = husk([['a'], ['b'], ['c']])
+    husk([['a'], ['b'], ['c']])
       .each()
       .concat()
       .assert(function() {
@@ -74,7 +74,24 @@ describe('husk:', function() {
   });
 
   it('should concat buffers', function(done) {
-    var h = husk([new Buffer('a'), new Buffer('b'), new Buffer('c')])
+    husk([new Buffer('a'), new Buffer('b'), new Buffer('c')])
+      .each()
+      .concat()
+      .assert(function() {
+        expect(Buffer.isBuffer(this)).to.eql(true);
+        expect(this.toString()).to.eql('abc');
+        return true;
+      })
+      .run(done);
+  });
+
+  /* jshint ignore:start */
+  /*
+   * Ignored because we want to support String constructors as 
+   * well as string literals.
+   */
+  it('should concat buffers w/ strings', function(done) {
+    husk([new Buffer('a'), new String('b'), 'c'])
       .each()
       .concat()
       .assert(function() {
@@ -86,19 +103,7 @@ describe('husk:', function() {
   });
 
   it('should concat buffers w/ strings', function(done) {
-    var h = husk([new Buffer('a'), new String('b'), 'c'])
-      .each()
-      .concat()
-      .assert(function() {
-        expect(Buffer.isBuffer(this)).to.eql(true);
-        expect(this.toString()).to.eql('abc');
-        return true;
-      })
-      .run(done);
-  });
-
-  it('should concat buffers w/ strings', function(done) {
-    var h = husk(['a', new String('b'), new Buffer('c')])
+    husk(['a', new String('b'), new Buffer('c')])
       .each()
       .concat()
       .assert(function() {
@@ -108,9 +113,10 @@ describe('husk:', function() {
       })
       .run(done);
   });
+  /* jshint ignore:end */
 
   it('should concat uint8 arrays', function(done) {
-    var h = husk([new Uint8Array([0]), new Uint8Array([255])])
+    husk([new Uint8Array([0]), new Uint8Array([255])])
       .each()
       .concat()
       .assert(function() {
@@ -122,7 +128,7 @@ describe('husk:', function() {
   });
 
   it('should concat uint8 arrays w/ encoding alias', function(done) {
-    var h = husk([new Uint8Array([0]), new Uint8Array([255])])
+    husk([new Uint8Array([0]), new Uint8Array([255])])
       .each()
       .concat({enc: 'uint8'})
       .assert(function() {

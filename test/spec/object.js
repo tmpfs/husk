@@ -4,19 +4,19 @@ var expect = require('chai').expect
 describe('husk:', function() {
 
   it('should pass through non-array', function(done) {
-    var h = husk('')
+    husk('')
       .object({schema: {}})
       .run(done);
   });
 
   it('should use default options', function(done) {
-    var h = husk([1,2,3])
+    husk([1,2,3])
       .object()
       .run(done);
   });
 
   it('should convert array to object', function(done) {
-    var h = husk([1,2,3,3,3])
+    husk([1,2,3,3,3])
       .object({schema: {a: 0, b: 1, c: -2}})
       .assert(function() {
         expect(this.a).to.eql('1');
@@ -28,7 +28,7 @@ describe('husk:', function() {
   });
 
   it('should convert array to object w/ delimiter', function(done) {
-    var h = husk([1,2,3,3,3])
+    husk([1,2,3,3,3])
       .object({schema: {a: 0, b: 1, c: -2}, delimiter: ''})
       .assert(function() {
         expect(this.a).to.eql('1');
@@ -40,7 +40,7 @@ describe('husk:', function() {
   });
 
   it('should concatenate with array rule', function(done) {
-    var h = husk([1,2,3,3,3])
+    husk([1,2,3,3,3])
       .object({schema: {a: [0,1], c: undefined}, delimiter: ''})
       .assert(function() {
         expect(this.a).to.eql('12');
@@ -50,7 +50,7 @@ describe('husk:', function() {
   });
 
   it('should concatenate with array rule missing index', function(done) {
-    var h = husk([1, ''])
+    husk([1, ''])
       .object({schema: {a: [0,1], c: undefined}, delimiter: ''})
       .assert(function() {
         expect(this.a).to.eql('1');

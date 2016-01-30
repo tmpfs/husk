@@ -11,13 +11,13 @@ describe('husk:', function() {
   });
 
   it('should pass through with non string', function(done) {
-    var h = husk({})
+    husk({})
       .split()
       .run(done);
   });
 
   it('should split string into array', function(done) {
-    var h = husk('1 2 3')
+    husk('1 2 3')
       .split()
       .assert(function() {
         expect(this).to.eql(['1','2','3']);
@@ -27,7 +27,7 @@ describe('husk:', function() {
   });
 
   it('should split string into array without trim', function(done) {
-    var h = husk('1 2 3 ')
+    husk('1 2 3 ')
       .split({trim: false})
       .assert(function() {
         expect(this).to.eql(['1','2','3', '']);
