@@ -16,6 +16,7 @@ describe('husk (io):', function() {
     var f = new io.File([]);
     expect(f.opts).to.be.an('object');
     expect(f.path).to.eql(null);
+    expect(f.inspect()).to.be.an('object');
     done();
   });
 
@@ -199,10 +200,11 @@ describe('husk (io):', function() {
 
   it('should transform file stream', function(done) {
     var s = 'test/fixtures/mock.json'
-      //, t = './output.json';
-    husk(s)
-      .file()
-      //.print(function(){console.dir(this)})
+      , t = 'target/output.json';
+    husk(husk.io.duplex(s, t))
+      .load()
+      .through(function(){console.dir(this)})
+      //.save(t)
       .run(done);
   });
 

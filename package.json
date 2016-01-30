@@ -46,7 +46,9 @@
     "ex": "./sbin/ebin",
     "linkify": "./sbin/linkify",
     "installify": "./sbin/installify",
+    "pretest": "rm -rf ./target && mkdir target",
     "test": "NODE_ENV=test mocha test/global.js ${SPEC:-test/spec}",
+    "precover": "npm run pretest",
     "cover": "NODE_ENV=test istanbul cover --root ./lib _mocha -- test/global.js ${SPEC:-test/spec}",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
