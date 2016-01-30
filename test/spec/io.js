@@ -145,8 +145,7 @@ describe('husk (io):', function() {
   });
 
   it('should create file with buffer path', function(done) {
-    var s = '/dev/null'
-      , b = new Buffer(0);
+    var b = new Buffer(0);
     var f = io.file(b);
     expect(f.path).to.eql(null);
     expect(f.body).to.eql(b);
@@ -186,6 +185,15 @@ describe('husk (io):', function() {
     f.dirname(n);
     expect(f.path).to.eql(path.join(n, path.basename(s)));
     expect(f.dirname()).to.eql(n);
+    done();
+  });
+
+  it('should use instance stream creation (chain)', function(done) {
+    var s = './file.txt'
+      , h = husk()
+      , f = h.file(s);
+    // returned husk for chaining
+    expect(f).to.eql(h);
     done();
   });
 
