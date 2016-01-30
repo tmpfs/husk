@@ -189,13 +189,20 @@ describe('husk (io):', function() {
     done();
   });
 
-  it('should use instance stream creation (chain)', function(done) {
-    var s = './file.txt'
-      , h = husk()
-      , f = h.file(s);
-    // returned husk for chaining
-    expect(f).to.eql(h);
-    done();
+  it('should passthrough non-file object', function(done) {
+    // triggers code path whereby the load stream
+    // will passthrough objects that are not file instances
+    husk('foo')
+      .load()
+      .run(done);
+  });
+
+  it('should stringify file stream', function(done) {
+    var s = 'test/fixtures/mock.json'
+      , t = 'target/output.json';
+    husk(husk.io.duplex(s, t))
+      .stringify()
+      .run(done);
   });
 
   it('should transform file stream', function(done) {
