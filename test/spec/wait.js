@@ -74,17 +74,17 @@ describe('husk:', function() {
       })
       .run();
 
-      // assert on data pushed to reader
-      reader.push = function(chunk) {
-        if(chunk !== null) {
-          expect(chunk).to.eql(message + '\r\n');
-        }
+    // assert on data pushed to reader
+    reader.push = function(chunk) {
+      if(chunk !== null) {
+        expect(chunk).to.eql(message + '\r\n');
       }
+    }
 
-      writer.write('foo\r\n');
+    writer.write('foo\r\n');
 
-      // write out expected data
-      writer.write(prompt);
+    // write out expected data
+    writer.write(prompt);
   });
 
 });

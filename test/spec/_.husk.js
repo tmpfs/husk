@@ -49,12 +49,14 @@ describe('husk:', function() {
       .run(done);
   });
 
-  it('should pipe readable stream to first writer (end: false)', function(done) {
-    var h = husk('data', {end: false})
-      .print()
-      .run(done);
-    h.pipeline[0].end();
-  });
+  it('should pipe readable stream to first writer (end: false)',
+    function(done) {
+      var h = husk('data', {end: false})
+        .print()
+        .run(done);
+      h.pipeline[0].end();
+    }
+  );
 
   it('should pipe use run options data', function(done) {
     husk('data')

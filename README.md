@@ -117,12 +117,13 @@ husk(process.argv.slice(2))
 **Result**.
 
 ```
+undefined
 [
   {
     "size": 40
   },
   {
-    "size": 1846
+    "size": 1965
   }
 ]
 ```
@@ -201,6 +202,7 @@ husk(process.env)
 **Result**.
 
 ```
+undefined
 {
   "editor": "vim"
 }
@@ -370,6 +372,7 @@ husk()
 **Result**.
 
 ```
+undefined
 [
   {
     "file": "lib/plugin/exec/alias.js",
@@ -381,8 +384,8 @@ husk()
   {
     "file": "lib/plugin/exec/index.js",
     "hash": {
-      "sha1": "c41cea1024dc5d8e43ea9aacedcd0216481f73fe",
-      "md5": "165a2753158ff1552144746a9d69af76"
+      "sha1": "972513e4a08106fdc40b896e5b82d173c961391a",
+      "md5": "070027151d1a2b74924bb409885a0cbb"
     }
   }
 ]
@@ -439,6 +442,7 @@ husk(input)
 **Result**.
 
 ```
+undefined
 {
   "husk-async": "~2.0.0",
   "husk-core": "~2.0.0",
@@ -512,10 +516,11 @@ husk('package.json')
 **Result**.
 
 ```
+undefined
 {
   "husk-async": "~1.0.2",
-  "husk-core": "~1.0.3",
-  "husk-exec": "~1.0.3",
+  "husk-core": "~1.0.4",
+  "husk-exec": "~1.0.4",
   "husk-fs": "~1.0.2",
   "zephyr": "~1.2.6"
 }
@@ -573,6 +578,7 @@ husk()
 [Each:Transform]
 [Filter:Transform]
 [Transform:Transform]
+undefined
 [Concat:Transform]
 [Stringify:Transform]
 [Print:Transform] noop
@@ -811,6 +817,7 @@ husk(process.stdin)
 **Result**.
 
 ```
+undefined
 {
   "user": "muji",
   "line": ":0",
@@ -878,6 +885,7 @@ h.run(onEnd);
 [Each:Transform]
 [Filter:Transform]
 [Transform:Transform]
+undefined
 [Concat:Transform]
 [Stringify:Transform]
 [Print:Transform] noop
@@ -921,6 +929,7 @@ husk()
 **Result**.
 
 ```
+undefined
 [
   "./stream/argv/README.md",
   "./stream/async/README.md",
@@ -970,6 +979,7 @@ husk(process.argv.slice(2))
 **Result**.
 
 ```
+undefined
 [
   {
     "var": "foo"
@@ -1034,6 +1044,7 @@ husk()
 **Result**.
 
 ```
+undefined
 [
   {
     "source": "lib/plugin/exec/alias.js",
@@ -1044,8 +1055,8 @@ husk()
   {
     "source": "lib/plugin/exec/index.js",
     "file": "lib/plugin/exec/index.js.gz",
-    "ratio": 0.3395860284605433,
-    "percent": "34%"
+    "ratio": 0.3460193652501345,
+    "percent": "35%"
   }
 ]
 ```

@@ -54,13 +54,15 @@ describe('husk:', function() {
           writer: writer,
           keypress: false})
       // show prompt
-      .prompt({input: reader, output: writer}, function(ps, chunk, encoding, cb) {
-        ps.prompt(
-          ask,
-          function complete(err, val) {
-            cb(err, val ? val[0] : null);
-          })
-      })
+      .prompt({input: reader, output: writer},
+        function(ps, chunk, encoding, cb) {
+          ps.prompt(
+            ask,
+            function complete(err, val) {
+              cb(err, val ? val[0] : null);
+            })
+        }
+      )
       // find files in chosen directory
       .find(function(){return [this.valueOf()]})
       .lines()
@@ -71,8 +73,8 @@ describe('husk:', function() {
       })
       .run(done);
 
-      // write out expected data
-      writer.write(prompt);
+    // write out expected data
+    writer.write(prompt);
   });
 
   it('should execute prompt w/ keypress, wait and write', function(done) {
@@ -90,13 +92,15 @@ describe('husk:', function() {
           reader: reader,
           writer: writer})
       // show prompt
-      .prompt({input: reader, output: writer}, function(ps, chunk, encoding, cb) {
-        ps.prompt(
-          ask,
-          function complete(err, val) {
-            cb(err, val ? val[0] : null);
-          })
-      })
+      .prompt({input: reader, output: writer},
+        function(ps, chunk, encoding, cb) {
+          ps.prompt(
+            ask,
+            function complete(err, val) {
+              cb(err, val ? val[0] : null);
+            })
+        }
+      )
       // find files in chosen directory
       .find(function(){return [this.valueOf()]})
       .lines()
@@ -107,13 +111,13 @@ describe('husk:', function() {
       })
       .run(done);
 
-      // simulate keypress logic
-      reader.once('keypress', function(chunk) {
-        reader.push(chunk);
-      })
+    // simulate keypress logic
+    reader.once('keypress', function(chunk) {
+      reader.push(chunk);
+    })
 
-      // write out expected data
-      writer.write(prompt);
+    // write out expected data
+    writer.write(prompt);
   });
 
 

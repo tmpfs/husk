@@ -83,5 +83,5 @@ module.exports = {
   stdin: {
     cmd: 'who | ebin/stdin',
     description: 'Pipe stdin to various plugins to produce json'
-  },
+  }
 }
